@@ -39,7 +39,7 @@ public class TestConectSchoolMain {
 			System.out.println("done");
 
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 
 	}
