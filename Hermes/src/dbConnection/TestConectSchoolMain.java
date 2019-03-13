@@ -1,44 +1,52 @@
 package dbConnection;
-
 import java.sql.*;
 
-public class TestMain {
+
+public class TestConectSchoolMain {
 
 	public static void main(String[] args) {
-		
+
+
 		try {
-			
+
 			// connect to database
 			//jdbc:<driver protocol>:<driver connection detils><database name>, username ,password
-			//local
-			Connection myConn  = DriverManager.getConnection("jdbc:mysql://localhost:3306/eshop", "user", "pass");
-			
-			
-			
+
+			//skolan
+
+			Connection myConn  = DriverManager.getConnection("jdbc:mysql://blu-ray.student.bth.se:3306/jaju15", "jaju15", "XXXXX");
+
+
 			// statement
-			
+
 			Statement myStmt = myConn.createStatement();
-			
-			
+
+
 			// execute tge statement with SQL query
-			
-			ResultSet myRs = myStmt.executeQuery("Select * from kund");
-			
+
+			ResultSet myRs = myStmt.executeQuery("Select * FROM Plagg");
+
 			// process result set
-			
-		
+
+
 			while(myRs.next()) {
-				System.out.println(myRs.getString("fornamn") + " "+ (myRs.getString("efternamn")));
+				System.out.println(myRs.getString("Tillverkare") + " "+ (myRs.getString("Modell")));
 			}
-		
-			// test
-			System.out.println(myRs.getArray(1));
+
+			// test funkade inte
+			//Array firstColumn = myRs.getArray(1);
 			
-			
+			System.out.println("done");
+
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
 
 	}
 
+
+
+
 }
+
+
