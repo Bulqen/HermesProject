@@ -13,11 +13,10 @@ public class UserFactory {
 		return theUser;
 	}
 	
-	public <E> E getUserType(){
+	public int getUserType(){
 		
 		DBConnection DB = new DBConnection();
-		
-		return (E) "k";
+		return DB.getEmployeeType(); // 1=Worker, 2=ProjectManager & 3=DepartmentManager
 	}
 	
 	

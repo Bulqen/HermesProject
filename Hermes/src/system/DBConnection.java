@@ -6,9 +6,14 @@ public class DBConnection {
 	
 	public String getPW() {
 		
-		String password = "123"; // här ska givetvis password hämtas från databasen när de metoderna är färdiga
+		String password = "123"; // hï¿½r ska givetvis password hï¿½mtas frï¿½n databasen nï¿½r de metoderna ï¿½r fï¿½rdiga
 		
 		return password;
-		
+	}
+	
+	//databas mÃ¥ste implimenteras fÃ¶rst
+	public int getEmployeeType(){
+		int userType = (?= CALL procedure_employeeType); // 1=Worker, 2=ProjectManager & 3=DepartmentManager
+		return userType; 
 	}
 }
