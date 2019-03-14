@@ -8,15 +8,18 @@ public class UserFactory {
 		this.userName = userName;
 	}
 	
-	
-	
 	public User createUser(){
 		User theUser = new User(this.userName);
 		return theUser;
 	}
-	// big pung
 	
-	public <e> 
+	public <E> E getUserType(){
+		
+		DepartmentManager felix = new DepartmentManager("fd");
+		
+		
+		return (E) felix;
+	}
 	
 	
 }

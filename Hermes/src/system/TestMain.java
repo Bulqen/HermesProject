@@ -10,6 +10,8 @@ public class TestMain {
 		User theUser = theFactory.createUser();
 		System.out.println(theUser.getuserName());
 		
+		System.out.println(theFactory.getUserType().toString());
+		
 		
 	}
 
