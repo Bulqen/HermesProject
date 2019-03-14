@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="parent" prefHeight="700.0" prefWidth="1080.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LogInControler">
+   <children>
+      <HBox fx:id="top" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="1080.0" spacing="5.0">
+         <children>
+            <Label alignment="CENTER" onMouseClicked="#minimize_stage" prefHeight="20.0" prefWidth="20.0" styleClass="min-btn">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/minus-3-24.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Label alignment="CENTER" onMouseClicked="#close_app" prefHeight="20.0" prefWidth="20.0" styleClass="close-btn">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/x-mark-5-24.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="1.0" left="1.0" right="5.0" top="1.0" />
+         </padding>
+      </HBox>
+      <Pane fx:id="content" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1080.0">
+         <children>
+            <Button layoutX="484.0" layoutY="398.0" mnemonicParsing="false" onAction="#handle_login" styleClass="signIn-btn" text="Sign in" textFill="LIGHTSKYBLUE">
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/account-login-48.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Calibri Bold" size="18.0" />
+               </font>
+            </Button>
+            <VBox alignment="CENTER" layoutX="342.0" layoutY="237.0" prefHeight="137.0" prefWidth="380.0" spacing="10.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="380.0" spacing="5.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #646464; -fx-background-radius: 2;">
+                           <graphic>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/user-48.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
+                        <TextField alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="315.0" promptText="Username" styleClass="txtfield">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="380.0" spacing="5.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="60.0" style="-fx-background-color: #646464; -fx-background-radius: 2;">
+                           <graphic>
+                              <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/key-3-48.gif" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
+                        <PasswordField alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="315.0" promptText="Password" styleClass="txtfield">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </PasswordField>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
