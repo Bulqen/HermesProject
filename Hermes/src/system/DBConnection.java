@@ -11,10 +11,16 @@ public class DBConnection {
 	
 	private String userName;
 	private String PW;
+	private Connection myConn;
 	
-	DBConnection() throws SQLException{
+	DBConnection() {
 		
-		
+		try {
+			myConn  = DriverManager.getConnection("jdbc:mysql://localhost:3306/eshop", "user", "pass");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	DBConnection(String userName){
@@ -23,7 +29,6 @@ public class DBConnection {
 	
 	public String getPW(String userName) throws SQLException {
 		
-		Connection myConn  = DriverManager.getConnection("jdbc:mysql://localhost:3306/eshop", "user", "pass");
 		String password = String.valueOf(myConn.prepareStatement("SELECT * FROM tabelNamn WHERE userName = this.userName "));
 		
 		return password;
