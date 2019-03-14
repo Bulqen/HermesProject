@@ -15,10 +15,9 @@ public class UserFactory {
 	
 	public <E> E getUserType(){
 		
-		DepartmentManager felix = new DepartmentManager("fd");
+		DBConnection DB = new DBConnection();
 		
-		
-		return (E) felix;
+		return (E) "k";
 	}
 	
 	
