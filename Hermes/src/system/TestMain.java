@@ -13,7 +13,7 @@ public class TestMain {
 		DBConnection DB = new DBConnection();
 		
 		//System.out.println(theFactory.getUserType().toString());
-		
+		//commit
 		
 	}
 
