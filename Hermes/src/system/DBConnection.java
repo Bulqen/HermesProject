@@ -23,6 +23,30 @@ public class DBConnection {
 		}
 	}
 	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPW() {
+		return PW;
+	}
+
+	public void setPW(String pW) {
+		PW = pW;
+	}
+
+	public Connection getMyConn() {
+		return myConn;
+	}
+
+	public void setMyConn(Connection myConn) {
+		this.myConn = myConn;
+	}
+
 	DBConnection(String userName){
 		this.userName = userName;
 	}
