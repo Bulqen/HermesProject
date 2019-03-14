@@ -9,10 +9,11 @@ package system;
  */
 public class Login {
 
+	DBConnection DB = new DBConnection();
+	
 	private String getPW() {
 		
-		String password = DatabaseConnection.getPW();
-		
+		String password = DB.getPW(userName);
 	
 	}
 
