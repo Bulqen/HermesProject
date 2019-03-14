@@ -9,4 +9,12 @@ package system;
  */
 public class Login {
 
+	private String getPW() {
+		
+		String password = DatabaseConnection.getPW();
+		
+	
+	}
+
+
 }
