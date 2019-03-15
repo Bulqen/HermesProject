@@ -12,7 +12,7 @@ public class DBConnection {
 	DBConnection() {
 
 		try {
-			myConn  = DriverManager.getConnection("jdbc:mysql://localhost:3306/eshop", "user", "pass");
+			myConn  = DriverManager.getConnection("jdbc:mysql://localhost:3306/hermes", "user", "pass");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -54,6 +54,7 @@ public class DBConnection {
 		preMyStmt.setString(1, userName);
 
 		ResultSet myRs = preMyStmt.executeQuery();
+		myRs.next();
 
 		String password = myRs.getString("password");
 
