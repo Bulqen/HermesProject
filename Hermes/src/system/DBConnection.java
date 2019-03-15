@@ -60,8 +60,9 @@ public class DBConnection {
 	}
 	
 	//databas måste implimenteras först
-		public int getEmployeeType(){
-			int userType = (?= CALL procedure_employeeType); // 1=Worker, 2=ProjectManager & 3=DepartmentManager
+		public int getEmployeeType() throws NumberFormatException, SQLException{	
+			int userType = Integer.valueOf(String.valueOf(myConn.prepareStatement("SELECT classificationID FROM user WHERE userName = " + this.userName))); // 1=Worker, 2=ProjectManager & 3=DepartmentManager
+					//(?= CALL procedure_employeeType); 
 			return userType; 
 		}
 }

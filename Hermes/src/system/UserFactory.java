@@ -32,10 +32,9 @@ public class UserFactory {
 		}
 		else{
 			//Ska tas bort innan vi skickar in
-			JOptionPane.showInputDialog("ERROR, ange userType 1, 2 eller 3 Förfan! Usern sätts som Worker nu istället");
+			JOptionPane.showInputDialog("ERROR, ange userType 1, 2 eller 3 Fï¿½rfan! Usern sï¿½tts som Worker nu istï¿½llet");
 			Worker standardUser = new Worker(userName);		
 			return (E) standardUser;
-
 			}
 		
 		
