@@ -1,5 +1,5 @@
 package application;
-	
+	JFrame.abstract.class.class.enum.interface.public;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
