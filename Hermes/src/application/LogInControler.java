@@ -96,6 +96,7 @@ public class LogInControler implements Initializable{
 
 
 		/*
+		 * test
 		String enteredUserName = userName.getText();
 		String enteredPassword = password.getText();
 		*/
