@@ -34,3 +34,15 @@ IGNORE 1 LINES
 (classificationId, shiftId, hourlyPay, managerId, firstName, lastName, adress,
 phone, socialSecurityNumber)
 ;
+
+LOAD DATA LOCAL INFILE 'data_login.csv'
+INTO TABLE login
+CHARSET utf8
+FIELDS
+    TERMINATED BY ','
+    ENCLOSED BY '"'
+LINES
+    TERMINATED BY '\n'
+IGNORE 1 LINES
+(username, password, userId)
+;
