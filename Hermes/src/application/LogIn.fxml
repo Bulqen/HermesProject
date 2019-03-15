@@ -67,7 +67,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <TextField alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="315.0" promptText="Username" styleClass="txtfield">
+                        <TextField fx:id="userName" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="315.0" promptText="Username" styleClass="txtfield">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -85,7 +85,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <PasswordField alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="315.0" promptText="Password" styleClass="txtfield">
+                        <PasswordField fx:id="password" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="315.0" promptText="Password" styleClass="txtfield">
                            <font>
                               <Font size="14.0" />
                            </font>
