@@ -53,7 +53,7 @@ public class DBConnection {
 	
 	public String getPW(String userName) throws SQLException {
 		
-		String password = String.valueOf(myConn.prepareStatement("SELECT * FROM tabelNamn WHERE userName = this.userName "));
+		String password = String.valueOf(myConn.prepareStatement("SELECT * FROM tabelNamn WHERE userName = " + this.userName));
 		
 		return password;
 		
