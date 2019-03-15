@@ -49,6 +49,7 @@ public class TestMain {
 
 			myCall2.setInt(1, 2);
 			ResultSet call2MyRs = myCall2.executeQuery();
+			
 
 
 			// process result set
