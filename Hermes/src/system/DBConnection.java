@@ -1,10 +1,6 @@
 package system;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class DBConnection {
 
@@ -53,7 +49,15 @@ public class DBConnection {
 	
 	public String getPW(String userName) throws SQLException {
 		
-		String password = String.valueOf(myConn.prepareStatement("SELECT * FROM tabelNamn WHERE userName = this.userName "));
+//		String password = String.valueOf(myConn.prepareStatement("SELECT * FROM tabelNamn WHERE userName = this.userName "));
+		PreparedStatement preMyStmt = myConn.prepareStatement("Select password FROM login WHERE username = ?");
+		preMyStmt.setString(1, userName);
+		
+		ResultSet myRs = preMyStmt.executeQuery();
+		
+		String password = myRs.getString("password");
+		
+		
 		
 		return password;
 		
