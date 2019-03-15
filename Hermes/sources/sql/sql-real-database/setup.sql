@@ -29,3 +29,5 @@ SET GLOBAL local_infile = 1;
 SET NAMES 'utf8';
 -- log av stored procedures
 SET GLOBAL log_bin_trust_function_creators = 1;
+-- timezone fix
+SET GLOBAL time_zone = '+1:00';
