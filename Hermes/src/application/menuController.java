@@ -7,10 +7,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class menuController implements Initializable {
@@ -23,6 +24,12 @@ public class menuController implements Initializable {
 	private AnchorPane parent;
 
 	@FXML
+	private Label nameLabel, dateAndTimeLabel;
+
+	@FXML
+	private Pane timePane, mainMenuPain, schedulePane, salarySlipPane, changePasswordPane, projectPane;
+
+	@FXML
 	private HBox top;
 
 	private double xOffSet = 0;
@@ -31,8 +38,16 @@ public class menuController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		displayTime();
 		makeStageDragable();
+		
+	}
 
+	private void displayTime() {
+		Clock time = new Clock();
+		dateAndTimeLabel.textProperty().bind(time.messageProperty());
+		new Thread(time).start();
+		
 	}
 
 	private void makeStageDragable(){
@@ -62,6 +77,7 @@ public class menuController implements Initializable {
 
 	public void setUserName(String userName){
 		this.userName = userName;
+		nameLabel.setText(userName);
 	}
 
 	@FXML
@@ -78,7 +94,32 @@ public class menuController implements Initializable {
 	}
 
 	@FXML
-	private void test(ActionEvent event){
-		System.out.println(userName);
+	private void time(ActionEvent event){
+		timePane.toFront();
+	}
+
+	@FXML
+	private void schedule(ActionEvent event){
+		schedulePane.toFront();
+	}
+
+	@FXML
+	private void salarySlip(ActionEvent event){
+		salarySlipPane.toFront();
+	}
+
+	@FXML
+	private void changePassword(ActionEvent event){
+		changePasswordPane.toFront();
+	}
+
+	@FXML
+	private void project(ActionEvent event){
+		projectPane.toFront();
+	}
+
+	@FXML
+	private void back(ActionEvent event){
+		mainMenuPain.toFront();
 	}
 }
