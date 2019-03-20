@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,10 +14,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="parent" prefHeight="700.0" prefWidth="1080.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LogInControler">
+<AnchorPane fx:id="parent" onKeyPressed="#log" prefHeight="700.0" prefWidth="1080.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LogInControler">
    <children>
-      <HBox fx:id="top" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="1080.0" spacing="5.0">
+      <HBox fx:id="top" alignment="CENTER_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="1080.0" spacing="5.0" styleClass="parent" stylesheets="@application.css">
          <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1033.0">
+               <children>
+                  <Label text="Hermes" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font name="Calibri" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
+            </HBox>
             <Label alignment="CENTER" onMouseClicked="#minimize_stage" prefHeight="20.0" prefWidth="20.0" styleClass="min-btn">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -39,22 +55,25 @@
          <padding>
             <Insets bottom="1.0" left="1.0" right="5.0" top="1.0" />
          </padding>
+         <effect>
+            <DropShadow />
+         </effect>
       </HBox>
-      <Pane fx:id="content" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1080.0">
+      <Pane fx:id="content" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1080.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
          <children>
-            <Button layoutX="484.0" layoutY="398.0" mnemonicParsing="false" onAction="#handle_login" styleClass="signIn-btn" text="Sign in" textFill="LIGHTSKYBLUE">
+            <Button fx:id="signIn" layoutX="469.0" layoutY="390.0" mnemonicParsing="false" onAction="#handle_login" prefHeight="66.0" prefWidth="143.0" styleClass="signIn-btn" text="Sign in" textFill="LIGHTSKYBLUE">
                <graphic>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" onKeyPressed="#handle_login" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../Images/account-login-48.png" />
                      </image>
                   </ImageView>
                </graphic>
                <font>
-                  <Font name="Calibri Bold" size="18.0" />
+                  <Font name="Calibri" size="22.0" />
                </font>
             </Button>
-            <VBox alignment="CENTER" layoutX="342.0" layoutY="237.0" prefHeight="137.0" prefWidth="380.0" spacing="10.0">
+            <VBox alignment="CENTER" layoutX="350.0" layoutY="242.0" prefHeight="137.0" prefWidth="380.0" spacing="10.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="45.0" prefWidth="380.0" spacing="5.0">
                      <children>
@@ -67,7 +86,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <TextField fx:id="userName" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="315.0" promptText="Username" styleClass="txtfield">
+                        <TextField fx:id="userName" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#textPwFieldKeyReleased" prefHeight="45.0" prefWidth="315.0" promptText="Username" styleClass="txtfield">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -80,14 +99,14 @@
                            <graphic>
                               <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../Images/key-3-48.gif" />
+                                    <Image url="@../../Images/key-3-128.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Label>
-                        <PasswordField fx:id="password" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="315.0" promptText="Password" styleClass="txtfield">
+                        <PasswordField fx:id="password" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" onKeyReleased="#textPwFieldKeyReleased" prefHeight="45.0" prefWidth="315.0" promptText="Password" styleClass="txtfield">
                            <font>
-                              <Font size="14.0" />
+                              <Font name="System Italic" size="14.0" />
                            </font>
                         </PasswordField>
                      </children>

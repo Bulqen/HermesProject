@@ -74,7 +74,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="756.0" prefWidth="500.0" spacing="40.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="139.0" styleClass="signIn-btn" stylesheets="@application.css" text="In/Out" textFill="LIGHTSKYBLUE">
+                        <Button mnemonicParsing="false" onAction="#inOut" prefHeight="77.0" prefWidth="139.0" styleClass="signIn-btn" stylesheets="@application.css" text="In/Out" textFill="LIGHTSKYBLUE">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -86,7 +86,7 @@
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="160.0" layoutY="350.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="203.0" styleClass="signIn-btn" stylesheets="@application.css" text="Report sick day" textFill="LIGHTSKYBLUE">
+                        <Button layoutX="160.0" layoutY="350.0" mnemonicParsing="false" onAction="#reportASickDay" prefHeight="77.0" prefWidth="203.0" styleClass="signIn-btn" stylesheets="@application.css" text="Report sick day" textFill="LIGHTSKYBLUE">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -98,7 +98,7 @@
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="160.0" layoutY="408.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="233.0" styleClass="signIn-btn" stylesheets="@application.css" text="Apply for vaccation" textFill="LIGHTSKYBLUE">
+                        <Button layoutX="160.0" layoutY="408.0" mnemonicParsing="false" onAction="#applyForVaccation" prefHeight="77.0" prefWidth="233.0" styleClass="signIn-btn" stylesheets="@application.css" text="Apply for vaccation" textFill="LIGHTSKYBLUE">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -110,7 +110,7 @@
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button layoutX="160.0" layoutY="467.0" mnemonicParsing="false" prefHeight="77.0" prefWidth="229.0" styleClass="signIn-btn" stylesheets="@application.css" text="Edit working hours" textFill="LIGHTSKYBLUE">
+                        <Button layoutX="160.0" layoutY="467.0" mnemonicParsing="false" onAction="#editWorkingHours" prefHeight="77.0" prefWidth="229.0" styleClass="signIn-btn" stylesheets="@application.css" text="Edit working hours" textFill="LIGHTSKYBLUE">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -352,6 +352,36 @@
                </children></Pane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="499.0" layoutY="26.0" prefHeight="976.0" prefWidth="1372.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="500.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0" />
+      <AnchorPane layoutX="510.0" layoutY="7.0" prefHeight="976.0" prefWidth="1370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
+         <children>
+            <Pane fx:id="reportASickDay" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="186.0" text="Report a sick day" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="applyForVaccation" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="220.0" text="Apply for vaccation" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="editWorkingHours" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="220.0" text="Edit working hours" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="hideMainScreen" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children></AnchorPane>
    </children>
 </AnchorPane>

@@ -15,7 +15,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -41,6 +44,9 @@ public class LogInControler implements Initializable{
 	@FXML
 	private PasswordField password;
 
+	@FXML
+	private Button signIn;
+
 
 	private double xOffSet = 0;
 	private double yOffSet = 0;
@@ -51,6 +57,7 @@ public class LogInControler implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		signIn.setDisable(true);
 		makeStageDragable();
 
 	}
@@ -82,15 +89,29 @@ public class LogInControler implements Initializable{
 
 	@FXML
 	private void minimize_stage(MouseEvent event){
-        //stage.setMaximized(true);
         stage.setIconified(true);
 	}
 
 	@FXML
 	private void close_app(MouseEvent event){
 		System.exit(0);
-
 	}
+
+	@FXML
+	private void textPwFieldKeyReleased(KeyEvent event){
+		String enteredUserName = userName.getText();
+		String enteredPassword = password.getText();
+
+		boolean isDisabled = (enteredUserName.isEmpty() || enteredUserName.trim().isEmpty()) || (enteredPassword.isEmpty() || enteredPassword.trim().isEmpty());
+		signIn.setDisable(isDisabled);
+	}
+
+	@FXML
+    void log(KeyEvent event) {
+		if(event.getCode() == KeyCode.ENTER){
+			signIn.fire();
+		}
+    }
 
 	@FXML
 	private void handle_login(ActionEvent event){

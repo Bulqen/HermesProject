@@ -27,7 +27,8 @@ public class menuController implements Initializable {
 	private Label nameLabel, dateAndTimeLabel;
 
 	@FXML
-	private Pane timePane, mainMenuPain, schedulePane, salarySlipPane, changePasswordPane, projectPane;
+	private Pane timePane, mainMenuPain, schedulePane, salarySlipPane, changePasswordPane, projectPane, reportASickDay, hideMainScreen,
+	applyForVaccation, editWorkingHours;
 
 	@FXML
 	private HBox top;
@@ -40,14 +41,14 @@ public class menuController implements Initializable {
 		// TODO Auto-generated method stub
 		displayTime();
 		makeStageDragable();
-		
+
 	}
 
 	private void displayTime() {
 		Clock time = new Clock();
 		dateAndTimeLabel.textProperty().bind(time.messageProperty());
 		new Thread(time).start();
-		
+
 	}
 
 	private void makeStageDragable(){
@@ -99,6 +100,28 @@ public class menuController implements Initializable {
 	}
 
 	@FXML
+	private void applyForVaccation(ActionEvent event){
+		applyForVaccation.toFront();
+	}
+
+	@FXML
+	private void inOut(ActionEvent event){
+		//Code here to stamp in or out
+		hideMainScreen.toFront();
+		System.out.println("In/Out");
+	}
+
+	@FXML
+	private void editWorkingHours(ActionEvent event){
+		editWorkingHours.toFront();
+	}
+
+	@FXML
+	private void reportASickDay(ActionEvent event){
+		reportASickDay.toFront();
+	}
+
+	@FXML
 	private void schedule(ActionEvent event){
 		schedulePane.toFront();
 	}
@@ -121,5 +144,6 @@ public class menuController implements Initializable {
 	@FXML
 	private void back(ActionEvent event){
 		mainMenuPain.toFront();
+		hideMainScreen.toFront();
 	}
 }
