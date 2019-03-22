@@ -139,3 +139,171 @@ id INT AUTO_INCREMENT NOT NULL,
 addon INT,
 PRIMARY KEY(id)
 );
+
+
+--
+-- procedures
+--
+
+--
+-- Input är username, den returnerar password för det usernamet
+--
+DELIMITER ;;
+CREATE PROCEDURE get_pass(
+    uId INT
+)
+BEGIN
+    SELECT password FROM login WHERE = uId
+END ;;
+
+DELIMITER ;
+
+
+--
+-- Input är userId, den stämplar in användaren at current time
+--
+
+DELIMITER ;;
+CREATE PROCEDURE stamp_in(
+    uId INT
+)
+BEGIN
+
+    INSERT INTO time_report (userId, inTime, currentDate)
+        VALUES(uId, CURRENT_TIME(), CURRENT_DATE());
+
+END ;;
+
+DELIMITER ;
+
+--
+-- Input är userId, den stämplar ut användaren at current time, (kollar var out = null)
+--
+
+
+DELIMITER ;;
+CREATE PROCEDURE stamp_out (
+    uId INT
+)
+BEGIN
+
+UPDATE time_report SET outTime = CURRENT_TIME() WHERE (userId = uId AND outTime is NULL);
+
+END ;;
+
+DELIMITER ;
+
+
+--
+-- Input är userId och anledning av frånvaro i form av string
+-- (t.ex sjuk, ledig osv) denna funktione stämplar in dagen som abscence med
+--
+
+
+DELIMITER ;;
+CREATE PROCEDURE report_abscence (
+    uId INT,
+    absString VARCHAR(20)
+)
+BEGIN
+
+    SET @stampToday = (SELECT currentDate FROM time_report WHERE userId = uId);
+
+    IF (@stampToday IS NULL) THEN
+        INSERT INTO time_report (userId, currentDate, absence)
+        VALUES(uId, CURRENT_DATE(),absString );
+    ELSE
+        UPDATE time_report SET outTime = CURRENT_TIME(), absence = absString WHERE (userId = uId AND outTime is NULL);
+    END IF;
+
+
+END ;;
+
+DELIMITER ;
+
+--
+-- input är allt som behövs för en användare (obs shiftId och classId måste finnas (FK))
+-- användare skapas och returnerar dess userId
+--
+
+
+DELIMITER ;;
+CREATE PROCEDURE user_create(
+    IN cId INT,
+    IN shId INT,
+    IN hourPay INT,
+    IN manId INT,
+    IN fName VARCHAR(30),
+    IN lName VARCHAR(30),
+    IN adrs VARCHAR(20),
+    IN phne VARCHAR(20),
+    IN sSecureNumber VARCHAR(13),
+    INOUT outId INT
+
+)
+BEGIN
+    INSERT INTO user (classificationId, shiftId, hourlyPay, managerId, firstName, lastName, adress, phone, socialSecurityNumber)
+        VALUES(cId, shId, hourPay, manId, fName, lName, adrs, phne, sSecureNumber);
+
+    SET outId = (SELECT id FROM user ORDER BY id DESC LIMIT 1);
+
+
+END ;;
+
+DELIMITER ;
+
+
+--
+-- hämtar alla nuvarande usernames,
+--
+DELIMITER ;;
+CREATE PROCEDURE get_usernames()
+BEGIN
+    SELECT username FROM login;
+
+END ;;
+
+DELIMITER ;
+
+
+--
+--
+--
+
+
+DELIMITER ;;
+CREATE PROCEDURE login_create(
+    uId INT,
+    userIn VARCHAR(40),
+    passIn VARCHAR(20)
+
+)
+BEGIN
+
+    INSERT INTO login (userid, username, password)
+        VALUES(uId, userIn, passIn);
+
+
+
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE get_user_info(
+    uId INT
+
+)
+BEGIN
+
+    SELECT u.id, CONCAT(firstName, " ", lastName) as name, adress, phone, socialSecurityNumber, s.shiftType, c.role, managerId,
+    (SELECT  CONCAT(firstName, " ", lastName)from user as us WHERE u.managerId = us.id ) as managerName
+        FROM user as u
+            INNER JOIN shift s on u.classificationId = s.id
+            INNER JOIN classification c on c.id = u.classificationId WHERE u.id = uId;
+
+
+END ;;
+
+DELIMITER ;
