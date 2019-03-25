@@ -46,3 +46,16 @@ LINES
 IGNORE 1 LINES
 (username, password, userId)
 ;
+
+
+LOAD DATA LOCAL INFILE 'data_salary.csv'
+INTO TABLE salary
+CHARSET utf8
+FIELDS
+    TERMINATED BY ','
+    ENCLOSED BY '"'
+LINES
+    TERMINATED BY '\n'
+IGNORE 1 LINES
+(userId, currentMonthlySalary)
+;

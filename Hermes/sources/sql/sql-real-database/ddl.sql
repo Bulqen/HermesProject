@@ -3,6 +3,22 @@
 --
 
 
+
+DROP PROCEDURE IF EXISTS get_pass;
+DROP PROCEDURE IF EXISTS stamp_in;
+DROP PROCEDURE IF EXISTS stamp_out;
+DROP PROCEDURE IF EXISTS report_abscence;
+DROP PROCEDURE IF EXISTS user_create;
+DROP PROCEDURE IF EXISTS get_usernames;
+DROP PROCEDURE IF EXISTS login_create;
+DROP PROCEDURE IF EXISTS get_user_info;
+DROP PROCEDURE IF EXISTS add_scheduled_pass;
+DROP PROCEDURE IF EXISTS edit_time_report;
+DROP PROCEDURE IF EXISTS get_time_report;
+DROP PROCEDURE IF EXISTS get_scheduled_pass;
+DROP PROCEDURE IF EXISTS get_to_date_scheduled_pass;
+DROP TRIGGER IF EXISTS current_salary;
+
 DROP TABLE IF EXISTS oB;
 DROP TABLE IF EXISTS overtimePay;
 DROP TABLE IF EXISTS oT;
@@ -88,11 +104,13 @@ CREATE TABLE scheduled_pass (
 );
 
 CREATE TABLE time_report (
+    id INT AUTO_INCREMENT NOT NULL,
     userId INT NOT NULL,
     inTime TIME,
     outTime TIME,
     absence VARCHAR(10),
     currentDate Date,
+    PRIMARY KEY (id),
     FOREIGN KEY(userid) REFERENCES user(id)
 );
 
@@ -150,10 +168,10 @@ PRIMARY KEY(id)
 --
 DELIMITER ;;
 CREATE PROCEDURE get_pass(
-    uId INT
+    uName VARCHAR(40)
 )
 BEGIN
-    SELECT password FROM login WHERE = uId
+    SELECT password FROM login WHERE username = uName;
 END ;;
 
 DELIMITER ;
@@ -247,6 +265,9 @@ BEGIN
 
     SET outId = (SELECT id FROM user ORDER BY id DESC LIMIT 1);
 
+    INSERT INTO salary (userId, currentMonthlySalary)
+        VALUES (outId, 0);
+
 
 END ;;
 
@@ -305,5 +326,92 @@ BEGIN
 
 
 END ;;
+
+DELIMITER ;
+
+
+
+DELIMITER ;;
+CREATE PROCEDURE add_scheduled_pass(
+    uId INT,
+    startT TIME,
+    stopT TIME,
+    currentDateT DATE
+
+)
+BEGIN
+    INSERT INTO scheduled_pass(userId, start, stop, currentDate)
+      VALUES (uId, startT, stopT, currentDateT);
+
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE edit_time_report(
+    startT TIME,
+    stopT TIME,
+    currentDateT DATE,
+    tId INT
+
+)
+BEGIN
+    UPDATE time_report SET start = startT, stop = stopT, currentDate = currentDateT WHERE id = tId;
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_time_report(
+   uId INT
+
+)
+BEGIN
+   SELECT * FROM time_report WHERE userId = uId;
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+
+CREATE PROCEDURE get_scheduled_pass(
+   uId INT
+
+)
+BEGIN
+   SELECT * FROM scheduled_pass WHERE userId = uId;
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_to_date_scheduled_pass(
+   uId INT
+
+)
+BEGIN
+    SELECT * FROM scheduled_pass WHERE userId = uId AND currentDate >= current_date();
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+
+CREATE TRIGGER current_salary
+    AFTER UPDATE
+    ON time_report FOR EACH ROW
+    BEGIN
+    set @a = (SELECT hourlyPay from user WHERE id = NEW.userId);
+
+    SET @hours = (SELECT SUM((timediff(outTime, inTime)/3600)) FROM time_report WHERE userId = NEW.userId);
+
+    SET @salar = ROUND(@a * @hours);
+
+    UPDATE salary SET currentMonthlySalary = @salar WHERE userId = NEW.userId;
+
+
+
+    END ;;
 
 DELIMITER ;

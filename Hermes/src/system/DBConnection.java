@@ -214,6 +214,96 @@ public class DBConnection {
 
 		return info.get(0);
 	}
+	
+	public void addScheduledPass(int uId, String start, String stop, String currentDate) {
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL add_scehduled_pass(?, ?, ?, ?)}");
+			myCall.setInt(1, uId);
+			myCall.setString(2, start);
+			myCall.setString(3, stop);
+			myCall.setString(4, currentDate);
+			
+			myCall.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	
+	
+	public void editTimeReport(String start, String stop, String currentDate, int timeId) {
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL add_scehduled_pass(?, ?, ?, ?)}");
+			myCall.setInt(4, timeId);
+			myCall.setString(1, start);
+			myCall.setString(2, stop);
+			myCall.setString(3, currentDate);
+			
+			myCall.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+	}
+	
+	public ArrayList <String []> getTimeReport(int uId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL get_time_report(?)}");
+			myCall.setInt(1, uId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
+
+		return info;
+	}
+	
+	
+	public ArrayList <String []> getScheduledPass(int uId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL get_scheduled_pass(?)}");
+			myCall.setInt(1, uId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
+
+		return info;
+	}
+	
+	public ArrayList <String []> getToDateScheduledPass(int uId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL get_to_date_scheduled_pass(?)}");
+			myCall.setInt(1, uId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
+
+		return info;
+	}
 
 
 	private static ArrayList <String []>  getAllAsList(ResultSet rS) {
