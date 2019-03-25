@@ -17,6 +17,11 @@ DROP PROCEDURE IF EXISTS edit_time_report;
 DROP PROCEDURE IF EXISTS get_time_report;
 DROP PROCEDURE IF EXISTS get_scheduled_pass;
 DROP PROCEDURE IF EXISTS get_to_date_scheduled_pass;
+DROP PROCEDURE IF EXISTS project_create;
+DROP PROCEDURE IF EXISTS project_add_user;
+DROP PROCEDURE IF EXISTS scheduled_activities_add;
+DROP PROCEDURE IF EXISTS get_project_activities;
+DROP PROCEDURE IF EXISTS get_project_activities_user;
 DROP TRIGGER IF EXISTS current_salary;
 
 DROP TABLE IF EXISTS oB;
@@ -118,9 +123,9 @@ CREATE TABLE project (
     id INT AUTO_INCREMENT NOT NULL,
     startDate DATE,
     endDate DATE,
-    goals VARCHAR(100),
+    goals VARCHAR(1000),
     budget INT,
-    Status VARCHAR(20),
+    status VARCHAR(20),
     PRIMARY KEY (id)
 );
 
@@ -413,5 +418,81 @@ CREATE TRIGGER current_salary
 
 
     END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE project_create(
+   start Date,
+   stop Date,
+   goal VARCHAR(1000),
+   budg INT,
+   Status VARCHAR(20)
+
+)
+BEGIN
+
+    Insert into project (startDate, endDate, goals, budget, status)
+        VALUES(start, stop, goal, budg, Status);
+
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE project_add_user(
+   uId INT,
+   pId INT
+)
+BEGIN
+
+    INSERT INTO project_cart (userId, projectId)
+        VALUES(uId, pId);
+
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE scheduled_activities_add(
+   pId INT,
+   starts TIME,
+   stops TIME,
+   currDate Date
+)
+BEGIN
+
+    INSERT INTO scheduled_activities (projectId, start, stop, currentDate)
+        VALUES (pId, starts, stops, currDate);
+
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_project_activities(
+   pId INT
+
+)
+BEGIN
+    SELECT * FROM scheduled_activities WHERE projectId = pId;
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_project_activities_user(
+   uId INT
+
+)
+BEGIN
+
+SELECT DISTINCT userId ,sa.projectId, sa.start, sa.stop, sa.currentDate FROM scheduled_activities as sa
+    INNER JOIN project_cart as pc
+        ON sa.projectId = pc.projectId WHERE pc.userId = uId;
+END ;;
 
 DELIMITER ;

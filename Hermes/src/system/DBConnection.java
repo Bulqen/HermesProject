@@ -189,7 +189,7 @@ public class DBConnection {
 		} 
 
 	}
-	
+
 	/**
 	 * 
 	 * @param uId, which is the userId
@@ -214,7 +214,7 @@ public class DBConnection {
 
 		return info.get(0);
 	}
-	
+
 	public void addScheduledPass(int uId, String start, String stop, String currentDate) {
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL add_scehduled_pass(?, ?, ?, ?)}");
@@ -222,7 +222,7 @@ public class DBConnection {
 			myCall.setString(2, start);
 			myCall.setString(3, stop);
 			myCall.setString(4, currentDate);
-			
+
 			myCall.executeUpdate();
 
 
@@ -231,8 +231,8 @@ public class DBConnection {
 			e.printStackTrace();
 		} 
 	}
-	
-	
+
+
 	public void editTimeReport(String start, String stop, String currentDate, int timeId) {
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL add_scehduled_pass(?, ?, ?, ?)}");
@@ -240,7 +240,7 @@ public class DBConnection {
 			myCall.setString(1, start);
 			myCall.setString(2, stop);
 			myCall.setString(3, currentDate);
-			
+
 			myCall.executeUpdate();
 
 
@@ -249,7 +249,7 @@ public class DBConnection {
 			e.printStackTrace();
 		} 
 	}
-	
+
 	public ArrayList <String []> getTimeReport(int uId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
@@ -267,8 +267,8 @@ public class DBConnection {
 
 		return info;
 	}
-	
-	
+
+
 	public ArrayList <String []> getScheduledPass(int uId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
@@ -286,7 +286,7 @@ public class DBConnection {
 
 		return info;
 	}
-	
+
 	public ArrayList <String []> getToDateScheduledPass(int uId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
@@ -304,6 +304,105 @@ public class DBConnection {
 
 		return info;
 	}
+
+	public void projectCreate(String start, String stop, String goal, int budg, String status) {
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL project_create(?, ?, ?, ?, ?)}");
+			myCall.setInt(4, budg);
+			myCall.setString(1, start);
+			myCall.setString(2, stop);
+			myCall.setString(3, goal);
+			myCall.setString(5, status);
+
+			myCall.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
+	}
+
+	public void addUserToProject(int projectId, int userId) {
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL project_add_user(?, ?)}");
+			myCall.setInt(1, userId);
+			myCall.setInt(2, projectId);
+
+			
+
+			myCall.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
+	}
+	
+	public void addScheduledActivities(int projectId, String starts, String stops, String currDate) {
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL scheduled_activities_add(?, ?, ?, ?)}");
+			myCall.setInt(1, projectId);
+			myCall.setString(2, starts);
+			myCall.setString(3, stops);
+			myCall.setString(4, currDate);
+
+			
+
+			myCall.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
+	}
+	
+	
+	public ArrayList <String []> getProcjectActivities(int projectId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL get_project_activities(?)}");
+			myCall.setInt(1, projectId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
+
+		return info;
+	}
+	
+	public ArrayList <String []> getProcjectActivitiesForUser(int userId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL get_project_activities_user(?)}");
+			myCall.setInt(1, userId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+
+
+		return info;
+	}
+	
+	
 
 
 	private static ArrayList <String []>  getAllAsList(ResultSet rS) {
