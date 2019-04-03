@@ -317,7 +317,7 @@
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#changePassword" prefHeight="77.0" prefWidth="220.0" styleClass="signIn-btn" stylesheets="@application.css" text="Change password" textFill="LIGHTSKYBLUE">
+                        <Button mnemonicParsing="false" onAction="#changePassword" prefHeight="78.0" prefWidth="220.0" styleClass="signIn-btn" stylesheets="@application.css" text="Manage accounts" textFill="LIGHTSKYBLUE">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
