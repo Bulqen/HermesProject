@@ -402,6 +402,25 @@ public class DBConnection {
 		return info;
 	}
 	
+	public int getUserIdByUsername(String username) {
+		int userId = -1;
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL get_user_id_by_username(?)}");
+			myCall.setString(1, username);
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		userId = Integer.parseInt(info.get(0)[0]);
+
+		return userId;
+	};
+	
 	
 
 
