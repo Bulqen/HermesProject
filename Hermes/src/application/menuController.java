@@ -1,18 +1,23 @@
 package application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class menuController implements Initializable {
 
@@ -28,7 +33,7 @@ public class menuController implements Initializable {
 
 	@FXML
 	private Pane timePane, mainMenuPain, schedulePane, salarySlipPane, changePasswordPane, projectPane, reportASickDay, hideMainScreen,
-	applyForVaccation, editWorkingHours;
+	applyForVaccation, editWorkingHours, inOutPane;
 
 	@FXML
 	private HBox top;
@@ -39,6 +44,7 @@ public class menuController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		hideMainScreen.toFront();
 		displayTime();
 		makeStageDragable();
 
@@ -107,8 +113,43 @@ public class menuController implements Initializable {
 	@FXML
 	private void inOut(ActionEvent event){
 		//Code here to stamp in or out
-		hideMainScreen.toFront();
+		inOutPane.toFront();
+		//if(InThisDayIsTrue)
+		//inButton.setDisable(true)
+		//outButton.setDisable(false)
+		//else
+		//inButton.setDisable(false)
+		//outButton.setDisable(true)
 		System.out.println("In/Out");
+	}
+
+	@FXML
+	private void in(ActionEvent event){
+		//Code to stamp in
+		//if(inIsTrue)
+		try {
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("messageWindow.fxml"));
+			Parent root = (Parent) loader.load();
+
+			MessageWindowControler message = loader.getController();
+			message.setMessage("You have stamped in");
+
+			Stage stageMessage = new Stage();
+			stageMessage.initStyle(StageStyle.UNDECORATED);
+			stageMessage.setScene(new Scene(root));
+			stageMessage.showAndWait();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@FXML
+	private void out(ActionEvent event){
+		//Code to stamp out
+		System.out.println("out");
 	}
 
 	@FXML
