@@ -12,6 +12,7 @@ public class DBConnection {
 	private String PW;
 	private Connection myConn;
 
+	//Kan ändra till icke public sen
 	public DBConnection() {
 
 		try {
