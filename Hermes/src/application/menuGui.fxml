@@ -62,7 +62,7 @@
                <children>
                   <ImageView fitHeight="132.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Images/home-2-128.png" />
+                        <Image url="@../../Images/56726568_422088735027603_5885570981958778880_n.jpg" />
                      </image>
                   </ImageView>
                   <VBox alignment="CENTER" prefHeight="220.0" prefWidth="309.0">
@@ -434,7 +434,7 @@
                               <Insets left="60.0" />
                            </padding>
                         </VBox>
-                        <TableView prefHeight="976.0" prefWidth="400.0">
+                        <TableView fx:id="test" prefHeight="976.0" prefWidth="400.0" styleClass="parent" stylesheets="@application.css">
                           <columns>
                             <TableColumn prefWidth="100.0" text="Date" />
                             <TableColumn prefWidth="100.0" text="IN" />

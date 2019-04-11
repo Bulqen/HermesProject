@@ -129,7 +129,7 @@ public class LogInControler implements Initializable{
 		String pass = "12";
 		*/
 
-		//Login validate = new Login(enteredUserName, enteredPassword);
+		Login validate = new Login(enteredUserName, enteredPassword);
 
 		if(enteredUserName.isEmpty() || enteredPassword.isEmpty()){
 			Alert enterAlert = new Alert(AlertType.ERROR);
@@ -138,8 +138,8 @@ public class LogInControler implements Initializable{
 			enterAlert.showAndWait();
 		}
 		else{
-			//if(validate.authorizePassword())
-			if(true)
+			if(validate.authorizePassword())
+			//if(true)
 			{
 				Alert enterAlert = new Alert(AlertType.INFORMATION);
 				enterAlert.setHeaderText(null);

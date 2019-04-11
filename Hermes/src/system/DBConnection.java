@@ -166,7 +166,7 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 
 
 		return usernames;
@@ -186,12 +186,12 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 
 	}
 
 	/**
-	 * 
+	 *
 	 * @param uId, which is the userId
 	 * @return String [] is a row, in this case,
 	 * start index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName
@@ -209,7 +209,7 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 
 
 		return info.get(0);
@@ -229,10 +229,10 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 	}
 
-
+	// 13:44:33 (start, stop) gör en lista användaren kan ändra i
 	public void editTimeReport(String start, String stop, String currentDate, int timeId) {
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL add_scehduled_pass(?, ?, ?, ?)}");
@@ -247,9 +247,8 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 	}
-
 	public ArrayList <String []> getTimeReport(int uId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
@@ -262,7 +261,7 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 
 
 		return info;
@@ -281,7 +280,7 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 
 
 		return info;
@@ -299,7 +298,7 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 
 
 		return info;
@@ -321,7 +320,7 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 
 	}
 
@@ -332,7 +331,7 @@ public class DBConnection {
 			myCall.setInt(1, userId);
 			myCall.setInt(2, projectId);
 
-			
+
 
 			myCall.executeUpdate();
 
@@ -340,10 +339,10 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 
 	}
-	
+
 	public void addScheduledActivities(int projectId, String starts, String stops, String currDate) {
 
 		try {
@@ -353,7 +352,7 @@ public class DBConnection {
 			myCall.setString(3, stops);
 			myCall.setString(4, currDate);
 
-			
+
 
 			myCall.executeUpdate();
 
@@ -361,11 +360,11 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 
 	}
-	
-	
+
+
 	public ArrayList <String []> getProcjectActivities(int projectId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
@@ -378,12 +377,12 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 
 
 		return info;
 	}
-	
+
 	public ArrayList <String []> getProcjectActivitiesForUser(int userId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
@@ -396,17 +395,17 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 
 
 		return info;
 	}
-	
+
 	public int getUserIdByUsername(String username) {
 		int userId = -1;
 		ArrayList <String []> info = new ArrayList<String []>();
 
-		
+
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL get_user_id_by_username(?)}");
 			myCall.setString(1, username);
@@ -415,13 +414,13 @@ public class DBConnection {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		}
 		userId = Integer.parseInt(info.get(0)[0]);
 
 		return userId;
 	};
-	
-	
+
+
 
 
 	private static ArrayList <String []>  getAllAsList(ResultSet rS) {
@@ -432,7 +431,7 @@ public class DBConnection {
 
 		try {
 			while(rS.next()) {
-				String [] row = new String [ColumnNames.length]; 
+				String [] row = new String [ColumnNames.length];
 				for(int i = 0; i < ColumnNames.length; i++) {
 					row[i] = rS.getString(ColumnNames[i]);
 					if(i != ColumnNames.length) {

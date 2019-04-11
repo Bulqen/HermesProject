@@ -18,12 +18,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import system.User;
 
 public class menuController implements Initializable {
 
+	//Provisoriskt
 	private String userName;
 	private Node node;
 	private Stage stage;
+	
+	//Fixa så rätt user används och att jag kan använda user factory
+	private User currentUser;
 
 	@FXML
 	private AnchorPane parent;
@@ -82,9 +87,11 @@ public class menuController implements Initializable {
 
 	}
 
+	//Ändra så det är setUser , skapa och initiera en user
 	public void setUserName(String userName){
 		this.userName = userName;
 		nameLabel.setText(userName);
+		
 	}
 
 	@FXML
