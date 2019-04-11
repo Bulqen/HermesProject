@@ -18,6 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import system.DBConnection;
 import system.User;
 
 public class menuController implements Initializable {
@@ -26,9 +27,9 @@ public class menuController implements Initializable {
 	private String userName;
 	private Node node;
 	private Stage stage;
-	
+
 	//Fixa så rätt user används och att jag kan använda user factory
-	private User currentUser;
+	private DBConnection test = new DBConnection();
 
 	@FXML
 	private AnchorPane parent;
@@ -91,7 +92,7 @@ public class menuController implements Initializable {
 	public void setUserName(String userName){
 		this.userName = userName;
 		nameLabel.setText(userName);
-		
+
 	}
 
 	@FXML
@@ -156,7 +157,23 @@ public class menuController implements Initializable {
 	@FXML
 	private void out(ActionEvent event){
 		//Code to stamp out
-		System.out.println("out");
+		try {
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("messageWindow.fxml"));
+			Parent root = (Parent) loader.load();
+
+			MessageWindowControler message = loader.getController();
+			message.setMessage("You have stamped out");
+
+			Stage stageMessage = new Stage();
+			stageMessage.initStyle(StageStyle.UNDECORATED);
+			stageMessage.setScene(new Scene(root));
+			stageMessage.showAndWait();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

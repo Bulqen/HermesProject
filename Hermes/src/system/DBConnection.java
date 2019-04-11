@@ -12,7 +12,7 @@ public class DBConnection {
 	private String PW;
 	private Connection myConn;
 
-	DBConnection() {
+	public DBConnection() {
 
 		try {
 			myConn  = DriverManager.getConnection("jdbc:mysql://localhost:3306/hermes", "user", "pass");
