@@ -12,7 +12,7 @@ public class DBConnection {
 	private String PW;
 	private Connection myConn;
 
-	//Kan ändra till icke public sen
+	//Kan ï¿½ndra till icke public sen
 	public DBConnection() {
 
 		try {
@@ -50,23 +50,36 @@ public class DBConnection {
 	DBConnection(String userName){
 		this.userName = userName;
 	}
+	/**
+	 * 
+	 * @param userName
+	 * @return String, password
+	 * the function is not case-sensitive , USeR and user will result in same password
+	 * @throws SQLException
+	 */
 
 	public String getPW(String userName) throws SQLException {
+		String password = null;
 
 		CallableStatement myCall = myConn.prepareCall("{CALL get_pass(?)}");
 
 		myCall.setString(1, userName);
 
 		ResultSet myRs = myCall.executeQuery();
-		myRs.next();
-
-		String password = myRs.getString("password");
+		if(myRs.next()) {
+			password = myRs.getString("password");
+		}
 
 
 
 		return password;
 
 	}
+	/**
+	 * 
+	 * @param uId
+	 * Will stamp in userId att currentTime att currentDate, can be triggered more than one time
+	 */
 
 	public void stampIn(int uId) {
 		try {
@@ -83,8 +96,14 @@ public class DBConnection {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @param uId
+	 * Will stamp out current userId where it has stamped in already, finishes the open passes
+	 */ 
 
-	public void stampOutn(int uId) {
+	public void stampOut(int uId) {
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL stamp_out(?)}");
 			myCall.setInt(1, uId);
@@ -99,12 +118,20 @@ public class DBConnection {
 		}
 
 	}
+	/**
+	 * 
+	 * @param uId
+	 * @param abscence
+	 * @param comment
+	 * Will report an abscence on current day!, canÂ´t be executed twice the same day!
+	 */
 
-	public void reportAbscence(int uId, String abscence) {
+	public void reportAbscence(int uId, String abscence, String comment) {
 		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL report_abscence(?, ?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL report_abscence(?, ?, ?)}");
 			myCall.setInt(uId, 1);
 			myCall.setString(2, abscence);
+			myCall.setString(3, comment);
 
 			myCall.executeUpdate();
 
@@ -117,8 +144,19 @@ public class DBConnection {
 
 	}
 
-	/*
-	 * adding a user, then returning the id for that user
+	
+	/**
+	 * 
+	 * @param classId
+	 * @param shiftId
+	 * @param hourlyPay
+	 * @param managerId
+	 * @param firstName
+	 * @param lastName
+	 * @param adress
+	 * @param phone
+	 * @param socialSecurityNumber
+	 * @return the userId that user has
 	 */
 
 	public int userCreate(int classId, int shiftId, int hourlyPay,int managerId, String firstName, String lastName, String adress, String phone, String socialSecurityNumber) {
@@ -153,8 +191,11 @@ public class DBConnection {
 
 		return userId;
 	}
-
-
+	
+	/**
+	 * 
+	 * @return all usernames that is currently in database in ArrayList <String []> 
+	 */
 	public ArrayList <String []> getUsernames() {
 		ArrayList <String []> usernames = new ArrayList<String []>();
 
@@ -163,7 +204,8 @@ public class DBConnection {
 
 
 			ResultSet myRs = myCall.executeQuery();
-			usernames = getAllAsList(myRs);
+			if(this.check(myRs))
+				usernames = getAllAsList(myRs);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -172,7 +214,14 @@ public class DBConnection {
 
 		return usernames;
 	}
-
+	/**
+	 * 
+	 * @param uId
+	 * @param username
+	 * @param password
+	 * Adds new login to database, will be error if username already exists, since username is PK
+	 */
+	
 	public void loginCreate(int uId, String username, String password) {
 
 		try {
@@ -215,6 +264,14 @@ public class DBConnection {
 
 		return info.get(0);
 	}
+	/**
+	 * 
+	 * @param uId
+	 * @param start
+	 * @param stop
+	 * @param currentDate
+	 * adding a pass for a certain employee
+	 */
 
 	public void addScheduledPass(int uId, String start, String stop, String currentDate) {
 		try {
@@ -232,15 +289,17 @@ public class DBConnection {
 			e.printStackTrace();
 		}
 	}
-
-	// 13:44:33 (start, stop) gör en lista användaren kan ändra i
-	public void editTimeReport(String start, String stop, String currentDate, int timeId) {
+	/**
+	 * 
+	 * @param tId
+	 * Removes a time report from database by providing itÂ´s id
+	 */
+	
+	public void deleteTimeReport(int tId) {
 		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL add_scehduled_pass(?, ?, ?, ?)}");
-			myCall.setInt(4, timeId);
-			myCall.setString(1, start);
-			myCall.setString(2, stop);
-			myCall.setString(3, currentDate);
+			CallableStatement myCall = myConn.prepareCall("{CALL delete_time_report(?)}");
+			myCall.setInt(1, tId);
+			
 
 			myCall.executeUpdate();
 
@@ -250,6 +309,70 @@ public class DBConnection {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * 
+	 * @param uId
+	 * @param start
+	 * @param stop
+	 * @param absence
+	 * @param date
+	 * @param comment
+	 * Adding a new time report, probably used for backdating
+	 */
+	public void addTimeReport(int uId, String start, String stop, String absence, String date, String comment ) {
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL add_time_report(?, ?, ?, ?, ?, ?)}");
+			myCall.setInt(1, uId);
+			myCall.setString(2, start);
+			myCall.setString(3, stop);
+			myCall.setString(4, absence);
+			myCall.setString(5, date);
+			myCall.setString(6, comment);
+
+			myCall.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	// 13:44:33 (start, stop) gï¿½r en lista anvï¿½ndaren kan ï¿½ndra i
+	/**
+	 * 
+	 * @param start
+	 * @param stop
+	 * @param currentDate
+	 * @param timeId
+	 * @param comment
+	 * Edit current timereport by providing information and the ID of that particular time report
+	 */
+	
+	public void editTimeReport(String start, String stop, String currentDate, int timeId, String comment) {
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL add_scehduled_pass(?, ?, ?, ?, ?)}");
+			myCall.setInt(5, timeId);
+			myCall.setString(1, start);
+			myCall.setString(2, stop);
+			myCall.setString(3, currentDate);
+			myCall.setString(4, comment);
+
+			myCall.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 
+	 * @param uId
+	 * @return ArrayList <String []> of all time reports on that specific user
+	 * [0] id, [1] userId, [2] inTime, [3] outTime, [4] abscence, [5] currentDate, [6] comment
+ 	 */
 	public ArrayList <String []> getTimeReport(int uId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
@@ -267,7 +390,13 @@ public class DBConnection {
 
 		return info;
 	}
-
+	
+	/**
+	 * 
+	 * @param uId
+	 * @return ArrayList <String []>
+	 *  [0] userId, [1] inTime, [2] outTime, [3] currentDate
+	 */
 
 	public ArrayList <String []> getScheduledPass(int uId) {
 		ArrayList <String []> info = new ArrayList<String []>();
@@ -286,6 +415,13 @@ public class DBConnection {
 
 		return info;
 	}
+	/**
+	 * 
+	 * @param uId
+	 * @return ArrayList <String []>
+	 * only returns all scheduled passes from today and forth
+	 *  [0] userId, [1] inTime, [2] outTime, [3] currentDate
+	 */
 
 	public ArrayList <String []> getToDateScheduledPass(int uId) {
 		ArrayList <String []> info = new ArrayList<String []>();
@@ -304,6 +440,15 @@ public class DBConnection {
 
 		return info;
 	}
+	/**
+	 * 
+	 * @param start
+	 * @param stop
+	 * @param goal
+	 * @param budg
+	 * @param status
+	 * Creates a project
+	 */
 
 	public void projectCreate(String start, String stop, String goal, int budg, String status) {
 
@@ -324,6 +469,12 @@ public class DBConnection {
 		}
 
 	}
+	/**
+	 * 
+	 * @param projectId
+	 * @param userId
+	 * Adds a user to a specific project
+	 */
 
 	public void addUserToProject(int projectId, int userId) {
 
@@ -343,6 +494,15 @@ public class DBConnection {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @param projectId
+	 * @param starts
+	 * @param stops
+	 * @param currDate
+	 * Add a scheduled activity for a specific project
+	 */
 
 	public void addScheduledActivities(int projectId, String starts, String stops, String currDate) {
 
@@ -364,7 +524,13 @@ public class DBConnection {
 		}
 
 	}
-
+	
+	/**
+	 * 
+	 * @param projectId
+	 * @return ArrayList <String []>
+	 * [0] id, [1] startDate, [2] endDate, [3] goals, [4] budget, [5] status
+	 */
 
 	public ArrayList <String []> getProcjectActivities(int projectId) {
 		ArrayList <String []> info = new ArrayList<String []>();
@@ -383,6 +549,14 @@ public class DBConnection {
 
 		return info;
 	}
+	
+	/**
+	 * 
+	 * @param projectId
+	 * @return ArrayList <String []>
+	 * get all project scheduled activities for one user
+	 * [0] userId, [1] projectId, [2] startTime , [3] stoppTime, [4] theDate
+	 */
 
 	public ArrayList <String []> getProcjectActivitiesForUser(int userId) {
 		ArrayList <String []> info = new ArrayList<String []>();
@@ -401,7 +575,13 @@ public class DBConnection {
 
 		return info;
 	}
-
+	
+	/**
+	 * 
+	 * @param username
+	 * @return [] String
+	 * all usernames in the database
+	 */
 	public int getUserIdByUsername(String username) {
 		int userId = -1;
 		ArrayList <String []> info = new ArrayList<String []>();
@@ -479,6 +659,16 @@ public class DBConnection {
 
 		return columnNames;
 
+	}
+	
+	
+	private boolean check(ResultSet res) {
+
+		if(res != null)
+			return true;
+		else
+			return false;
+		
 	}
 
 

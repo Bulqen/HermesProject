@@ -22,6 +22,10 @@ DROP PROCEDURE IF EXISTS project_add_user;
 DROP PROCEDURE IF EXISTS scheduled_activities_add;
 DROP PROCEDURE IF EXISTS get_project_activities;
 DROP PROCEDURE IF EXISTS get_project_activities_user;
+DROP PROCEDURE IF EXISTS get_user_id_by_username;
+DROP PROCEDURE IF EXISTS delete_time_report;
+DROP PROCEDURE IF EXISTS add_time_report;
+
 DROP TRIGGER IF EXISTS current_salary;
 
 DROP TABLE IF EXISTS oB;
@@ -115,6 +119,7 @@ CREATE TABLE time_report (
     outTime TIME,
     absence VARCHAR(10),
     currentDate Date,
+    comment VARCHAR(200),
     PRIMARY KEY (id),
     FOREIGN KEY(userid) REFERENCES user(id)
 );
@@ -226,17 +231,18 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE report_abscence (
     uId INT,
-    absString VARCHAR(20)
+    absString VARCHAR(20),
+    com VARCHAR(200)
 )
 BEGIN
 
     SET @stampToday = (SELECT currentDate FROM time_report WHERE userId = uId);
 
     IF (@stampToday IS NULL) THEN
-        INSERT INTO time_report (userId, currentDate, absence)
-        VALUES(uId, CURRENT_DATE(),absString );
+        INSERT INTO time_report (userId, currentDate, absence, comment)
+        VALUES(uId, CURRENT_DATE(),absString, com);
     ELSE
-        UPDATE time_report SET outTime = CURRENT_TIME(), absence = absString WHERE (userId = uId AND outTime is NULL);
+        UPDATE time_report SET outTime = CURRENT_TIME(), absence = absString, comment = com WHERE (userId = uId AND outTime is NULL);
     END IF;
 
 
@@ -357,11 +363,13 @@ CREATE PROCEDURE edit_time_report(
     startT TIME,
     stopT TIME,
     currentDateT DATE,
+    com VARCHAR(200),
     tId INT
 
 )
 BEGIN
-    UPDATE time_report SET start = startT, stop = stopT, currentDate = currentDateT WHERE id = tId;
+    UPDATE time_report SET start = startT, stop = stopT, currentDate = currentDateT,
+        comment = com WHERE id = tId;
 END ;;
 
 DELIMITER ;
@@ -493,6 +501,53 @@ BEGIN
 SELECT DISTINCT userId ,sa.projectId, sa.start, sa.stop, sa.currentDate FROM scheduled_activities as sa
     INNER JOIN project_cart as pc
         ON sa.projectId = pc.projectId WHERE pc.userId = uId;
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_user_id_by_username(
+   uName VARCHAR(20)
+
+)
+BEGIN
+
+
+SELECT u.id FROM user as u INNER JOIN login as l on u.id = l.userId WHERE l.username = uName;
+
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE delete_time_report(
+  tId INT
+)
+BEGIN
+
+
+DELETE FROM time_report WHERE id = tId;
+
+END ;;
+
+DELIMITER;
+
+DELIMITER ;;
+CREATE PROCEDURE add_time_report(
+  uId INT,
+  start TIME,
+  stopp TIME,
+  abse VARCHAR(20),
+  curDate DATE,
+  com VARCHAR(200)
+)
+BEGIN
+
+
+INSERT INTO time_report(userId, inTime, outTime, absence, currentDate, comment)
+    VALUES (uId, start, stopp, abs, curDate, com);
+
 END ;;
 
 DELIMITER ;
