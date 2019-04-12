@@ -85,19 +85,19 @@ public class menuController implements Initializable {
 	@FXML
 	private Button CallInSickButton;
 
-	
+
 	//Set up at launch
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		hideMainScreen.toFront();
-		
+
 		setUpTableView();
 		displayTime();
 		makeStageDragable();
 
 	}
-	
+
 	private void setUpTableView(){
 		dateColumn.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("date"));
 		inColumn.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("in"));
@@ -175,7 +175,7 @@ public class menuController implements Initializable {
 		timeReportTableView.setItems(displayTimeReport());
 
 	}
-	
+
 	private ObservableList<timeToObList> displayTimeReport(){
 		ObservableList<timeToObList> timeReport = FXCollections.observableArrayList();
 		ArrayList <String []> info = this.test.getTimeReport(1);
@@ -196,7 +196,7 @@ public class menuController implements Initializable {
 
 	private boolean stampInIsTrue(){
 		ArrayList <String []> info = this.test.getTimeReport(1);
-		boolean isTrue = true;
+		boolean isTrue = false;
 
 		Date dNow = new Date( );
 	    SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
@@ -218,7 +218,7 @@ public class menuController implements Initializable {
 
 	private boolean stampOutIsTrue(){
 		ArrayList <String []> info = this.test.getTimeReport(1);
-		boolean isTrue = true;
+		boolean isTrue = false;
 
 		Date dNow = new Date( );
 	    SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
@@ -241,7 +241,7 @@ public class menuController implements Initializable {
 	@FXML
 	private void in(ActionEvent event){
 		try {
-			
+
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("messageWindow.fxml"));
 			Parent root = (Parent) loader.load();
 
@@ -252,7 +252,7 @@ public class menuController implements Initializable {
 			stageMessage.initStyle(StageStyle.UNDECORATED);
 			stageMessage.setScene(new Scene(root));
 			stageMessage.showAndWait();
-			
+
 			//Test code
 			this.test.stampIn(1);
 			setStatusOfStampButtons();
@@ -279,9 +279,9 @@ public class menuController implements Initializable {
 			stageMessage.initStyle(StageStyle.UNDECORATED);
 			stageMessage.setScene(new Scene(root));
 			stageMessage.showAndWait();
-			
+
 			//Test code
-			this.test.stampOutn(1);
+			this.test.stampOut(1);
 			setStatusOfStampButtons();
 			timeReportTableView.setItems(displayTimeReport());
 
@@ -307,7 +307,7 @@ public class menuController implements Initializable {
 
 	private boolean CallInSickIsTrue(){
 		ArrayList <String []> info = this.test.getTimeReport(1);
-		boolean isTrue = true;
+		boolean isTrue = false;
 
 		Date dNow = new Date( );
 	    SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
@@ -331,7 +331,7 @@ public class menuController implements Initializable {
 	private void callInSick(ActionEvent event){
 		System.out.println(commentOnWhySick.getText());
 		if(!stampOutIsTrue()){
-			this.test.stampOutn(1);
+			this.test.stampOut(1);
 		}
 		//kalla på funktion som lägger in att personen är sjuk
 

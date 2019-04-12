@@ -330,10 +330,11 @@ CREATE PROCEDURE get_user_info(
 BEGIN
 
     SELECT u.id, CONCAT(firstName, " ", lastName) as name, adress, phone, socialSecurityNumber, s.shiftType, c.role, managerId,
-    (SELECT  CONCAT(firstName, " ", lastName)from user as us WHERE u.managerId = us.id ) as managerName
-        FROM user as u
-            INNER JOIN shift s on u.classificationId = s.id
-            INNER JOIN classification c on c.id = u.classificationId WHERE u.id = uId;
+    (SELECT  CONCAT(firstName, " ", lastName)from user as us WHERE u.managerId = us.id ) as managerName,
+      u.hourlyPay, u.classificationId
+      FROM user as u
+          INNER JOIN shift s on u.classificationId = s.id
+          INNER JOIN classification c on c.id = u.classificationId WHERE u.id = uId;
 
 
 END ;;
@@ -531,7 +532,7 @@ DELETE FROM time_report WHERE id = tId;
 
 END ;;
 
-DELIMITER;
+DELIMITER ;
 
 DELIMITER ;;
 CREATE PROCEDURE add_time_report(
