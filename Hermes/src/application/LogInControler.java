@@ -167,7 +167,7 @@ public class LogInControler implements Initializable{
 					Parent root = (Parent) loader.load();
 
 					menuController nextStep = loader.getController();
-					nextStep.setUserName(enteredUserName);
+					nextStep.setUser(enteredUserName);
 
 					Stage stage1 = new Stage();
 					stage1.initStyle(StageStyle.UNDECORATED);

@@ -31,11 +31,11 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import system.DBConnection;
 import system.User;
+import system.UserFactory;
 
 public class menuController implements Initializable {
 
-	//Provisoriskt
-	private String userName;
+	private UserFactory user;
 
 	//Used to make stage dragable
 	private Node node;
@@ -84,6 +84,8 @@ public class menuController implements Initializable {
 
 	@FXML
 	private Button CallInSickButton;
+
+
 
 
 	//Set up at launch
@@ -138,8 +140,9 @@ public class menuController implements Initializable {
 	}
 
 	//Ändra så det är setUser , skapa och initiera en user
-	public void setUserName(String userName){
-		this.userName = userName;
+	public void setUser(String userName){
+
+		user = UserFactory.initiateUserFactory(userName);
 		nameLabel.setText(userName);
 
 	}
@@ -196,6 +199,7 @@ public class menuController implements Initializable {
 
 	private boolean stampInIsTrue(){
 		ArrayList <String []> info = this.test.getTimeReport(1);
+		//ArrayList <String []> info = user.getTimeReport();
 		boolean isTrue = false;
 
 		Date dNow = new Date( );
@@ -218,7 +222,7 @@ public class menuController implements Initializable {
 
 	private boolean stampOutIsTrue(){
 		ArrayList <String []> info = this.test.getTimeReport(1);
-		boolean isTrue = false;
+		boolean isTrue = true;
 
 		Date dNow = new Date( );
 	    SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
@@ -306,6 +310,7 @@ public class menuController implements Initializable {
 	}
 
 	private boolean CallInSickIsTrue(){
+
 		ArrayList <String []> info = this.test.getTimeReport(1);
 		boolean isTrue = false;
 

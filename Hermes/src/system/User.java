@@ -1,19 +1,20 @@
 package system;
 
 public abstract class User{
-	
+
 	private int userId;
 	private String name;
 	private String adress;
 	private int number;
 	private String socials;
 	private int shiftId;
-	private int role;
+	private String role;
 	private String managerName;
-	private double hourlySalary; // finns i databasen men jakes metod hämtar inte denna ännu
-	
-	public User(int userId, String name, String aress, int number,String socials, int shiftId, int role,
-			String managerName, double hourlySalary){
+	private double hourlySalary;
+	private int classificationID;
+
+	public User(int userId, String name, String adress, int number,String socials, int shiftId, int role,
+			String managerName, double hourlySalary,int classificationID){
 		this.name = name;
 	}
 
@@ -65,12 +66,20 @@ public abstract class User{
 		this.shiftId = shiftId;
 	}
 
-	public int getRole() {
+	public String getRole() {
 		return role;
 	}
 
-	public void setRole(int role) {
+	public void setRole(String role) {
 		this.role = role;
+	}
+
+	public int getClassificationID() {
+		return classificationID;
+	}
+
+	public void setClassificationID(int classificationID) {
+		this.classificationID = classificationID;
 	}
 
 	public String getManagerName() {
@@ -96,6 +105,6 @@ public abstract class User{
 	public void setHourlySalary(double salary) {
 		this.hourlySalary = salary;
 	}
-	
-	
+
+
 }
