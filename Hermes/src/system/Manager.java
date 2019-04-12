@@ -2,7 +2,6 @@ package system;
 
 public abstract class Manager extends User {
 
-	//Detta måste fixas
 	private String[] projects;
 	private String[] employees;
 
@@ -11,10 +10,6 @@ public abstract class Manager extends User {
 		super(userId, name, adress, number, socials, shiftId, role, managerName, hourlySalary, classificationID);
 		// TODO Auto-generated constructor stub
 	}
-
-
-
-
 
 	public String[] getProjects() {
 		return projects;

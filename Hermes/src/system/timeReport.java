@@ -25,4 +25,7 @@ public class timeReport {
 	public void stampOut(int userId){
 		DBC.stampOut(userId);
 	}
+	public void recordAbsence(int uId, String abscence, String comment) {
+		DBC.reportAbscence(uId, abscence, comment);
+	}
 }
