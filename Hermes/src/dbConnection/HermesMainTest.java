@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import system.DBConnection;
+
 /**
  * @author Justad
  *
@@ -39,8 +41,17 @@ public class HermesMainTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		DBConnection db = new DBConnection();
+		
+		String [] mySalary = db.generateSalaryslip(1);
+		
+		for (String val : mySalary) {
+			System.out.print(val + " |");
+			
+		}
 
-
+		
 		
 		
 

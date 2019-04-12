@@ -25,6 +25,9 @@ DROP PROCEDURE IF EXISTS get_project_activities_user;
 DROP PROCEDURE IF EXISTS get_user_id_by_username;
 DROP PROCEDURE IF EXISTS delete_time_report;
 DROP PROCEDURE IF EXISTS add_time_report;
+DROP PROCEDURE IF EXISTS generate_salaryslip;
+
+DROP FUNCTION IF EXISTS get_hours;
 
 DROP TRIGGER IF EXISTS current_salary;
 
@@ -548,6 +551,67 @@ BEGIN
 
 INSERT INTO time_report(userId, inTime, outTime, absence, currentDate, comment)
     VALUES (uId, start, stopp, abs, curDate, com);
+
+END ;;
+
+DELIMITER ;
+
+DROP FUNCTION IF EXISTS get_hours;
+DELIMITER ;;
+CREATE FUNCTION get_hours(
+ tid TIME
+)
+RETURNS DOUBLE
+  NOT DETERMINISTIC NO SQL
+  BEGIN
+
+    RETURN HOUR(tid) + MINUTE(tid)/60;
+
+  end ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE generate_salaryslip(
+    uId INT
+
+)
+BEGIN
+
+  DECLARE today DATE;
+  DECLARE hourlyP INT;
+  DECLARE monthYear VARCHAR(25);
+  DECLARE totalHours DOUBLE;
+  DECLARE pay INT;
+
+  set today  = current_date();
+
+
+
+  IF(DAY(today) <= 25) THEN
+    SET monthYear = DATE_FORMAT(DATE_SUB(today, INTERVAL 1 MONTH), "%Y-%m" );
+
+  ELSE
+    SET monthYear = DATE_FORMAT(today, "%Y-%m");
+
+  end if ;
+
+
+  SET hourlyP = (SELECT hourlyPay FROM user WHERE id = uId );
+  SET totalHours = (SELECT  SUM( CASE
+                WHEN outTime is null
+                    then 0
+                  ELSE
+                get_hours(outTime) - get_hours(inTime)
+            END ) as 'lon'
+    FROM time_report WHERE DATE_FORMAT(currentDate,"%Y-%m") = monthYear);
+  SET pay = hourlyP * totalHours;
+
+
+  SELECT totalHours, hourlyP, monthYear, pay, CONCAT(u.firstName, ' ', u.lastName) as namn FROM user as u WHERE id = uId;
+
+
 
 END ;;
 

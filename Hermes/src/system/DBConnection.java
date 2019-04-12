@@ -598,6 +598,30 @@ public class DBConnection {
 
 		return userId;
 	};
+	/**
+	 * 
+	 * @param userId
+	 * @return [] String
+	 * [0] totalHours, [1] hourlyPay, [2] YYYY-MM, [3] lön, [4] namn, (funkar inte för nattskift just nu...)
+	 */
+	
+	public String [] generateSalaryslip(int userId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL generate_salaryslip(?)}");
+			myCall.setInt(1, userId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return info.get(0);
+	}
 
 
 

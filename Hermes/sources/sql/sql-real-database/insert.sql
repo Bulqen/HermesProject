@@ -59,3 +59,15 @@ LINES
 IGNORE 1 LINES
 (userId, currentMonthlySalary)
 ;
+
+LOAD DATA LOCAL INFILE 'data_time_report.csv'
+INTO TABLE time_report
+CHARSET utf8
+FIELDS
+    TERMINATED BY ','
+    ENCLOSED BY '"'
+LINES
+    TERMINATED BY '\n'
+IGNORE 1 LINES
+(userId, inTime, outTime, currentDate)
+;
