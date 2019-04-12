@@ -38,6 +38,9 @@ public class TestMain {
 		//System.out.println(theFactory.getUserType().toString());
 		//commit
 		
+		
+		Worker a = new Worker();
+		
 	}
 	
 	public static void display (ArrayList <String []> resultList) {

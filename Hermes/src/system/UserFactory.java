@@ -5,18 +5,16 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class UserFactory {
+	
+	// start index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName
+	
+	
+	 
+	
+	public UserFactory(String userName){
 
-	public UserFactory(){
-
-	}
-
-	//connecta till db
-	public User getUserType(String userName) throws SQLException{
-
-		DBConnection DB = new DBConnection(userName);
-		return DB.getEmployeeType(); // 1=Worker, 2=ProjectManager & 3=DepartmentManager
-	}
-
+	}	
+	
 	public <E> E createUser(String userName, int userType){
 		if (userType == 1){
 			Worker w = new Worker(userName);

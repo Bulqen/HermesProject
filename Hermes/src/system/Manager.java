@@ -1,13 +1,16 @@
 package system;
 
-public class Manager extends User {
-
+public abstract class Manager extends User {
+	
+	private userId;
 	private String[] projects;
 	private String[] employees;
 	
 	public Manager(String userName) {
-		super(userName);
-		// TODO Auto-generated constructor stub
+		super(userId, name, adress, number, socials, shiftId, role, managerName, hourlySalary);
+	
+		private id = super(userId);
+		
 	}
 
 	public String[] getProjects() {
