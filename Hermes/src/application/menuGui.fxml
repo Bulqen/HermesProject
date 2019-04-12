@@ -1,19 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="parent" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1880.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.menuController">
    <children>
-      <HBox fx:id="top" alignment="CENTER_RIGHT" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="1880.0" spacing="5.0">
+      <HBox fx:id="top" alignment="CENTER_RIGHT" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="1880.0" spacing="5.0" AnchorPane.topAnchor="0.0">
          <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1817.0">
+               <children>
+                  <Label prefHeight="22.0" prefWidth="65.0" text="Hermes" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font name="Calibri" size="19.0" />
+                     </font>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
             <Label alignment="CENTER" onMouseClicked="#minimize_stage" prefHeight="20.0" prefWidth="20.0" styleClass="min-btn">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
@@ -37,29 +54,28 @@
             <Insets bottom="1.0" left="1.0" right="5.0" top="1.0" />
          </padding>
       </HBox>
-      <AnchorPane layoutY="24.0" prefHeight="976.0" prefWidth="500.0">
+      <AnchorPane layoutY="24.0" prefHeight="976.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="24.0">
          <effect>
             <DropShadow />
          </effect>
          <children>
-            <VBox layoutY="221.0" prefHeight="754.0" prefWidth="500.0" />
             <HBox alignment="CENTER" prefHeight="220.0" prefWidth="500.0" spacing="10.0">
                <children>
                   <ImageView fitHeight="132.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Images/home-2-128.png" />
+                        <Image url="@../../Images/56726568_422088735027603_5885570981958778880_n.jpg" />
                      </image>
                   </ImageView>
                   <VBox alignment="CENTER" prefHeight="220.0" prefWidth="309.0">
                      <children>
-                        <Label text="NAME SIRNAME" textFill="WHITE">
+                        <Label fx:id="nameLabel" text="NAME SIRNAME" textFill="WHITE">
                            <font>
                               <Font size="37.0" />
                            </font>
                         </Label>
-                        <Label text="00:00:00" textFill="WHITE">
+                        <Label fx:id="dateAndTimeLabel" text="00:00:00" textFill="WHITE">
                            <font>
-                              <Font size="37.0" />
+                              <Font size="18.0" />
                            </font>
                         </Label>
                      </children>
@@ -69,8 +85,402 @@
                   <Insets />
                </opaqueInsets>
             </HBox>
+            <Pane fx:id="timePane" layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="756.0" prefWidth="500.0" spacing="40.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#inOut" prefHeight="77.0" prefWidth="139.0" styleClass="signIn-btn" stylesheets="@application.css" text="In/Out" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/time-8-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="160.0" layoutY="350.0" mnemonicParsing="false" onAction="#reportASickDay" prefHeight="77.0" prefWidth="203.0" styleClass="signIn-btn" stylesheets="@application.css" text="Report sick day" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/time-8-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="160.0" layoutY="408.0" mnemonicParsing="false" onAction="#applyForVaccation" prefHeight="77.0" prefWidth="233.0" styleClass="signIn-btn" stylesheets="@application.css" text="Apply for vaccation" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/time-8-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="160.0" layoutY="467.0" mnemonicParsing="false" onAction="#editWorkingHours" prefHeight="77.0" prefWidth="229.0" styleClass="signIn-btn" stylesheets="@application.css" text="Edit working hours" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/time-8-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="160.0" layoutY="525.0" mnemonicParsing="false" onAction="#back" prefHeight="77.0" prefWidth="124.0" styleClass="signIn-btn" stylesheets="@application.css" text="Back" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/arrow-65-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="150.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </Pane>
+            <Pane fx:id="schedulePane" layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="756.0" prefWidth="500.0" spacing="40.0">
+                     <padding>
+                        <Insets left="150.0" />
+                     </padding>
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="197.0" styleClass="signIn-btn" stylesheets="@application.css" text="Vad ska va här" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/planner-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#back" prefHeight="77.0" prefWidth="124.0" styleClass="signIn-btn" stylesheets="@application.css" text="Back" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/arrow-65-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children></Pane>
+            <Pane fx:id="salarySlipPane" layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="756.0" prefWidth="500.0" spacing="40.0">
+                     <padding>
+                        <Insets left="150.0" />
+                     </padding>
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="165.0" styleClass="signIn-btn" stylesheets="@application.css" text="Salary slip" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/coins-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#back" prefHeight="77.0" prefWidth="124.0" styleClass="signIn-btn" stylesheets="@application.css" text="Back" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/arrow-65-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children></Pane>
+            <Pane fx:id="ManageAccountsPane" layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="756.0" prefWidth="500.0" spacing="40.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="220.0" styleClass="signIn-btn" stylesheets="@application.css" text="Change password" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/key-3-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#back" prefHeight="77.0" prefWidth="124.0" styleClass="signIn-btn" stylesheets="@application.css" text="Back" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/arrow-65-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="150.0" />
+                     </padding>
+                  </VBox>
+               </children></Pane>
+            <Pane fx:id="projectPane" layoutY="220.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="756.0" prefWidth="500.0" spacing="40.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="145.0" styleClass="signIn-btn" stylesheets="@application.css" text="Project" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/parallel-tasks-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#back" prefHeight="77.0" prefWidth="124.0" styleClass="signIn-btn" stylesheets="@application.css" text="Back" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/arrow-65-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="150.0" />
+                     </padding>
+                  </VBox>
+               </children></Pane>
+            <Pane fx:id="mainMenuPain" layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="754.0" prefWidth="500.0" spacing="40.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#time" prefHeight="77.0" prefWidth="126.0" styleClass="signIn-btn" stylesheets="@application.css" text="Time" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/time-8-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#schedule" prefHeight="77.0" prefWidth="156.0" styleClass="signIn-btn" stylesheets="@application.css" text="Schedule" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/planner-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#salarySlip" prefHeight="77.0" prefWidth="165.0" styleClass="signIn-btn" stylesheets="@application.css" text="Salary slip" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/coins-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#changePassword" prefHeight="78.0" prefWidth="220.0" styleClass="signIn-btn" stylesheets="@application.css" text="Manage accounts" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/key-3-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#project" prefHeight="77.0" prefWidth="145.0" styleClass="signIn-btn" stylesheets="@application.css" text="Project" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/parallel-tasks-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="150.0" />
+                     </padding>
+                  </VBox>
+               </children></Pane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="499.0" layoutY="26.0" prefHeight="976.0" prefWidth="1410.0" />
+      <AnchorPane layoutX="510.0" layoutY="7.0" prefHeight="976.0" prefWidth="1370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
+         <children>
+            <Pane fx:id="applyForVaccation" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="220.0" text="Apply for vaccation" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="editWorkingHours" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="220.0" text="Edit working hours" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="hideMainScreen" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Pane fx:id="reportASickDay" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" layoutX="6.0" layoutY="40.0" prefHeight="936.0" prefWidth="1370.0" spacing="50.0">
+                     <children>
+                        <Button fx:id="CallInSickButton" mnemonicParsing="false" onAction="#callInSick" prefHeight="77.0" prefWidth="183.0" styleClass="signIn-btn" stylesheets="@application.css" text="Call in sick" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/time-8-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <VBox alignment="CENTER" prefHeight="936.0" prefWidth="782.0">
+                           <children>
+                              <TextArea fx:id="commentOnWhySick" prefHeight="200.0" prefWidth="442.0" />
+                              <Label prefHeight="40.0" prefWidth="352.0" text="Comment on why you will stay home today." textFill="LIGHTSKYBLUE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Label prefHeight="40.0" prefWidth="996.0" text="Report a sick day (You will be marked as absent today if you press the &quot;Call in sick&quot; button )" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="inOutPane" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox layoutY="40.0" prefHeight="936.0" prefWidth="1370.0" spacing="730.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="976.0" prefWidth="236.0" spacing="50.0">
+                           <children>
+                              <Button fx:id="inButton" mnemonicParsing="false" onAction="#in" prefHeight="72.0" prefWidth="105.0" styleClass="signIn-btn" stylesheets="@application.css" text="IN" textFill="LIGHTSKYBLUE">
+                                 <graphic>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Images/time-8-128.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="outButton" mnemonicParsing="false" onAction="#out" prefHeight="72.0" prefWidth="121.0" styleClass="signIn-btn" stylesheets="@application.css" text="OUT" textFill="LIGHTSKYBLUE">
+                                 <graphic>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Images/time-8-128.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </VBox>
+                        <TableView fx:id="timeReportTableView" prefHeight="902.0" prefWidth="400.0" styleClass="parent" stylesheets="@application.css">
+                          <columns>
+                            <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
+                            <TableColumn fx:id="inColumn" prefWidth="100.0" text="IN" />
+                              <TableColumn fx:id="outColumn" prefWidth="100.0" text="OUT" />
+                              <TableColumn fx:id="hoursColumn" prefWidth="100.0" text="Hours" />
+                          </columns>
+                        </TableView>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </HBox>
+                  <Label prefHeight="40.0" prefWidth="996.0" text="Stamp In or out (In the table to the right can you see the time report for this month )" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

@@ -3,6 +3,31 @@
 --
 
 
+
+DROP PROCEDURE IF EXISTS get_pass;
+DROP PROCEDURE IF EXISTS stamp_in;
+DROP PROCEDURE IF EXISTS stamp_out;
+DROP PROCEDURE IF EXISTS report_abscence;
+DROP PROCEDURE IF EXISTS user_create;
+DROP PROCEDURE IF EXISTS get_usernames;
+DROP PROCEDURE IF EXISTS login_create;
+DROP PROCEDURE IF EXISTS get_user_info;
+DROP PROCEDURE IF EXISTS add_scheduled_pass;
+DROP PROCEDURE IF EXISTS edit_time_report;
+DROP PROCEDURE IF EXISTS get_time_report;
+DROP PROCEDURE IF EXISTS get_scheduled_pass;
+DROP PROCEDURE IF EXISTS get_to_date_scheduled_pass;
+DROP PROCEDURE IF EXISTS project_create;
+DROP PROCEDURE IF EXISTS project_add_user;
+DROP PROCEDURE IF EXISTS scheduled_activities_add;
+DROP PROCEDURE IF EXISTS get_project_activities;
+DROP PROCEDURE IF EXISTS get_project_activities_user;
+DROP PROCEDURE IF EXISTS get_user_id_by_username;
+DROP PROCEDURE IF EXISTS delete_time_report;
+DROP PROCEDURE IF EXISTS add_time_report;
+
+DROP TRIGGER IF EXISTS current_salary;
+
 DROP TABLE IF EXISTS oB;
 DROP TABLE IF EXISTS overtimePay;
 DROP TABLE IF EXISTS oT;
@@ -88,11 +113,14 @@ CREATE TABLE scheduled_pass (
 );
 
 CREATE TABLE time_report (
+    id INT AUTO_INCREMENT NOT NULL,
     userId INT NOT NULL,
     inTime TIME,
     outTime TIME,
     absence VARCHAR(10),
     currentDate Date,
+    comment VARCHAR(200),
+    PRIMARY KEY (id),
     FOREIGN KEY(userid) REFERENCES user(id)
 );
 
@@ -100,9 +128,9 @@ CREATE TABLE project (
     id INT AUTO_INCREMENT NOT NULL,
     startDate DATE,
     endDate DATE,
-    goals VARCHAR(100),
+    goals VARCHAR(1000),
     budget INT,
-    Status VARCHAR(20),
+    status VARCHAR(20),
     PRIMARY KEY (id)
 );
 
@@ -139,3 +167,387 @@ id INT AUTO_INCREMENT NOT NULL,
 addon INT,
 PRIMARY KEY(id)
 );
+
+
+--
+-- procedures
+--
+
+--
+-- Input är username, den returnerar password för det usernamet
+--
+DELIMITER ;;
+CREATE PROCEDURE get_pass(
+    uName VARCHAR(40)
+)
+BEGIN
+    SELECT password FROM login WHERE username = uName;
+END ;;
+
+DELIMITER ;
+
+
+--
+-- Input är userId, den stämplar in användaren at current time
+--
+
+DELIMITER ;;
+CREATE PROCEDURE stamp_in(
+    uId INT
+)
+BEGIN
+
+    INSERT INTO time_report (userId, inTime, currentDate)
+        VALUES(uId, CURRENT_TIME(), CURRENT_DATE());
+
+END ;;
+
+DELIMITER ;
+
+--
+-- Input är userId, den stämplar ut användaren at current time, (kollar var out = null)
+--
+
+
+DELIMITER ;;
+CREATE PROCEDURE stamp_out (
+    uId INT
+)
+BEGIN
+
+UPDATE time_report SET outTime = CURRENT_TIME() WHERE (userId = uId AND outTime is NULL);
+
+END ;;
+
+DELIMITER ;
+
+
+--
+-- Input är userId och anledning av frånvaro i form av string
+-- (t.ex sjuk, ledig osv) denna funktione stämplar in dagen som abscence med
+--
+
+
+DELIMITER ;;
+CREATE PROCEDURE report_abscence (
+    uId INT,
+    absString VARCHAR(20),
+    com VARCHAR(200)
+)
+BEGIN
+
+    SET @stampToday = (SELECT currentDate FROM time_report WHERE userId = uId);
+
+    IF (@stampToday IS NULL) THEN
+        INSERT INTO time_report (userId, currentDate, absence, comment)
+        VALUES(uId, CURRENT_DATE(),absString, com);
+    ELSE
+        UPDATE time_report SET outTime = CURRENT_TIME(), absence = absString, comment = com WHERE (userId = uId AND outTime is NULL);
+    END IF;
+
+
+END ;;
+
+DELIMITER ;
+
+--
+-- input är allt som behövs för en användare (obs shiftId och classId måste finnas (FK))
+-- användare skapas och returnerar dess userId
+--
+
+
+DELIMITER ;;
+CREATE PROCEDURE user_create(
+    IN cId INT,
+    IN shId INT,
+    IN hourPay INT,
+    IN manId INT,
+    IN fName VARCHAR(30),
+    IN lName VARCHAR(30),
+    IN adrs VARCHAR(20),
+    IN phne VARCHAR(20),
+    IN sSecureNumber VARCHAR(13),
+    INOUT outId INT
+
+)
+BEGIN
+    INSERT INTO user (classificationId, shiftId, hourlyPay, managerId, firstName, lastName, adress, phone, socialSecurityNumber)
+        VALUES(cId, shId, hourPay, manId, fName, lName, adrs, phne, sSecureNumber);
+
+    SET outId = (SELECT id FROM user ORDER BY id DESC LIMIT 1);
+
+    INSERT INTO salary (userId, currentMonthlySalary)
+        VALUES (outId, 0);
+
+
+END ;;
+
+DELIMITER ;
+
+
+--
+-- hämtar alla nuvarande usernames,
+--
+DELIMITER ;;
+CREATE PROCEDURE get_usernames()
+BEGIN
+    SELECT username FROM login;
+
+END ;;
+
+DELIMITER ;
+
+
+--
+--
+--
+
+
+DELIMITER ;;
+CREATE PROCEDURE login_create(
+    uId INT,
+    userIn VARCHAR(40),
+    passIn VARCHAR(20)
+
+)
+BEGIN
+
+    INSERT INTO login (userid, username, password)
+        VALUES(uId, userIn, passIn);
+
+
+
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE get_user_info(
+    uId INT
+
+)
+BEGIN
+
+    SELECT u.id, CONCAT(firstName, " ", lastName) as name, adress, phone, socialSecurityNumber, s.shiftType, c.role, managerId,
+    (SELECT  CONCAT(firstName, " ", lastName)from user as us WHERE u.managerId = us.id ) as managerName
+        FROM user as u
+            INNER JOIN shift s on u.classificationId = s.id
+            INNER JOIN classification c on c.id = u.classificationId WHERE u.id = uId;
+
+
+END ;;
+
+DELIMITER ;
+
+
+
+DELIMITER ;;
+CREATE PROCEDURE add_scheduled_pass(
+    uId INT,
+    startT TIME,
+    stopT TIME,
+    currentDateT DATE
+
+)
+BEGIN
+    INSERT INTO scheduled_pass(userId, start, stop, currentDate)
+      VALUES (uId, startT, stopT, currentDateT);
+
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE edit_time_report(
+    startT TIME,
+    stopT TIME,
+    currentDateT DATE,
+    com VARCHAR(200),
+    tId INT
+
+)
+BEGIN
+    UPDATE time_report SET start = startT, stop = stopT, currentDate = currentDateT,
+        comment = com WHERE id = tId;
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_time_report(
+   uId INT
+
+)
+BEGIN
+   SELECT * FROM time_report WHERE userId = uId;
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+
+CREATE PROCEDURE get_scheduled_pass(
+   uId INT
+
+)
+BEGIN
+   SELECT * FROM scheduled_pass WHERE userId = uId;
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_to_date_scheduled_pass(
+   uId INT
+
+)
+BEGIN
+    SELECT * FROM scheduled_pass WHERE userId = uId AND currentDate >= current_date();
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+
+CREATE TRIGGER current_salary
+    AFTER UPDATE
+    ON time_report FOR EACH ROW
+    BEGIN
+    set @a = (SELECT hourlyPay from user WHERE id = NEW.userId);
+
+    SET @hours = (SELECT SUM((timediff(outTime, inTime)/3600)) FROM time_report WHERE userId = NEW.userId);
+
+    SET @salar = ROUND(@a * @hours);
+
+    UPDATE salary SET currentMonthlySalary = @salar WHERE userId = NEW.userId;
+
+
+
+    END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE project_create(
+   start Date,
+   stop Date,
+   goal VARCHAR(1000),
+   budg INT,
+   Status VARCHAR(20)
+
+)
+BEGIN
+
+    Insert into project (startDate, endDate, goals, budget, status)
+        VALUES(start, stop, goal, budg, Status);
+
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE project_add_user(
+   uId INT,
+   pId INT
+)
+BEGIN
+
+    INSERT INTO project_cart (userId, projectId)
+        VALUES(uId, pId);
+
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE scheduled_activities_add(
+   pId INT,
+   starts TIME,
+   stops TIME,
+   currDate Date
+)
+BEGIN
+
+    INSERT INTO scheduled_activities (projectId, start, stop, currentDate)
+        VALUES (pId, starts, stops, currDate);
+
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_project_activities(
+   pId INT
+
+)
+BEGIN
+    SELECT * FROM scheduled_activities WHERE projectId = pId;
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_project_activities_user(
+   uId INT
+
+)
+BEGIN
+
+SELECT DISTINCT userId ,sa.projectId, sa.start, sa.stop, sa.currentDate FROM scheduled_activities as sa
+    INNER JOIN project_cart as pc
+        ON sa.projectId = pc.projectId WHERE pc.userId = uId;
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_user_id_by_username(
+   uName VARCHAR(20)
+
+)
+BEGIN
+
+
+SELECT u.id FROM user as u INNER JOIN login as l on u.id = l.userId WHERE l.username = uName;
+
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE delete_time_report(
+  tId INT
+)
+BEGIN
+
+
+DELETE FROM time_report WHERE id = tId;
+
+END ;;
+
+DELIMITER;
+
+DELIMITER ;;
+CREATE PROCEDURE add_time_report(
+  uId INT,
+  start TIME,
+  stopp TIME,
+  abse VARCHAR(20),
+  curDate DATE,
+  com VARCHAR(200)
+)
+BEGIN
+
+
+INSERT INTO time_report(userId, inTime, outTime, absence, currentDate, comment)
+    VALUES (uId, start, stopp, abs, curDate, com);
+
+END ;;
+
+DELIMITER ;
