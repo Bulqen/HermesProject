@@ -1,5 +1,8 @@
 package system;
 
+import java.sql.Date;
+import java.util.ArrayList;
+
 public abstract class User{
 
 	private int userId;
@@ -104,6 +107,22 @@ public abstract class User{
 
 	public void setHourlySalary(double salary) {
 		this.hourlySalary = salary;
+	}
+	
+	public String[] getSalarySlip(){
+		
+		DBConnection DBC = new DBConnection();
+		ArrayList <String []> info = DBC.getTimeReport(this.userId);
+		
+		double totalSalary = 0;
+		
+		for (int i=0; i<info.size(); i++){
+			Date inDate = Date.parse(info[i][2]);
+			Date outDate = 
+					
+					
+		}
+		
 	}
 
 
