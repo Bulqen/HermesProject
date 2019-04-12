@@ -30,9 +30,10 @@ public class UserFactory {
 		//Null point
 		int userID = DBC.getUserIdByUsername(this.userName);
 		String [] info  = DBC.getUserInfo(userID);
-		System.out.println(userID +" "+ this.userName);
+		
+		System.out.println();
 		Worker currentUser = new Worker(Integer.parseInt(info[0]),info[1],info[2],Integer.parseInt(info[3]),info[4],Integer.parseInt(info[5])
-				,Integer.parseInt(info[6]),info[7],Double.parseDouble(info[8]),Integer.parseInt(info[9]));
+				,Integer.parseInt(info[6]),info[7],Double.parseDouble(info[9]),Integer.parseInt(info[10]));
 
 		return currentUser;
 
