@@ -531,7 +531,7 @@ DELETE FROM time_report WHERE id = tId;
 
 END ;;
 
-DELIMITER;
+DELIMITER ;
 
 DELIMITER ;;
 CREATE PROCEDURE add_time_report(
