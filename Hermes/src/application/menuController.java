@@ -32,10 +32,11 @@ import javafx.stage.StageStyle;
 import system.DBConnection;
 import system.User;
 import system.UserFactory;
+import system.timeReport;
 
 public class menuController implements Initializable {
 
-	private UserFactory user;
+	
 
 	//Used to make stage dragable
 	private Node node;
@@ -44,7 +45,9 @@ public class menuController implements Initializable {
 	private double yOffSet = 0;
 
 	//Fixa så rätt user används och att jag kan använda user factory
-	private DBConnection test = new DBConnection();
+	//private DBConnection test = new DBConnection();
+	private UserFactory user;
+	private timeReport timeReporter;
 
 	//Main AnchorPane everything is painted on
 	@FXML
@@ -181,7 +184,7 @@ public class menuController implements Initializable {
 
 	private ObservableList<timeToObList> displayTimeReport(){
 		ObservableList<timeToObList> timeReport = FXCollections.observableArrayList();
-		ArrayList <String []> info = this.test.getTimeReport(1);
+		ArrayList <String []> info = this.timeReporter.getTimeReport(user.createWorker().getUserId());
 
 		for(int i = 0; i<info.size(); i++){
 			//Replace k with hours worked
@@ -198,8 +201,9 @@ public class menuController implements Initializable {
 	}
 
 	private boolean stampInIsTrue(){
-		ArrayList <String []> info = this.test.getTimeReport(1);
+		ArrayList <String []> info = this.timeReporter.getTimeReport(user.createWorker().getUserId());
 		//ArrayList <String []> info = user.getTimeReport();
+		
 		boolean isTrue = false;
 
 		Date dNow = new Date( );
@@ -221,7 +225,8 @@ public class menuController implements Initializable {
 	}
 
 	private boolean stampOutIsTrue(){
-		ArrayList <String []> info = this.test.getTimeReport(1);
+		//ArrayList <String []> info = this.test.getTimeReport(1);
+		ArrayList <String []> info = this.timeReporter.getTimeReport(user.createWorker().getUserId());
 		boolean isTrue = true;
 
 		Date dNow = new Date( );
@@ -258,7 +263,8 @@ public class menuController implements Initializable {
 			stageMessage.showAndWait();
 
 			//Test code
-			this.test.stampIn(1);
+			//this.test.stampIn(1);
+			this.timeReporter.stampIn(user.createWorker().getUserId());
 			setStatusOfStampButtons();
 			timeReportTableView.setItems(displayTimeReport());
 
@@ -285,7 +291,8 @@ public class menuController implements Initializable {
 			stageMessage.showAndWait();
 
 			//Test code
-			this.test.stampOut(1);
+			this.timeReporter.stampOut(user.createWorker().getUserId());
+			//this.test.stampOut(1);
 			setStatusOfStampButtons();
 			timeReportTableView.setItems(displayTimeReport());
 
@@ -311,7 +318,7 @@ public class menuController implements Initializable {
 
 	private boolean CallInSickIsTrue(){
 
-		ArrayList <String []> info = this.test.getTimeReport(1);
+		ArrayList <String []> info = this.timeReporter.getTimeReport(user.createWorker().getUserId());
 		boolean isTrue = false;
 
 		Date dNow = new Date( );
@@ -336,7 +343,8 @@ public class menuController implements Initializable {
 	private void callInSick(ActionEvent event){
 		System.out.println(commentOnWhySick.getText());
 		if(!stampOutIsTrue()){
-			this.test.stampOut(1);
+			this.timeReporter.stampOut(user.createWorker().getUserId());
+			//this.test.stampOut(1);
 		}
 		//kalla på funktion som lägger in att personen är sjuk
 

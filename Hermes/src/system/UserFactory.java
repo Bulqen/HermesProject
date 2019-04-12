@@ -11,6 +11,7 @@ public class UserFactory {
 
 	private String userName;
 	private DBConnection DBC = new DBConnection();
+	
 
 	private static UserFactory obj = null;
 
@@ -29,6 +30,7 @@ public class UserFactory {
 		//Null point
 		int userID = DBC.getUserIdByUsername(this.userName);
 		String [] info  = DBC.getUserInfo(userID);
+		System.out.println(userID +" "+ this.userName);
 		Worker currentUser = new Worker(Integer.parseInt(info[0]),info[1],info[2],Integer.parseInt(info[3]),info[4],Integer.parseInt(info[5])
 				,Integer.parseInt(info[6]),info[7],Double.parseDouble(info[8]),Integer.parseInt(info[9]));
 
@@ -36,9 +38,28 @@ public class UserFactory {
 
 
 	}
-	public ArrayList <String []> getTimeReport(){
-		//System.out.println(currentUser.getUserId());
-		//return DBC.getTimeReport(currentUser.getUserId());
-		return null;
+	public DepartmentManager createDepartementManager(){
+		//Null point
+		int userID = DBC.getUserIdByUsername(this.userName);
+		String [] info  = DBC.getUserInfo(userID);
+		DepartmentManager currentUser = new DepartmentManager(Integer.parseInt(info[0]),info[1],info[2],Integer.parseInt(info[3]),info[4],Integer.parseInt(info[5])
+				,Integer.parseInt(info[6]),info[7],Double.parseDouble(info[8]),Integer.parseInt(info[9]));
+
+		return currentUser;
+
+
 	}
+	public ProjectManager createProjectManager(){
+		//Null point
+		int userID = DBC.getUserIdByUsername(this.userName);
+		String [] info  = DBC.getUserInfo(userID);
+		ProjectManager currentUser = new ProjectManager(Integer.parseInt(info[0]),info[1],info[2],Integer.parseInt(info[3]),info[4],Integer.parseInt(info[5])
+				,Integer.parseInt(info[6]),info[7],Double.parseDouble(info[8]),Integer.parseInt(info[9]));
+
+		return currentUser;
+
+
+	}
+	
+	
 }
