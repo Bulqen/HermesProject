@@ -22,6 +22,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import system.Login;
 
 public class LogInControler implements Initializable{
 
@@ -95,17 +96,19 @@ public class LogInControler implements Initializable{
 	private void handle_login(ActionEvent event){
 
 
-		/*
-		 * test
+
 		String enteredUserName = userName.getText();
 		String enteredPassword = password.getText();
-		*/
 
+		/*
 		String enteredUserName = "Erik";
 		String enteredPassword = "12";
 
 		String user = "Erik";
 		String pass = "12";
+		*/
+
+		Login validate = new Login(enteredUserName, enteredPassword);
 
 		if(enteredUserName.isEmpty() || enteredPassword.isEmpty()){
 			Alert enterAlert = new Alert(AlertType.ERROR);
@@ -114,7 +117,7 @@ public class LogInControler implements Initializable{
 			enterAlert.showAndWait();
 		}
 		else{
-			if(enteredUserName.equals(user) && enteredPassword.equals(pass))
+			if(validate.authorizePassword())
 			{
 				Alert enterAlert = new Alert(AlertType.INFORMATION);
 				enterAlert.setHeaderText(null);
