@@ -59,46 +59,17 @@ public class DBConnection {
 	 */
 
 	public String getPW(String userName) throws SQLException {
-<<<<<<< HEAD
-<<<<<<< HEAD
-		
-<<<<<<< HEAD
-		String password = String.valueOf(myConn.prepareStatement("SELECT * FROM tabelNamn WHERE userName = " + this.userName));
-=======
-=======
-=======
 		String password = null;
->>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
 
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
-//		String password = String.valueOf(myConn.prepareStatement("SELECT * FROM tabelNamn WHERE userName = this.userName "));
-		PreparedStatement preMyStmt = myConn.prepareStatement("Select password FROM login WHERE username = ?");
-		preMyStmt.setString(1, userName);
-=======
 		CallableStatement myCall = myConn.prepareCall("{CALL get_pass(?)}");
->>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
 
 		myCall.setString(1, userName);
-
-<<<<<<< HEAD
-		String password = myRs.getString("password");
-<<<<<<< HEAD
 		
-		
->>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
-		
-=======
-=======
 		ResultSet myRs = myCall.executeQuery();
 		if(myRs.next()) {
 			password = myRs.getString("password");
 		}
->>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
 
-
-
->>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
 		return password;
 
 	}

@@ -1,9 +1,5 @@
 package application;
-<<<<<<< HEAD
-	JFrame.abstract.class.class.enum.interface.public;
-=======
 
->>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
