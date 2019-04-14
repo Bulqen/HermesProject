@@ -17,26 +17,30 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import system.DBConnection;
-import system.User;
-import system.UserFactory;
-import system.timeReport;
+import systemFixPackage.User;
+import systemFixPackage.UserFactory;
+import systemFixPackage.timeReport;
+
 
 public class menuController implements Initializable {
 
-	
+
 
 	//Used to make stage dragable
 	private Node node;
@@ -46,8 +50,9 @@ public class menuController implements Initializable {
 
 	//Fixa så rätt user används och att jag kan använda user factory
 	//private DBConnection test = new DBConnection();
-	private UserFactory user;
-	private timeReport timeReporter;
+	private UserFactory userFac;
+	private User user;
+	private timeReport timeReporter = new timeReport();
 
 	//Main AnchorPane everything is painted on
 	@FXML
@@ -79,7 +84,7 @@ public class menuController implements Initializable {
 	@FXML
 	private TableView<timeToObList> timeReportTableView;
 	@FXML
-	private TableColumn<timeToObList, String> dateColumn, inColumn, outColumn, hoursColumn;
+	private TableColumn<timeToObList, String> dateColumn, inColumn, outColumn, hoursColumn, absentColumn;
 
 	//FXML items relating to reportASickDay
 	@FXML
@@ -87,6 +92,15 @@ public class menuController implements Initializable {
 
 	@FXML
 	private Button CallInSickButton;
+
+	//FXML items relating to editWorkingHours
+
+	@FXML
+	private Button SaveEditWorkingHours;
+	@FXML
+	private TableView<timeToObList> timeReportTableView1;
+	@FXML
+	private TableColumn<timeToObList, String> dateColumn1, inColumn1, outColumn1, hoursColumn1, absentColumn1;
 
 
 
@@ -98,6 +112,7 @@ public class menuController implements Initializable {
 		hideMainScreen.toFront();
 
 		setUpTableView();
+		setUpTableViewEditable();
 		displayTime();
 		makeStageDragable();
 
@@ -108,7 +123,22 @@ public class menuController implements Initializable {
 		inColumn.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("in"));
 		outColumn.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("out"));
 		hoursColumn.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("hours"));
+		absentColumn.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("absent"));
 	}
+
+	private void setUpTableViewEditable(){
+		dateColumn1.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("date"));
+		inColumn1.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("in"));
+		outColumn1.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("out"));
+		hoursColumn1.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("hours"));
+		absentColumn1.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("absent"));
+
+		timeReportTableView1.setEditable(true);
+		inColumn1.setCellFactory(TextFieldTableCell.forTableColumn());
+		outColumn1.setCellFactory(TextFieldTableCell.forTableColumn());
+		absentColumn1.setCellFactory(TextFieldTableCell.forTableColumn());
+	}
+
 
 	private void displayTime() {
 		Clock time = new Clock();
@@ -145,7 +175,10 @@ public class menuController implements Initializable {
 	//Ändra så det är setUser , skapa och initiera en user
 	public void setUser(String userName){
 
-		user = UserFactory.initiateUserFactory(userName);
+		userFac = UserFactory.initiateUserFactory(userName);
+		user = userFac.getUser("WORKER");
+		//
+
 		nameLabel.setText(userName);
 
 	}
@@ -184,12 +217,18 @@ public class menuController implements Initializable {
 
 	private ObservableList<timeToObList> displayTimeReport(){
 		ObservableList<timeToObList> timeReport = FXCollections.observableArrayList();
-		ArrayList <String []> info = this.timeReporter.getTimeReport(user.createWorker().getUserId());
+		ArrayList <String []> info = this.timeReporter.getTimeReport(user.getUserId());
+		String absent = "no";
 
 		for(int i = 0; i<info.size(); i++){
 			//Replace k with hours worked
 			String k = Integer.toString(i+2);
-			timeReport.add(new timeToObList(info.get(i)[2], info.get(i)[3], info.get(i)[5], k));
+
+			if(info.get(i)[4] != null){
+				absent = "yes";
+			}
+
+			timeReport.add(new timeToObList(info.get(i)[2], info.get(i)[3], info.get(i)[5], k, absent));
 		}
 
 		return timeReport;
@@ -201,9 +240,9 @@ public class menuController implements Initializable {
 	}
 
 	private boolean stampInIsTrue(){
-		ArrayList <String []> info = this.timeReporter.getTimeReport(user.createWorker().getUserId());
+		ArrayList <String []> info = this.timeReporter.getTimeReport(user.getUserId());
 		//ArrayList <String []> info = user.getTimeReport();
-		
+
 		boolean isTrue = false;
 
 		Date dNow = new Date( );
@@ -226,7 +265,7 @@ public class menuController implements Initializable {
 
 	private boolean stampOutIsTrue(){
 		//ArrayList <String []> info = this.test.getTimeReport(1);
-		ArrayList <String []> info = this.timeReporter.getTimeReport(user.createWorker().getUserId());
+		ArrayList <String []> info = this.timeReporter.getTimeReport(user.getUserId());
 		boolean isTrue = true;
 
 		Date dNow = new Date( );
@@ -264,7 +303,7 @@ public class menuController implements Initializable {
 
 			//Test code
 			//this.test.stampIn(1);
-			this.timeReporter.stampIn(user.createWorker().getUserId());
+			this.timeReporter.stampIn(user.getUserId());
 			setStatusOfStampButtons();
 			timeReportTableView.setItems(displayTimeReport());
 
@@ -291,7 +330,7 @@ public class menuController implements Initializable {
 			stageMessage.showAndWait();
 
 			//Test code
-			this.timeReporter.stampOut(user.createWorker().getUserId());
+			this.timeReporter.stampOut(user.getUserId());
 			//this.test.stampOut(1);
 			setStatusOfStampButtons();
 			timeReportTableView.setItems(displayTimeReport());
@@ -305,7 +344,53 @@ public class menuController implements Initializable {
 	@FXML
 	private void editWorkingHours(ActionEvent event){
 		editWorkingHours.toFront();
+		timeReportTableView1.setItems(displayTimeReport());
 	}
+
+	@FXML
+	public void changeInCellEvent(CellEditEvent edittedCell)
+    {
+		timeToObList row =  timeReportTableView1.getSelectionModel().getSelectedItem();
+		if(edittedCell.getNewValue().toString().matches("\\d{2}:\\d{2}:\\d{2}"))
+			row.setIn((edittedCell.getNewValue().toString()));
+		else
+		{
+			Alert enterAlert = new Alert(AlertType.ERROR);
+			enterAlert.setHeaderText("Wrong format");
+			enterAlert.setContentText("Please use to following format 00:00:00");
+			enterAlert.showAndWait();
+		}
+    }
+
+	@FXML
+	public void changeOutCellEvent(CellEditEvent edittedCell)
+    {
+		timeToObList row =  timeReportTableView1.getSelectionModel().getSelectedItem();
+		if(edittedCell.getNewValue().toString().matches("\\d{2}:\\d{2}:\\d{2}"))
+			row.setOut((edittedCell.getNewValue().toString()));
+		else
+		{
+			Alert enterAlert = new Alert(AlertType.ERROR);
+			enterAlert.setHeaderText("Wrong format");
+			enterAlert.setContentText("Please use to following format 00:00:00");
+			enterAlert.showAndWait();
+		}
+    }
+
+	@FXML
+    void SaveEditWorkingHoursAction(ActionEvent event) {
+
+		//Spara ändrinar i tiderna
+		System.out.println("test");
+		ArrayList <String []> info = new ArrayList<String[]>();
+		for(int i = 0; i < timeReportTableView1.getItems().size(); i++){
+			timeToObList row = timeReportTableView1.getItems().get(i);
+			System.out.println(row.getIn());
+		}
+
+    }
+
+
 
 	@FXML
 	private void reportASickDay(ActionEvent event){
@@ -318,7 +403,7 @@ public class menuController implements Initializable {
 
 	private boolean CallInSickIsTrue(){
 
-		ArrayList <String []> info = this.timeReporter.getTimeReport(user.createWorker().getUserId());
+		ArrayList <String []> info = this.timeReporter.getTimeReport(user.getUserId());
 		boolean isTrue = false;
 
 		Date dNow = new Date( );
@@ -343,9 +428,10 @@ public class menuController implements Initializable {
 	private void callInSick(ActionEvent event){
 		System.out.println(commentOnWhySick.getText());
 		if(!stampOutIsTrue()){
-			this.timeReporter.stampOut(user.createWorker().getUserId());
+			this.timeReporter.stampOut(user.getUserId());
 			//this.test.stampOut(1);
 		}
+		//this.timeReporter.recordAbsence(user.getUserId(), commentOnWhySick.getText());
 		//kalla på funktion som lägger in att personen är sjuk
 
 	}
