@@ -5,7 +5,7 @@ FIELDS
     TERMINATED BY ','
     ENCLOSED BY '"'
 LINES
-    TERMINATED BY '\n'
+    TERMINATED BY '\r\n'
 IGNORE 1 LINES
 (shiftType)
 ;
@@ -17,7 +17,7 @@ FIELDS
     TERMINATED BY ','
     ENCLOSED BY '"'
 LINES
-    TERMINATED BY '\n'
+    TERMINATED BY '\r\n'
 IGNORE 1 LINES
 (id, role)
 ;
@@ -29,7 +29,7 @@ FIELDS
     TERMINATED BY ','
     ENCLOSED BY '"'
 LINES
-    TERMINATED BY '\n'
+    TERMINATED BY '\r\n'
 IGNORE 1 LINES
 (classificationId, shiftId, hourlyPay, managerId, firstName, lastName, adress,
 phone, socialSecurityNumber)
@@ -42,7 +42,7 @@ FIELDS
     TERMINATED BY ','
     ENCLOSED BY '"'
 LINES
-    TERMINATED BY '\n'
+    TERMINATED BY '\r\n'
 IGNORE 1 LINES
 (username, password, userId)
 ;
@@ -55,7 +55,7 @@ FIELDS
     TERMINATED BY ','
     ENCLOSED BY '"'
 LINES
-    TERMINATED BY '\n'
+    TERMINATED BY '\r\n'
 IGNORE 1 LINES
 (userId, currentMonthlySalary)
 ;
@@ -67,7 +67,7 @@ FIELDS
     TERMINATED BY ','
     ENCLOSED BY '"'
 LINES
-    TERMINATED BY '\n'
+    TERMINATED BY '\r\n'
 IGNORE 1 LINES
 (userId, inTime, outTime, currentDate)
 ;
