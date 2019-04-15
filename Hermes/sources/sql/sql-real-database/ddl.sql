@@ -28,6 +28,7 @@ DROP PROCEDURE IF EXISTS add_time_report;
 DROP PROCEDURE IF EXISTS generate_salaryslip;
 DROP PROCEDURE IF EXISTS edit_user;
 DROP PROCEDURE IF EXISTS delete_user;
+DROP PROCEDURE IF EXISTS change_pw;
 
 DROP FUNCTION IF EXISTS get_hours;
 
@@ -663,6 +664,22 @@ BEGIN
     DELETE FROM time_report WHERE userId = uId;
     DELETE FROM project_cart WHERE userId = uId;
     DELETE FROM user WHERE id = uId;
+
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE change_pw(
+  uId INT,
+  nePw VARCHAR(20)
+)
+BEGIN
+
+  SET @uName = (SELECT username FROM user as u INNER JOIN login l on u.id = l.userId WHERE u.id = uId);
+
+  UPDATE login SET password = nePw WHERE username = @uName;
+
 
 END ;;
 
