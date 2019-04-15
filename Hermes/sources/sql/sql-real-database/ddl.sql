@@ -374,7 +374,7 @@ CREATE PROCEDURE edit_time_report(
 
 )
 BEGIN
-    UPDATE time_report SET start = startT, stop = stopT, currentDate = currentDateT,
+    UPDATE time_report SET inTime = startT, outTime = stopT, currentDate = currentDateT,
         comment = com WHERE id = tId;
 END ;;
 

@@ -1,0 +1,5 @@
+"classificationId","shifId","hourlyPay","mangerId","firstName","lastName","adress","phone","socialSecurityNumber"
+"1","2","230","2","Erik","Johansson","östra prinsgatan 15","8923892911","19940109-6666"
+"2","1","400","none","Anton","Widerberg","östra prinsgatan 17","0912478122","19971215-9999"
+"3","3","340","2","Felix","Drangel","Anna räckvidd 6","891237981","19970922-3333"
+"1","4","299","2","Jacob","Justad","Darnassus","01238089","19960430-9919"
