@@ -206,6 +206,30 @@ public class DBConnection {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @param uId
+	 * @param newPw
+	 * Changing pw of user
+	 */
+	
+	public void changePW(int uId, String newPw) {
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL change_pw(?, ?)}");
+			myCall.setInt(uId, 1);
+			myCall.setString(2, newPw);
+
+			myCall.executeUpdate();
+
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 
 	/**
