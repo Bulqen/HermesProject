@@ -349,8 +349,8 @@ public class DBConnection {
 
 	public void editTimeReport(String start, String stop, String currentDate, int timeId, String comment) {
 		try {
-			//Ska det verkligen va add_scheduled_pass här?
-			CallableStatement myCall = myConn.prepareCall("{CALL add_scehduled_pass(?, ?, ?, ?, ?)}");
+			//Ska det verkligen va add_scheduled_pass hï¿½r?
+			CallableStatement myCall = myConn.prepareCall("{CALL edit_time_report(?, ?, ?, ?, ?)}");
 			myCall.setInt(5, timeId);
 			myCall.setString(1, start);
 			myCall.setString(2, stop);
