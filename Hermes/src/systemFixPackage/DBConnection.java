@@ -116,6 +116,71 @@ public class DBConnection {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @param uId
+	 * @param cId
+	 * @param shiftId
+	 * @param hourlypay
+	 * @param manId
+	 * @param firstName
+	 * @param lastName
+	 * @param adress
+	 * @param phone
+	 * @param socialSec
+	 */
+	public void editUser(int uId, int cId,int shiftId,int hourlypay,int manId, String firstName, String lastName, String adress, String phone, String socialSec  ) {
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL edit_user(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+			myCall.setInt(1, uId);
+			myCall.setInt(2, cId);
+			myCall.setInt(3, shiftId);
+			myCall.setInt(4, hourlypay);
+			myCall.setInt(5, manId);
+			myCall.setString(6, firstName);
+			myCall.setString(7, lastName);
+			myCall.setString(8, adress);
+			myCall.setString(9, phone);
+			myCall.setString(10, socialSec);
+
+
+
+			myCall.executeUpdate();
+
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	/**
+	 * 
+	 * @param uId
+	 * deleting user, login, time_reports and removes from projects
+	 */
+	
+	public void deletUser(int uId) {
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL delete_user(?)}");
+			myCall.setInt(1, uId);
+
+
+
+			myCall.executeUpdate();
+
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	/**
 	 *
 	 * @param uId
