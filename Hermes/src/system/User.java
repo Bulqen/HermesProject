@@ -109,20 +109,9 @@ public abstract class User{
 		this.hourlySalary = salary;
 	}
 	
-	public String[] getSalarySlip(){
-		
-		DBConnection DBC = new DBConnection();
-		ArrayList <String []> info = DBC.getTimeReport(this.userId);
-		
-		double totalSalary = 0;
-		
-		for (int i=0; i<info.size(); i++){
-			Date inDate = Date.parse(info[i][2]);
-			Date outDate = 
-					
-					
-		}
-		
+	public ArrayList<String[]> getActivities(){
+		DBConnection dbc = new DBConnection();
+		return dbc.getProcjectActivitiesForUser(userId);
 	}
 
 
