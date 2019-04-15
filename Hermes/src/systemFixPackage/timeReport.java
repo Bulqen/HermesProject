@@ -14,6 +14,10 @@ public class timeReport {
 		return DBC.getTimeReport(userId);
 
 	}
+
+	public void editTimeReport(String start, String stop, String currentDate, int timeId, String comment){
+		this.DBC.editTimeReport(start, stop, currentDate, timeId, comment);
+	}
 	public void stampIn(int userId){
 		DBC.stampIn(userId);
 	}

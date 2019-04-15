@@ -521,6 +521,28 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
+                  <VBox alignment="CENTER" layoutY="40.0" prefHeight="936.0" prefWidth="1370.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="586.0" prefWidth="1131.0">
+                           <children>
+                              <Pane prefHeight="586.0" prefWidth="419.0" style="-fx-background-color: #FFFFFF;">
+                                 <children>
+                                    <Label layoutX="262.0" layoutY="31.0" text="Salary slip">
+                                       <font>
+                                          <Font size="20.0" />
+                                       </font>
+                                    </Label>
+                                    <ImageView fitHeight="99.0" fitWidth="166.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Images/57012501_413284939252228_81219966166106112_n.jpg" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                              </Pane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children></Pane>
          </children></AnchorPane>
    </children>

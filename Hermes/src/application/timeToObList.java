@@ -2,15 +2,25 @@ package application;
 
 public class timeToObList {
 	private String date, in, out, hours, absent;
+	private int timeRowId;
 
-	public timeToObList(String in, String out, String date, String hours, String absent){
+	public timeToObList(String in, String out, String date, String hours, String absent, int timeRowId){
 		this.in = in;
 		this.out = out;
 		this.date = date;
 		this.hours = hours;
 		this.absent = absent;
+		this.timeRowId = timeRowId;
 	}
-	
+
+	public int getTimeRowId() {
+		return timeRowId;
+	}
+
+	public void setTimeRowId(int timeRowId) {
+		this.timeRowId = timeRowId;
+	}
+
 	public timeToObList(String in, String out, String date, String hours){
 		this.in = in;
 		this.out = out;
