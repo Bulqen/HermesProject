@@ -351,6 +351,32 @@ public class DBConnection {
 
 		return info.get(0);
 	}
+	
+	/**
+	 *
+	 * 
+	 * @return String [] is a row, in this case,
+	 * start index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName, 9 hourlypay, 10 classificationId
+	 *
+	 */
+	
+	public ArrayList <String []> getAllUsers() {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL get_all_users(?)}");
+			
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return info;
+	}
 	/**
 	 *
 	 * @param uId

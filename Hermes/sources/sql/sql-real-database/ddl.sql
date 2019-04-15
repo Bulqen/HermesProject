@@ -29,6 +29,7 @@ DROP PROCEDURE IF EXISTS generate_salaryslip;
 DROP PROCEDURE IF EXISTS edit_user;
 DROP PROCEDURE IF EXISTS delete_user;
 DROP PROCEDURE IF EXISTS change_pw;
+DROP PROCEDURE IF EXISTS get_all_users;
 
 DROP FUNCTION IF EXISTS get_hours;
 
@@ -608,7 +609,7 @@ BEGIN
                 WHEN outTime is null
                     then 0
                   ELSE
-                get_hours(outTime) - get_hours(inTime)
+                   mod(get_hours(outTime) - get_hours(inTime) + 24, 24)
             END ) as 'lon'
     FROM time_report WHERE DATE_FORMAT(currentDate,"%Y-%m") = monthYear);
   SET pay = hourlyP * totalHours;
@@ -680,6 +681,24 @@ BEGIN
 
   UPDATE login SET password = nePw WHERE username = @uName;
 
+
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE get_all_users(
+
+)
+BEGIN
+
+SELECT u.id, CONCAT(firstName, " ", lastName) as name, adress, phone, socialSecurityNumber, s.shiftType, c.role, managerId,
+    (SELECT  CONCAT(firstName, " ", lastName)from user as us WHERE u.managerId = us.id ) as managerName,
+      u.hourlyPay, u.classificationId
+      FROM user as u
+          INNER JOIN shift s on u.classificationId = s.id
+          INNER JOIN classification c on c.id = u.classificationId;
 
 END ;;
 
