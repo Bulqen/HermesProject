@@ -116,6 +116,71 @@ public class DBConnection {
 		}
 
 	}
+	
+	/**
+	 * 
+	 * @param uId
+	 * @param cId
+	 * @param shiftId
+	 * @param hourlypay
+	 * @param manId
+	 * @param firstName
+	 * @param lastName
+	 * @param adress
+	 * @param phone
+	 * @param socialSec
+	 */
+	public void editUser(int uId, int cId,int shiftId,int hourlypay,int manId, String firstName, String lastName, String adress, String phone, String socialSec  ) {
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL edit_user(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+			myCall.setInt(1, uId);
+			myCall.setInt(2, cId);
+			myCall.setInt(3, shiftId);
+			myCall.setInt(4, hourlypay);
+			myCall.setInt(5, manId);
+			myCall.setString(6, firstName);
+			myCall.setString(7, lastName);
+			myCall.setString(8, adress);
+			myCall.setString(9, phone);
+			myCall.setString(10, socialSec);
+
+
+
+			myCall.executeUpdate();
+
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	/**
+	 * 
+	 * @param uId
+	 * deleting user, login, time_reports and removes from projects
+	 */
+	
+	public void deletUser(int uId) {
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL delete_user(?)}");
+			myCall.setInt(1, uId);
+
+
+
+			myCall.executeUpdate();
+
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	/**
 	 *
 	 * @param uId
@@ -127,7 +192,7 @@ public class DBConnection {
 	public void reportAbscence(int uId, String abscence, String comment) {
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL report_abscence(?, ?, ?)}");
-			myCall.setInt(uId, 1);
+			myCall.setInt(1, uId);
 			myCall.setString(2, abscence);
 			myCall.setString(3, comment);
 
@@ -603,7 +668,7 @@ public class DBConnection {
 	 *
 	 * @param userId
 	 * @return [] String
-	 * [0] totalHours, [1] hourlyPay, [2] YYYY-MM, [3] lön, [4] namn, (funkar inte för nattskift just nu...)
+	 * [0] totalHours, [1] hourlyPay, [2] YYYY-MM, [3] pay, [4] namn, (funkar inte för nattskift just nu...)
 	 */
 
 	public String [] generateSalaryslip(int userId) {

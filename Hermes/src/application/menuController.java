@@ -75,7 +75,11 @@ public class menuController implements Initializable {
 
 	//Panes to display content to the right when sub menu options is choosen
 	@FXML
-	private Pane  reportASickDay, applyForVaccation, editWorkingHours, inOutPane;
+	private Pane  reportASickDay, applyForVaccation, editWorkingHours, inOutPane, generateSalarySlip;
+
+	//FXML items relating to generateSalarySlipPane
+	@FXML
+	private Button generateSalarySlipButton;
 
 
 	//FXML items relating to inOutPane
@@ -136,7 +140,6 @@ public class menuController implements Initializable {
 		timeReportTableView1.setEditable(true);
 		inColumn1.setCellFactory(TextFieldTableCell.forTableColumn());
 		outColumn1.setCellFactory(TextFieldTableCell.forTableColumn());
-		absentColumn1.setCellFactory(TextFieldTableCell.forTableColumn());
 	}
 
 
@@ -220,15 +223,16 @@ public class menuController implements Initializable {
 		ArrayList <String []> info = this.timeReporter.getTimeReport(user.getUserId());
 		String absent = "no";
 
+
 		for(int i = 0; i<info.size(); i++){
 			//Replace k with hours worked
 			String k = Integer.toString(i+2);
-
+			System.out.println(info.get(i)[0] + "----------------------------------");
 			if(info.get(i)[4] != null){
-				absent = "yes";
+				absent = info.get(i)[4];
 			}
 
-			timeReport.add(new timeToObList(info.get(i)[2], info.get(i)[3], info.get(i)[5], k, absent));
+			timeReport.add(new timeToObList(info.get(i)[2], info.get(i)[3], info.get(i)[5], k, absent, Integer.parseInt(info.get(i)[0])));
 		}
 
 		return timeReport;
@@ -385,7 +389,7 @@ public class menuController implements Initializable {
 		ArrayList <String []> info = new ArrayList<String[]>();
 		for(int i = 0; i < timeReportTableView1.getItems().size(); i++){
 			timeToObList row = timeReportTableView1.getItems().get(i);
-			System.out.println(row.getIn());
+			this.timeReporter.editTimeReport(row.getIn(), row.getOut(), row.getDate(), row.getTimeRowId(), "");
 		}
 
     }
@@ -395,6 +399,7 @@ public class menuController implements Initializable {
 	@FXML
 	private void reportASickDay(ActionEvent event){
 		reportASickDay.toFront();
+		commentOnWhySick.clear();
 		setStatusOfSickDayButton();
 	}
 	private void setStatusOfSickDayButton(){
@@ -427,12 +432,14 @@ public class menuController implements Initializable {
 	@FXML
 	private void callInSick(ActionEvent event){
 		System.out.println(commentOnWhySick.getText());
-		if(!stampOutIsTrue()){
-			this.timeReporter.stampOut(user.getUserId());
+		this.timeReporter.recordAbsence(user.getUserId(), "Sick", commentOnWhySick.getText());
+		commentOnWhySick.clear();
+		//if(!stampOutIsTrue()){
+			//this.timeReporter.stampOut(user.getUserId());
 			//this.test.stampOut(1);
-		}
+		//}
 		//this.timeReporter.recordAbsence(user.getUserId(), commentOnWhySick.getText());
-		//kalla på funktion som lägger in att personen är sjuk
+		//Uppdatera proceduren i databasen
 
 	}
 
@@ -444,6 +451,14 @@ public class menuController implements Initializable {
 	@FXML
 	private void salarySlip(ActionEvent event){
 		salarySlipPane.toFront();
+	}
+
+	@FXML
+	private void generateSalarySlip(ActionEvent event){
+		generateSalarySlip.toFront();
+		String[] salarySlip = this.timeReporter.generateSalarySlip(user.getUserId());
+		System.out.println(salarySlip[0] + " " + salarySlip[1] + " " + salarySlip[2] + " " + salarySlip[3] + " " + salarySlip[4] + " " + salarySlip[5] + " " + salarySlip[6]);
+
 	}
 
 	@FXML

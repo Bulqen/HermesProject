@@ -5,10 +5,7 @@ package systemFixPackage;
 
 import java.util.ArrayList;
 
-/**
- * @author anton
- *
- */
+
 public class timeReport {
 	private DBConnection DBC = new DBConnection();
 
@@ -17,6 +14,10 @@ public class timeReport {
 		return DBC.getTimeReport(userId);
 
 	}
+
+	public void editTimeReport(String start, String stop, String currentDate, int timeId, String comment){
+		this.DBC.editTimeReport(start, stop, currentDate, timeId, comment);
+	}
 	public void stampIn(int userId){
 		DBC.stampIn(userId);
 	}
@@ -24,7 +25,51 @@ public class timeReport {
 	public void stampOut(int userId){
 		DBC.stampOut(userId);
 	}
-	public void recordAbsence(int uId, String comment) {
-		DBC.reportAbscence(uId, "absent", comment);
+	public void recordAbsence(int uId, String type, String comment) {
+		DBC.reportAbscence(uId, type, comment);
 	}
+
+	public String[] generateSalarySlip(int userId){
+		//[0] totalHours, [1] hourlyPay, [2] YYYY-MM, [3] pay, [4] namn
+		String[] salaryInfo = this.DBC.generateSalaryslip(userId);
+		String[] salarySlip = new String[10];
+
+		salarySlip[0] = salaryInfo[0];
+		salarySlip[1] = salaryInfo[1];
+		salarySlip[2] = salaryInfo[2];
+		salarySlip[3] = salaryInfo[3];
+		salarySlip[4] = salaryInfo[4];
+		double tax;
+		double nettoPay;
+
+		//Här bor vi importera en skattetabell och skatta enligt den
+		//Provisorisk lösning sålänge
+
+		if(Integer.parseInt(salarySlip[3]) > 50000){
+			tax = 0.3;
+			nettoPay = Double.parseDouble(salarySlip[3]) * tax;
+		}
+		else if(Integer.parseInt(salarySlip[3]) > 40000){
+			tax = 0.28;
+			nettoPay = Double.parseDouble(salarySlip[3]) * tax;
+		}
+		else if(Integer.parseInt(salarySlip[3]) > 30000){
+			tax = 0.26;
+			nettoPay = Double.parseDouble(salarySlip[3]) * tax;
+		}
+		else if(Integer.parseInt(salarySlip[3]) > 20000){
+			tax = 0.24;
+			nettoPay = Double.parseDouble(salarySlip[3]) * tax;
+		}
+		else{
+			tax = 0.22;
+			nettoPay = Double.parseDouble(salarySlip[3]) * tax;
+		}
+		salarySlip[5] = Double.toString(nettoPay);
+		salarySlip[6] = Double.toString(tax);
+
+
+		return salarySlip;
+	}
+
 }

@@ -10,8 +10,24 @@ public abstract class User{
 	private String shiftId;
 	private String role;
 	private String managerName;
+	private String managerID;
 	private String hourlySalary;
 	private String classificationID;
+
+	public User(int userId, String name, String adress, String number, String socials, String shiftId, String role,
+			String managerName, String hourlySalary, String classificationID,String managerID) {
+		this.userId = userId;
+		this.name = name;
+		this.adress = adress;
+		this.number = number;
+		this.socials = socials;
+		this.shiftId = shiftId;
+		this.role = role;
+		this.managerName = managerName;
+		this.hourlySalary = hourlySalary;
+		this.classificationID = classificationID;
+		this.managerID = managerID;
+	}
 
 	public User(int userId, String name, String adress, String number, String socials, String shiftId, String role,
 			String managerName, String hourlySalary, String classificationID) {
@@ -25,6 +41,14 @@ public abstract class User{
 		this.managerName = managerName;
 		this.hourlySalary = hourlySalary;
 		this.classificationID = classificationID;
+	}
+
+	public String getManagerID() {
+		return managerID;
+	}
+
+	public void setManagerID(String managerID) {
+		this.managerID = managerID;
 	}
 
 	public int getUserId() {

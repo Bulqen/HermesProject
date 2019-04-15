@@ -26,6 +26,8 @@ DROP PROCEDURE IF EXISTS get_user_id_by_username;
 DROP PROCEDURE IF EXISTS delete_time_report;
 DROP PROCEDURE IF EXISTS add_time_report;
 DROP PROCEDURE IF EXISTS generate_salaryslip;
+DROP PROCEDURE IF EXISTS edit_user;
+DROP PROCEDURE IF EXISTS delete_user;
 
 DROP FUNCTION IF EXISTS get_hours;
 
@@ -374,7 +376,7 @@ CREATE PROCEDURE edit_time_report(
 
 )
 BEGIN
-    UPDATE time_report SET start = startT, stop = stopT, currentDate = currentDateT,
+    UPDATE time_report SET inTime = startT, outTime = stopT, currentDate = currentDateT,
         comment = com WHERE id = tId;
 END ;;
 
@@ -614,6 +616,53 @@ BEGIN
   SELECT totalHours, hourlyP, monthYear, pay, CONCAT(u.firstName, ' ', u.lastName) as namn FROM user as u WHERE id = uId;
 
 
+
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE edit_user(
+  uId INT,
+  cId INT,
+  shId INT,
+  hourPay INT,
+  manId INT,
+  fName VARCHAR(30),
+  lName VARCHAR(30),
+  adrs VARCHAR(20),
+  phne VARCHAR(20),
+  sSecureNumber VARCHAR(13)
+)
+BEGIN
+
+
+UPDATE user SET classificationId = cId,
+                shiftId = shId,
+                hourlyPay = hourPay,
+                managerId = manId,
+                firstName = fName,
+                lastName = lName,
+                adress = adrs,
+                phone = phne,
+                socialSecurityNumber = sSecureNumber
+                    WHERE id = uId;
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE delete_user(
+  uId INT
+)
+BEGIN
+
+    DELETE FROM login WHERE userId = uId;
+    DELETE FROM salary WHERE userId = uId;
+    DELETE FROM scheduled_pass WHERE userId = uId;
+    DELETE FROM time_report WHERE userId = uId;
+    DELETE FROM project_cart WHERE userId = uId;
+    DELETE FROM user WHERE id = uId;
 
 END ;;
 
