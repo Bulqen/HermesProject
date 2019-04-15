@@ -61,7 +61,7 @@ public class ManageEmployees {
 		
 		// classification ID == 1,2,3
 		// shiftID 1,2,3,4
-		// ej user ID
+		// ej user ID g
 
 	}
 }
