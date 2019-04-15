@@ -24,24 +24,41 @@ public class ManageEmployees {
 	}
 
 	public void createUser(int userId, String name, String adress, String number, String socials, String shiftId,
-			String role, String managerName, String hourlySalary, String classificationID,String managerID) {
+			String managerName, String hourlySalary, String classificationID,String managerID) {
 		if (this.classificationID == 3) {
 			String [] temp = name.split(" ");
 			String firstName = temp[0];
 			String lastName = temp[1];
-			DBC.userCreate(classificationID,shiftId,hourlySalary,managerID,firstName,lastName,adress,number,socials)
+			DBC.userCreate((int) Integer.parseInt(classificationID),(int) Integer.valueOf(shiftId),(int) Integer.valueOf(hourlySalary),
+					(int) Integer.valueOf(managerID),firstName,lastName,adress,number,socials);
 		}
 //classId, shiftId, hourlyPay, managerId, firstName, lastName, adress, phone, socialSecurityNumber
 	}
 
-	public void deleteUser(int userId) {
+	public void deleteUser(int targetUserId) {
 		if (this.classificationID == 3) {
 
+			DBC.deletUser(targetUserId);
 		}
 	}
 
 	public void changeUser(int userId, String name, String adress, String number, String socials, String shiftId,
-			String role, String managerName, String hourlySalary, String classificationID) {
+			String role, String managerName, String hourlySalary, String classificationID,String managerId) {
+		
+		if (this.classificationID == 3) {
+		
+			String [] temp = name.split(" ");
+			String firstName = temp[0];
+			String lastName = temp[1];
+			
+			DBC.editUser(userId,(int) Integer.parseInt(classificationID),(int) Integer.parseInt(shiftId), 
+					(int) Integer.parseInt(hourlySalary),(int) Integer.parseInt(managerId), 
+					firstName, lastName, adress, number, socials);
+		
+		}
+		
+		
+		
 		// classification ID == 1,2,3
 		// shiftID 1,2,3,4
 		// ej user ID
