@@ -48,7 +48,7 @@ public class ManageEmployees {
 			System.out.println("You are not authorized to perform the desired operation");
 	}
 
-	public void changeUser(int userId, String name, String adress, String number, String socials, String shiftId,
+	public void changeUserInformation(int userId, String name, String adress, String number, String socials, String shiftId,
 			String role, String managerName, String hourlySalary, String classificationID,String managerId) {
 		
 		if (this.classificationID == 3) {
@@ -75,6 +75,13 @@ public class ManageEmployees {
 		// classification ID is only allowed to be 1,2,3
 		// shiftID is only allowed to have any of the following the values 1,2,3,4
 	}
+	public void changePassword(int userId,String newPassword){
+		
+		if(this.classificationID == 3) {
+		DBC.changePW(userId,newPassword);
+		}
+		
+	}
 
 	private boolean checkshiftId(String shiftId) {
 		// TODO Auto-generated method stub
@@ -94,6 +101,11 @@ public class ManageEmployees {
 			return true;
 		else
 			return false;
-		
+	}
+	private boolean checkClassificationID(){
+		if(this.classificationID == 3)
+			return true;
+			else
+				return false;
 	}
 }
