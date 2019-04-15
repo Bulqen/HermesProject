@@ -231,6 +231,7 @@ DELIMITER ;
 --
 
 
+DROP procedure if exists report_abscence;
 DELIMITER ;;
 CREATE PROCEDURE report_abscence (
     uId INT,
@@ -239,19 +240,20 @@ CREATE PROCEDURE report_abscence (
 )
 BEGIN
 
-    SET @stampToday = (SELECT currentDate FROM time_report WHERE userId = uId);
+    SET @stampToday = (SELECT MAX(currentDate) FROM time_report WHERE userId = uId AND currentDate = current_date);
+    SET @stampIn = (SELECT MAX(inTime) FROM time_report where userId = uId AND currentDate = current_date);
+    SET @id = (SELECT id FROM time_report WHERE userId = uId AND currentDate = @stampToday AND inTime = @stampToday);
 
     IF (@stampToday IS NULL) THEN
         INSERT INTO time_report (userId, currentDate, absence, comment)
         VALUES(uId, CURRENT_DATE(),absString, com);
     ELSE
-        UPDATE time_report SET outTime = CURRENT_TIME(), absence = absString, comment = com WHERE (userId = uId AND outTime is NULL);
+        UPDATE time_report SET outTime = CURRENT_TIME(), absence = absString, comment = com WHERE (userId = uId AND outTime is NULL AND currentDate = @stampToday OR id = @id);
     END IF;
 
 
 END ;;
 
-DELIMITER ;
 
 --
 -- input är allt som behövs för en användare (obs shiftId och classId måste finnas (FK))
