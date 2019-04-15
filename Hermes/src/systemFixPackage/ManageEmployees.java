@@ -79,7 +79,10 @@ public class ManageEmployees {
 		
 		if(this.classificationID == 3) {
 		DBC.changePW(userId,newPassword);
+		System.out.println("The users password was succsesfully changed");
 		}
+		else 
+			System.out.println("You are not authorized to perform the desired operation");
 		
 	}
 
