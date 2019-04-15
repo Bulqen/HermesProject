@@ -389,7 +389,7 @@ CREATE PROCEDURE get_time_report(
 
 )
 BEGIN
-   SELECT * FROM time_report WHERE userId = uId;
+   SELECT *, get_hours(outTime)-get_hours(inTime) as hours FROM time_report WHERE userId = uId;
 END ;;
 
 DELIMITER ;
