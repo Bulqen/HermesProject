@@ -75,7 +75,11 @@ public class menuController implements Initializable {
 
 	//Panes to display content to the right when sub menu options is choosen
 	@FXML
-	private Pane  reportASickDay, applyForVaccation, editWorkingHours, inOutPane;
+	private Pane  reportASickDay, applyForVaccation, editWorkingHours, inOutPane, generateSalarySlip;
+
+	//FXML items relating to generateSalarySlipPane
+	@FXML
+	private Button generateSalarySlipButton;
 
 
 	//FXML items relating to inOutPane
@@ -136,7 +140,6 @@ public class menuController implements Initializable {
 		timeReportTableView1.setEditable(true);
 		inColumn1.setCellFactory(TextFieldTableCell.forTableColumn());
 		outColumn1.setCellFactory(TextFieldTableCell.forTableColumn());
-		absentColumn1.setCellFactory(TextFieldTableCell.forTableColumn());
 	}
 
 
@@ -444,6 +447,13 @@ public class menuController implements Initializable {
 	@FXML
 	private void salarySlip(ActionEvent event){
 		salarySlipPane.toFront();
+	}
+
+	@FXML
+	private void generateSalarySlip(ActionEvent event){
+		generateSalarySlip.toFront();
+		String[] salarySlip = this.timeReporter.generateSalarySlip(user.getUserId());
+
 	}
 
 	@FXML

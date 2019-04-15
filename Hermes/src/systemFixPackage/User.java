@@ -26,7 +26,7 @@ public abstract class User{
 		this.hourlySalary = hourlySalary;
 		this.classificationID = classificationID;
 	}
-
+	
 	public int getUserId() {
 		return userId;
 	}

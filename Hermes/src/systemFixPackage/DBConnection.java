@@ -603,7 +603,7 @@ public class DBConnection {
 	 *
 	 * @param userId
 	 * @return [] String
-	 * [0] totalHours, [1] hourlyPay, [2] YYYY-MM, [3] lön, [4] namn, (funkar inte för nattskift just nu...)
+	 * [0] totalHours, [1] hourlyPay, [2] YYYY-MM, [3] pay, [4] namn, (funkar inte för nattskift just nu...)
 	 */
 
 	public String [] generateSalaryslip(int userId) {
