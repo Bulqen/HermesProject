@@ -457,6 +457,7 @@ public class menuController implements Initializable {
 	private void generateSalarySlip(ActionEvent event){
 		generateSalarySlip.toFront();
 		String[] salarySlip = this.timeReporter.generateSalarySlip(user.getUserId());
+		System.out.println(salarySlip[0] + " " + salarySlip[1] + " " + salarySlip[2] + " " + salarySlip[3] + " " + salarySlip[4] + " " + salarySlip[5] + " " + salarySlip[6]);
 
 	}
 
