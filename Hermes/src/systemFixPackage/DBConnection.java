@@ -458,7 +458,7 @@ public class DBConnection {
 	/**
 	 *
 	 * @param uId
-	 * @return ArrayList <String []> of all time reports on that specific user
+	 * @return ArrayList <String []> of all time reports on that specific user.
 	 * [0] id, [1] userId, [2] inTime, [3] outTime, [4] abscence, [5] currentDate, [6] comment, [7] hours
  	 */
 	public ArrayList <String []> getTimeReport(int uId) {
