@@ -21,8 +21,8 @@ public class timeReport {
 	public void stampOut(int userId){
 		DBC.stampOut(userId);
 	}
-	public void recordAbsence(int uId, String comment) {
-		DBC.reportAbscence(uId, "absent", comment);
+	public void recordAbsence(int uId, String type, String comment) {
+		DBC.reportAbscence(uId, type, comment);
 	}
 
 	public String[] generateSalarySlip(int userId){

@@ -127,7 +127,7 @@ public class DBConnection {
 	public void reportAbscence(int uId, String abscence, String comment) {
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL report_abscence(?, ?, ?)}");
-			myCall.setInt(uId, 1);
+			myCall.setInt(1, uId);
 			myCall.setString(2, abscence);
 			myCall.setString(3, comment);
 

@@ -223,12 +223,13 @@ public class menuController implements Initializable {
 		ArrayList <String []> info = this.timeReporter.getTimeReport(user.getUserId());
 		String absent = "no";
 
+
 		for(int i = 0; i<info.size(); i++){
 			//Replace k with hours worked
 			String k = Integer.toString(i+2);
-
+			System.out.println(info.get(i)[4] + "----------------------------------");
 			if(info.get(i)[4] != null){
-				absent = "yes";
+				absent = info.get(i)[4];
 			}
 
 			timeReport.add(new timeToObList(info.get(i)[2], info.get(i)[3], info.get(i)[5], k, absent));
@@ -398,6 +399,7 @@ public class menuController implements Initializable {
 	@FXML
 	private void reportASickDay(ActionEvent event){
 		reportASickDay.toFront();
+		commentOnWhySick.clear();
 		setStatusOfSickDayButton();
 	}
 	private void setStatusOfSickDayButton(){
@@ -430,12 +432,14 @@ public class menuController implements Initializable {
 	@FXML
 	private void callInSick(ActionEvent event){
 		System.out.println(commentOnWhySick.getText());
-		if(!stampOutIsTrue()){
-			this.timeReporter.stampOut(user.getUserId());
+		this.timeReporter.recordAbsence(user.getUserId(), "Sick", commentOnWhySick.getText());
+		commentOnWhySick.clear();
+		//if(!stampOutIsTrue()){
+			//this.timeReporter.stampOut(user.getUserId());
 			//this.test.stampOut(1);
-		}
+		//}
 		//this.timeReporter.recordAbsence(user.getUserId(), commentOnWhySick.getText());
-		//kalla på funktion som lägger in att personen är sjuk
+		//Uppdatera proceduren i databasen
 
 	}
 
