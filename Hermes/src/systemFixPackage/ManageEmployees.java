@@ -74,8 +74,6 @@ public class ManageEmployees {
 		
 		// classification ID is only allowed to be 1,2,3
 		// shiftID is only allowed to have any of the following the values 1,2,3,4
-		// ej user ID g
-
 	}
 
 	private boolean checkshiftId(String shiftId) {
