@@ -1,12 +1,12 @@
-package system;
+package systemFixPackage;
 
 public abstract class Manager extends User {
 
 	private String[] projects;
 	private String[] employees;
 
-	public Manager(int userId, String name, String adress, int number, String socials, int shiftId, int role,
-			String managerName, double hourlySalary, int classificationID) {
+	public Manager(int userId, String name, String adress, String number, String socials, String shiftId,
+			String role, String managerName, String hourlySalary, String classificationID) {
 		super(userId, name, adress, number, socials, shiftId, role, managerName, hourlySalary, classificationID);
 		// TODO Auto-generated constructor stub
 	}

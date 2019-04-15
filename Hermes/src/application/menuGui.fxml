@@ -378,15 +378,6 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="editWorkingHours" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label prefHeight="40.0" prefWidth="220.0" text="Edit working hours" textFill="LIGHTSKYBLUE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
             <Pane fx:id="hideMainScreen" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Pane fx:id="reportASickDay" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -425,9 +416,9 @@
             </Pane>
             <Pane fx:id="inOutPane" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <HBox layoutY="40.0" prefHeight="936.0" prefWidth="1370.0" spacing="730.0">
+                  <HBox layoutY="40.0" prefHeight="936.0" prefWidth="1370.0" spacing="600.0">
                      <children>
-                        <VBox alignment="CENTER_LEFT" prefHeight="976.0" prefWidth="236.0" spacing="50.0">
+                        <VBox alignment="CENTER_LEFT" prefHeight="896.0" prefWidth="214.0" spacing="50.0">
                            <children>
                               <Button fx:id="inButton" mnemonicParsing="false" onAction="#in" prefHeight="72.0" prefWidth="105.0" styleClass="signIn-btn" stylesheets="@application.css" text="IN" textFill="LIGHTSKYBLUE">
                                  <graphic>
@@ -461,12 +452,13 @@
                               <Insets left="60.0" />
                            </padding>
                         </VBox>
-                        <TableView fx:id="timeReportTableView" prefHeight="902.0" prefWidth="400.0" styleClass="parent" stylesheets="@application.css">
+                        <TableView fx:id="timeReportTableView" prefHeight="896.0" prefWidth="482.0" styleClass="parent" stylesheets="@application.css">
                           <columns>
                             <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
                             <TableColumn fx:id="inColumn" prefWidth="100.0" text="IN" />
                               <TableColumn fx:id="outColumn" prefWidth="100.0" text="OUT" />
                               <TableColumn fx:id="hoursColumn" prefWidth="100.0" text="Hours" />
+                              <TableColumn fx:id="absentColumn" prefWidth="75.0" text="Absent" />
                           </columns>
                         </TableView>
                      </children>
@@ -479,6 +471,43 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="editWorkingHours" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="220.0" text="Edit working hours" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutY="40.0" prefHeight="936.0" prefWidth="1370.0" spacing="200.0">
+                     <children>
+                        <TableView fx:id="timeReportTableView1" editable="true" prefHeight="896.0" prefWidth="482.0" styleClass="parent" stylesheets="@application.css">
+                           <columns>
+                              <TableColumn fx:id="dateColumn1" prefWidth="100.0" text="Date" />
+                              <TableColumn fx:id="inColumn1" onEditCommit="#changeInCellEvent" prefWidth="100.0" text="IN" />
+                              <TableColumn fx:id="outColumn1" onEditCommit="#changeOutCellEvent" prefWidth="100.0" text="OUT" />
+                              <TableColumn fx:id="hoursColumn1" prefWidth="100.0" text="Hours" />
+                              <TableColumn fx:id="absentColumn1" prefWidth="75.0" text="Absent" />
+                           </columns>
+                        </TableView>
+                        <Button fx:id="SaveEditWorkingHours" mnemonicParsing="false" onAction="#SaveEditWorkingHoursAction" prefHeight="72.0" prefWidth="199.0" styleClass="signIn-btn" stylesheets="@application.css" text="Save changes" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/save-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </padding>
+                  </HBox>
                </children>
             </Pane>
          </children></AnchorPane>
