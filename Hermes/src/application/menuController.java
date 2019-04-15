@@ -33,6 +33,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import systemFixPackage.ManageEmployees;
 import systemFixPackage.User;
 import systemFixPackage.UserFactory;
 import systemFixPackage.timeReport;
@@ -53,6 +54,7 @@ public class menuController implements Initializable {
 	private UserFactory userFac;
 	private User user;
 	private timeReport timeReporter = new timeReport();
+	private ManageEmployees manageEmployee;
 
 	//Main AnchorPane everything is painted on
 	@FXML
@@ -80,7 +82,8 @@ public class menuController implements Initializable {
 	//FXML items relating to generateSalarySlipPane
 	@FXML
 	private Button generateSalarySlipButton;
-
+	@FXML
+    private Label nameLabelSalary, adressLabelSalary, socialLabelSalary, periodLabelSalary, employeeIdLabelSalary;
 
 	//FXML items relating to inOutPane
 	@FXML
@@ -106,8 +109,11 @@ public class menuController implements Initializable {
 	@FXML
 	private TableColumn<timeToObList, String> dateColumn1, inColumn1, outColumn1, hoursColumn1, absentColumn1;
 
-
-
+	//FXML items relating to manage accounts
+	@FXML
+    private Button newUserButton,editUserButton,deleteUserButton,changePasswordButton;
+	@FXML
+    private Pane newUserPane,editUserPane,deleteUserPane,changePasswordPane;
 
 	//Set up at launch
 	@Override
@@ -180,9 +186,10 @@ public class menuController implements Initializable {
 
 		userFac = UserFactory.initiateUserFactory(userName);
 		user = userFac.getUser("WORKER");
+		this.manageEmployee = new ManageEmployees(user);
 		//
 
-		nameLabel.setText(userName);
+		nameLabel.setText(user.getName());
 
 	}
 
@@ -226,8 +233,8 @@ public class menuController implements Initializable {
 
 		for(int i = 0; i<info.size(); i++){
 			//Replace k with hours worked
-			String k = Integer.toString(i+2);
-			System.out.println(info.get(i)[0] + "----------------------------------");
+			
+			
 			if(info.get(i)[4] != null){
 				absent = info.get(i)[4];
 			}
@@ -459,11 +466,43 @@ public class menuController implements Initializable {
 		String[] salarySlip = this.timeReporter.generateSalarySlip(user.getUserId());
 		System.out.println(salarySlip[0] + " " + salarySlip[1] + " " + salarySlip[2] + " " + salarySlip[3] + " " + salarySlip[4] + " " + salarySlip[5] + " " + salarySlip[6]);
 
+		//private Label nameLabelSalary, adressLabelSalary, socialLabelSalary, periodLabelSalary, employeeIdLabelSalary;
+		this.nameLabelSalary.setText(user.getName());
+		this.adressLabelSalary.setText(user.getAdress());
+		this.socialLabelSalary.setText(user.getSocials());
+		this.periodLabelSalary.setText(salarySlip[2]);
+		this.employeeIdLabelSalary.setText(Integer.toString(user.getUserId()));
 	}
 
 	@FXML
 	private void changePassword(ActionEvent event){
+		this.changePasswordPane.toFront();
+	}
+
+	@FXML
+	private void deleteUser(ActionEvent event){
+		this.deleteUserPane.toFront();
+	}
+
+	@FXML
+	private void editUser(ActionEvent event){
+		this.editUserPane.toFront();
+	}
+
+	@FXML
+	private void newUser(ActionEvent event){
+		this.newUserPane.toFront();
+	}
+
+
+    //private Button newUserButton,editUserButton,deleteUserButton,changePasswordButton;
+
+	@FXML
+	private void manageAccounts(ActionEvent event){
 		ManageAccountsPane.toFront();
+		this.newUserButton.setDisable(!this.manageEmployee.checkClassificationID());
+		this.deleteUserButton.setDisable(!this.manageEmployee.checkClassificationID());
+		this.editUserButton.setDisable(!this.manageEmployee.checkClassificationID());
 	}
 
 	@FXML

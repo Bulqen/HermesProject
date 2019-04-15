@@ -21,7 +21,7 @@ public class Project {
 	}
 	
 	public Project(int userID){
-		
+		DBConnection dbc = new DBConnection();
 	}
 
 	public String getStart() {
