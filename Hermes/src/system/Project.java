@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Project {
 
-	//ta b
+	//ta bort
 	private String start;
 	private String stop;
 	private String goal; 
