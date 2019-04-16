@@ -211,7 +211,7 @@ public class DBConnection {
 	 *
 	 * @param uId
 	 * @param newPw
-	 * Changing pw of user
+	 * Changing pw of user.
 	 */
 
 	public void changePW(int uId, String newPw) {
