@@ -331,7 +331,7 @@ public class DBConnection {
 	 *
 	 * @param uId, which is the userId
 	 * @return String [] is a row, in this case,
-	 * start index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName, 9 hourlypay, 10 classificationId
+	 * start index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName, 9 hourlypay, 10 classificationId, 11 shiftId
 	 *
 	 */
 	public String [] getUserInfo(int uId) {
@@ -357,7 +357,7 @@ public class DBConnection {
 	 *
 	 *
 	 * @return String [] is a row, in this case,
-	 * start index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName, 9 hourlypay, 10 classificationId
+	 * start index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName, 9 hourlypay, 10 classificationId, 11 shiftId
 	 *
 	 */
 
