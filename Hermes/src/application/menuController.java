@@ -530,7 +530,7 @@ public class menuController implements Initializable {
 	@FXML
 	private void saveNewPassword(ActionEvent event){
 		Login validate = new Login(this.user.getUserName(), this.oldPassword1.getText());
-		System.out.println(this.user.getUserName());
+		System.out.println(this.user.getUserName()+ "---" + this.user.getUserId() + "---" + this.newPassword.getText());
 		if(this.oldPassword1.getText().equals(this.oldPassword2.getText()) && validate.authorizePassword() && this.newPassword.getText().length() > 7){
 			this.manageEmployee.changeYourOwnPassword(this.user.getUserId(), this.newPassword.getText());
 			this.newPassword.clear();

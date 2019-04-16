@@ -217,7 +217,7 @@ public class DBConnection {
 	public void changePW(int uId, String newPw) {
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL change_pw(?, ?)}");
-			myCall.setInt(uId, 1);
+			myCall.setInt(1, uId);
 			myCall.setString(2, newPw);
 
 			myCall.executeUpdate();
