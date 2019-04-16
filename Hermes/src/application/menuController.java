@@ -20,10 +20,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -33,6 +35,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import system.Login;
 import systemFixPackage.ManageEmployees;
 import systemFixPackage.User;
 import systemFixPackage.UserFactory;
@@ -84,6 +87,10 @@ public class menuController implements Initializable {
 	private Button generateSalarySlipButton;
 	@FXML
     private Label nameLabelSalary, adressLabelSalary, socialLabelSalary, periodLabelSalary, employeeIdLabelSalary;
+	@FXML
+    private Label descriptionSalary, amountSalary, hWageSalary, sumSalary;
+	@FXML
+	private Label grossEarningsSalary, taxesSalary, netEarningsSalary;
 
 	//FXML items relating to inOutPane
 	@FXML
@@ -109,11 +116,31 @@ public class menuController implements Initializable {
 	@FXML
 	private TableColumn<timeToObList, String> dateColumn1, inColumn1, outColumn1, hoursColumn1, absentColumn1;
 
+	//Items relating to delete user
+	@FXML
+	private ListView<String> listViewDisplayUsers1;
+
+	//Items relating to edit user
+	@FXML
+	private ListView<String> listViewDisplayUsers;
+	@FXML
+	private TextField idLabelUserEdit, nameLabelUserEdit, adressLabelUserEdit, phoneLabelUserEdit, socialLabelUserEdit,
+	shiftLabelUserEdit, roleLabelUserEdit, managerIdLabelUserEdit, managerNameLabelUserEdit, hWageLabelUserEdit, authorityLabelUserEdit;
+	@FXML
+	private Button saveUserEditsButton;
+
+
 	//FXML items relating to manage accounts
 	@FXML
     private Button newUserButton,editUserButton,deleteUserButton,changePasswordButton;
 	@FXML
-    private Pane newUserPane,editUserPane,deleteUserPane,changePasswordPane;
+    private Pane newUserPane,editUserPane,deleteUserPane,changePasswordPane, changePasswordManagerPane;
+
+	//FXML items relating to change pw
+	@FXML
+    private TextField newPassword, oldPassword1, oldPassword2;
+
+	//FXML items relating to change pw manager
 
 	//Set up at launch
 	@Override
@@ -228,18 +255,18 @@ public class menuController implements Initializable {
 	private ObservableList<timeToObList> displayTimeReport(){
 		ObservableList<timeToObList> timeReport = FXCollections.observableArrayList();
 		ArrayList <String []> info = this.timeReporter.getTimeReport(user.getUserId());
-		String absent = "no";
+
 
 
 		for(int i = 0; i<info.size(); i++){
 			//Replace k with hours worked
-			
-			
+
+			String absent = "no";
 			if(info.get(i)[4] != null){
 				absent = info.get(i)[4];
 			}
 
-			timeReport.add(new timeToObList(info.get(i)[2], info.get(i)[3], info.get(i)[5], k, absent, Integer.parseInt(info.get(i)[0])));
+			timeReport.add(new timeToObList(info.get(i)[2], info.get(i)[3], info.get(i)[5], info.get(i)[7], absent, Integer.parseInt(info.get(i)[0])));
 		}
 
 		return timeReport;
@@ -391,13 +418,14 @@ public class menuController implements Initializable {
 	@FXML
     void SaveEditWorkingHoursAction(ActionEvent event) {
 
-		//Spara ändrinar i tiderna
+		//fixa så vi inte kan spara om input är fel
 		System.out.println("test");
 		ArrayList <String []> info = new ArrayList<String[]>();
 		for(int i = 0; i < timeReportTableView1.getItems().size(); i++){
 			timeToObList row = timeReportTableView1.getItems().get(i);
 			this.timeReporter.editTimeReport(row.getIn(), row.getOut(), row.getDate(), row.getTimeRowId(), "");
 		}
+		timeReportTableView1.setItems(displayTimeReport());
 
     }
 
@@ -410,7 +438,7 @@ public class menuController implements Initializable {
 		setStatusOfSickDayButton();
 	}
 	private void setStatusOfSickDayButton(){
-		CallInSickButton.setDisable(CallInSickIsTrue());
+		CallInSickButton.setDisable((CallInSickIsTrue()));
 	}
 
 	private boolean CallInSickIsTrue(){
@@ -422,15 +450,20 @@ public class menuController implements Initializable {
 	    SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd");
 
 		for(int i = 0; i<info.size(); i++){
-			if(!info.get(i)[5].equals(ft.format(dNow))){
+			if(info.get(i)[5].equals(ft.format(dNow)) && info.get(i)[4] != null){
+				isTrue = true;
+			}
+			if(!stampOutIsTrue()){
 				isTrue = false;
 			}
+			/*
 			else if(info.get(i)[4] == null){
 				isTrue = false;
 			}
 			else{
 				isTrue = true;
 			}
+			*/
 		}
 
 		return isTrue;
@@ -441,6 +474,7 @@ public class menuController implements Initializable {
 		System.out.println(commentOnWhySick.getText());
 		this.timeReporter.recordAbsence(user.getUserId(), "Sick", commentOnWhySick.getText());
 		commentOnWhySick.clear();
+		setStatusOfSickDayButton();
 		//if(!stampOutIsTrue()){
 			//this.timeReporter.stampOut(user.getUserId());
 			//this.test.stampOut(1);
@@ -464,30 +498,171 @@ public class menuController implements Initializable {
 	private void generateSalarySlip(ActionEvent event){
 		generateSalarySlip.toFront();
 		String[] salarySlip = this.timeReporter.generateSalarySlip(user.getUserId());
-		System.out.println(salarySlip[0] + " " + salarySlip[1] + " " + salarySlip[2] + " " + salarySlip[3] + " " + salarySlip[4] + " " + salarySlip[5] + " " + salarySlip[6]);
+		//System.out.println(salarySlip[0] + " " + salarySlip[1] + " " + salarySlip[2] + " " + salarySlip[3] + " " + salarySlip[4] + " " + salarySlip[5] + " " + salarySlip[6]);
 
-		//private Label nameLabelSalary, adressLabelSalary, socialLabelSalary, periodLabelSalary, employeeIdLabelSalary;
 		this.nameLabelSalary.setText(user.getName());
 		this.adressLabelSalary.setText(user.getAdress());
 		this.socialLabelSalary.setText(user.getSocials());
 		this.periodLabelSalary.setText(salarySlip[2]);
 		this.employeeIdLabelSalary.setText(Integer.toString(user.getUserId()));
+		//Bör lägga in if statement för att avgöra vad som ska visas med ob och så
+		this.descriptionSalary.setText("Basic Pay");
+		this.amountSalary.setText(salarySlip[0]);
+		this.hWageSalary.setText(salarySlip[1]);
+		this.sumSalary.setText(salarySlip[3]);
+
+		this.grossEarningsSalary.setText(salarySlip[3]);
+		this.taxesSalary.setText(salarySlip[5]);
+		double netEarnings = Double.parseDouble(salarySlip[3])-Double.parseDouble(salarySlip[5]);
+		this.netEarningsSalary.setText(Double.toString(netEarnings));
 	}
 
 	@FXML
 	private void changePassword(ActionEvent event){
-		this.changePasswordPane.toFront();
+		if(Integer.parseInt(this.user.getClassificationID()) == 3){
+			//this.changePasswordManagerPane.toFront();
+			this.changePasswordPane.toFront();
+		}
+		else
+			this.changePasswordPane.toFront();
+	}
+
+	@FXML
+	private void saveNewPassword(ActionEvent event){
+		Login validate = new Login(this.user.getUserName(), this.oldPassword1.getText());
+		System.out.println(this.user.getUserName());
+		if(this.oldPassword1.getText().equals(this.oldPassword2.getText()) && validate.authorizePassword() && this.newPassword.getText().length() > 7){
+			this.manageEmployee.changeYourOwnPassword(this.user.getUserId(), this.newPassword.getText());
+			this.newPassword.clear();
+			this.oldPassword1.clear();
+			this.oldPassword2.clear();
+			
+			Alert enterAlert = new Alert(AlertType.INFORMATION);
+			enterAlert.setHeaderText(null);
+			enterAlert.setContentText("Password is changed");
+			enterAlert.showAndWait();
+		}
+		else if(!validate.authorizePassword()){
+			Alert enterAlert = new Alert(AlertType.ERROR);
+			enterAlert.setHeaderText(null);
+			enterAlert.setContentText("error");
+			enterAlert.showAndWait();
+		}
+		else if(this.oldPassword1.getText().equals(this.oldPassword2.getText())){
+			Alert enterAlert = new Alert(AlertType.ERROR);
+			enterAlert.setHeaderText(null);
+			enterAlert.setContentText("error");
+			enterAlert.showAndWait();
+		}
+		else if(this.newPassword.getText().length() < 7){
+			Alert enterAlert = new Alert(AlertType.ERROR);
+			enterAlert.setHeaderText(null);
+			enterAlert.setContentText("error");
+			enterAlert.showAndWait();
+		}
+
 	}
 
 	@FXML
 	private void deleteUser(ActionEvent event){
 		this.deleteUserPane.toFront();
+		updateListViewForDeleteUser();
+	}
+
+	private void updateListViewForDeleteUser(){
+		ArrayList<String[]> employeeList = this.manageEmployee.getAllUsers();
+		this.listViewDisplayUsers1.getItems().clear();
+		for(int i = 0; i<employeeList.size(); i++){
+			this.listViewDisplayUsers1.getItems().add(i, employeeList.get(i)[0]+ " " + employeeList.get(i)[1]);
+		}
+	}
+
+	@FXML
+	private void deleteSelectedUser(ActionEvent event){
+		ArrayList<String[]> employeeList = this.manageEmployee.getAllUsers();
+
+		if(this.listViewDisplayUsers1.getSelectionModel().getSelectedIndex() != -1 && Integer.parseInt(employeeList.get(this.listViewDisplayUsers1.getSelectionModel().getSelectedIndex())[0]) != this.user.getUserId()) {
+
+			this.manageEmployee.deleteUser(Integer.parseInt(employeeList.get(this.listViewDisplayUsers1.getSelectionModel().getSelectedIndex())[0]));
+			updateListViewForDeleteUser();
+		}
+		else if(this.listViewDisplayUsers1.getSelectionModel().getSelectedIndex() == -1){
+			Alert enterAlert = new Alert(AlertType.ERROR);
+			enterAlert.setHeaderText(null);
+			enterAlert.setContentText("You need to select a user before deleting");
+			enterAlert.showAndWait();
+		}
+		else if(Integer.parseInt(employeeList.get(this.listViewDisplayUsers1.getSelectionModel().getSelectedIndex())[0]) == this.user.getUserId()){
+			Alert enterAlert = new Alert(AlertType.ERROR);
+			enterAlert.setHeaderText(null);
+			enterAlert.setContentText("You can't delete your own account");
+			enterAlert.showAndWait();
+		}
 	}
 
 	@FXML
 	private void editUser(ActionEvent event){
 		this.editUserPane.toFront();
+		updateListViewForUpdateUser();
 	}
+
+	private void updateListViewForUpdateUser(){
+		ArrayList<String[]> employeeList = this.manageEmployee.getAllUsers();
+		this.listViewDisplayUsers.getItems().clear();
+		for(int i = 0; i<employeeList.size(); i++){
+			this.listViewDisplayUsers.getItems().add(i, employeeList.get(i)[0]+ " " + employeeList.get(i)[1]);
+		}
+		this.idLabelUserEdit.clear();
+    	this.nameLabelUserEdit.clear();
+    	this.adressLabelUserEdit.clear();
+    	this.phoneLabelUserEdit.clear();
+    	this.socialLabelUserEdit.clear();
+    	this.shiftLabelUserEdit.clear();
+    	this.roleLabelUserEdit.clear();
+    	this.managerIdLabelUserEdit.clear();
+    	this.managerNameLabelUserEdit.clear();
+    	this.hWageLabelUserEdit.clear();
+    	this.authorityLabelUserEdit.clear();
+	}
+
+	@FXML
+	private void saveUserEdits(ActionEvent event){
+
+		if(this.listViewDisplayUsers.getSelectionModel().getSelectedIndex() != -1){
+			//Byt metod sen
+			this.manageEmployee.changeUserInformationProvisorisk(Integer.parseInt(this.idLabelUserEdit.getText()), this.nameLabelUserEdit.getText(), this.adressLabelUserEdit.getText(),
+					this.phoneLabelUserEdit.getText(), this.socialLabelUserEdit.getText(), this.shiftLabelUserEdit.getText(), this.roleLabelUserEdit.getText(),
+					this.managerNameLabelUserEdit.getText(), this.hWageLabelUserEdit.getText(), this.authorityLabelUserEdit.getText(), this.managerIdLabelUserEdit.getText());
+
+			updateListViewForUpdateUser();
+		}
+		else{
+			Alert enterAlert = new Alert(AlertType.ERROR);
+			enterAlert.setHeaderText(null);
+			enterAlert.setContentText("You need to select a user before saving");
+			enterAlert.showAndWait();
+		}
+
+	}
+
+    @FXML
+    void fillInInformation(MouseEvent event) {
+    	ArrayList<String[]> employeeList = this.manageEmployee.getAllUsers();
+    	int selected = this.listViewDisplayUsers.getSelectionModel().getSelectedIndex();
+    	System.out.println(selected);
+
+    	this.idLabelUserEdit.setText(employeeList.get(selected)[0]);
+    	this.nameLabelUserEdit.setText(employeeList.get(selected)[1]);
+    	this.adressLabelUserEdit.setText(employeeList.get(selected)[2]);
+    	this.phoneLabelUserEdit.setText(employeeList.get(selected)[3]);
+    	this.socialLabelUserEdit.setText(employeeList.get(selected)[4]);
+    	this.shiftLabelUserEdit.setText(employeeList.get(selected)[5]);
+    	this.roleLabelUserEdit.setText(employeeList.get(selected)[6]);
+    	this.managerIdLabelUserEdit.setText(employeeList.get(selected)[7]);
+    	this.managerNameLabelUserEdit.setText(employeeList.get(selected)[8]);
+    	this.hWageLabelUserEdit.setText(employeeList.get(selected)[9]);
+    	this.authorityLabelUserEdit.setText(employeeList.get(selected)[10]);
+    }
 
 	@FXML
 	private void newUser(ActionEvent event){

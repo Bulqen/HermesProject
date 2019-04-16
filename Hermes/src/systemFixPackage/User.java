@@ -13,9 +13,10 @@ public abstract class User{
 	private String managerID;
 	private String hourlySalary;
 	private String classificationID;
+	private String userName;
 
 	public User(int userId, String name, String adress, String number, String socials, String shiftId, String role,
-			String managerName, String hourlySalary, String classificationID,String managerID) {
+			String managerName, String hourlySalary, String classificationID,String managerID, String userName) {
 		this.userId = userId;
 		this.name = name;
 		this.adress = adress;
@@ -27,6 +28,7 @@ public abstract class User{
 		this.hourlySalary = hourlySalary;
 		this.classificationID = classificationID;
 		this.managerID = managerID;
+		this.userName = userName;
 	}
 
 	public User(int userId, String name, String adress, String number, String socials, String shiftId, String role,
@@ -123,12 +125,12 @@ public abstract class User{
 		this.managerName = managerName;
 	}
 
-	public String getuserName() {
-		return name;
+	public String getUserName() {
+		return userName;
 	}
 
 	public void setUserName(String userName) {
-		this.name = userName;
+		this.userName = userName;
 	}
 
 	public String getHourlySalary() {

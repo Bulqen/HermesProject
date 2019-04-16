@@ -116,9 +116,9 @@ public class DBConnection {
 		}
 
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param uId
 	 * @param cId
 	 * @param shiftId
@@ -132,7 +132,7 @@ public class DBConnection {
 	 */
 	public void editUser(int uId, int cId,int shiftId,int hourlypay,int manId, String firstName, String lastName, String adress, String phone, String socialSec  ) {
 		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL edit_user(?, ?, ?, ?, ?, ?, ?, ?, ?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL edit_user(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");
 			myCall.setInt(1, uId);
 			myCall.setInt(2, cId);
 			myCall.setInt(3, shiftId);
@@ -154,16 +154,16 @@ public class DBConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * @param uId
 	 * deleting user, login, time_reports and removes from projects
 	 */
-	
+
 	public void deletUser(int uId) {
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL delete_user(?)}");
@@ -179,7 +179,7 @@ public class DBConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 	/**
 	 *
@@ -206,14 +206,14 @@ public class DBConnection {
 		}
 
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param uId
 	 * @param newPw
 	 * Changing pw of user
 	 */
-	
+
 	public void changePW(int uId, String newPw) {
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL change_pw(?, ?)}");
@@ -338,6 +338,7 @@ public class DBConnection {
 		ArrayList <String []> info = new ArrayList<String []>();
 
 		try {
+
 			CallableStatement myCall = myConn.prepareCall("{CALL get_user_info(?)}");
 			myCall.setInt(1, uId);
 
@@ -351,21 +352,21 @@ public class DBConnection {
 
 		return info.get(0);
 	}
-	
+
 	/**
 	 *
-	 * 
+	 *
 	 * @return String [] is a row, in this case,
 	 * start index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName, 9 hourlypay, 10 classificationId
 	 *
 	 */
-	
+
 	public ArrayList <String []> getAllUsers() {
 		ArrayList <String []> info = new ArrayList<String []>();
 
 		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL get_all_users(?)}");
-			
+			CallableStatement myCall = myConn.prepareCall("{CALL get_all_users()}");
+
 
 			ResultSet myRs = myCall.executeQuery();
 			info = getAllAsList(myRs);

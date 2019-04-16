@@ -29,10 +29,10 @@ public class UserFactory {
 
 	public User getUser(String employeeType){
 		int userID = DBC.getUserIdByUsername(this.userName);
-		System.out.println(userID + ":" + this.userName);
+
 		String [] info  = DBC.getUserInfo(userID);
 
-
+		/*
 		System.out.println("userId:" +info[0] + " name:" + info[1] + " adress:" + info[2] + " number:" + info[3] + " socials:" + info[4]);
 		System.out.println("-------------------");
 		System.out.println(" shiftId:" + info[5]);
@@ -46,22 +46,24 @@ public class UserFactory {
 		System.out.println("hourlySalary:" + info[9]);
 		System.out.println("-------------------");
 		System.out.println(" classificationID:" + info[10]);
+		*/
+
 	    if(employeeType == null){
 	    	return null;
 	    }
 	    if(employeeType.equalsIgnoreCase("WORKER"))
 	    {
-	    	return new Worker(userID, info[1], info[2], info[3], info[4], "This is empty", "This is empty", "This is empty", info[9], info[10]);
+	    	return new Worker(userID, info[1], info[2], info[3], info[4], info[5], info[6], info[8], info[9], info[10], info[7], this.userName);
 
 	    }
 	    else if(employeeType.equalsIgnoreCase("DMANAGER"))
 	    {
-	    	return new DepartmentManager(userID, info[1], info[2], info[3], info[4], "This is empty", "This is empty", "This is empty", info[9], info[10]);
+	    	return new DepartmentManager(userID, info[1], info[2], info[3], info[4], info[5], info[6], info[8], info[9], info[10], info[7], this.userName);
 
 	    }
 	    else if(employeeType.equalsIgnoreCase("PMANAGER"))
 	    {
-	    	return new ProjectManager(userID, info[1], info[2], info[3], info[4], "This is empty", "This is empty", "This is empty", info[9], info[10]);
+	    	return new ProjectManager(userID, info[1], info[2], info[3], info[4], info[5], info[6], info[8], info[9], info[10], info[7], this.userName);
 	    }
 	     	return null;
 	}

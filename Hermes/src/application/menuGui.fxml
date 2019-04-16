@@ -3,9 +3,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -550,6 +553,15 @@
                   </HBox>
                </children>
             </Pane>
+            <Pane fx:id="newUserPane" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="302.0" text="New user" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
             <Pane fx:id="generateSalarySlip" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label prefHeight="40.0" prefWidth="302.0" text="Salary slip for your next pay" textFill="LIGHTSKYBLUE">
@@ -607,6 +619,124 @@
                                           </VBox>
                                        </children>
                                     </HBox>
+                                    <VBox alignment="CENTER" layoutY="200.0" prefHeight="30.0" prefWidth="600.0">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="600.0" text="-------------------------------------------------------------------------------------------------------------------" />
+                                       </children>
+                                    </VBox>
+                                    <HBox alignment="CENTER" layoutY="230.0" prefHeight="30.0" prefWidth="600.0" spacing="100.0">
+                                       <children>
+                                          <Label text="Description" />
+                                          <Label text="Amount" />
+                                          <Label text="hourly wage" />
+                                          <Label text="Sum" />
+                                       </children>
+                                    </HBox>
+                                    <VBox alignment="CENTER" layoutY="260.0" prefHeight="18.0" prefWidth="600.0">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="600.0" text="-------------------------------------------------------------------------------------------------------------------" />
+                                       </children>
+                                    </VBox>
+                                    <HBox alignment="CENTER" layoutY="277.0" prefHeight="30.0" prefWidth="600.0">
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="30.0" prefWidth="159.0">
+                                             <children>
+                                                <Label fx:id="descriptionSalary" text="Basic pay" />
+                                             </children>
+                                             <opaqueInsets>
+                                                <Insets />
+                                             </opaqueInsets>
+                                             <padding>
+                                                <Insets right="30.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="30.0" prefWidth="143.0">
+                                             <children>
+                                                <Label fx:id="amountSalary" text="Label" />
+                                             </children>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="30.0" prefWidth="143.0">
+                                             <children>
+                                                <Label fx:id="hWageSalary" text="Label" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="30.0" />
+                                             </padding>
+                                          </HBox>
+                                          <HBox alignment="CENTER" prefHeight="30.0" prefWidth="141.0">
+                                             <children>
+                                                <Label fx:id="sumSalary" text="Label" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="55.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <VBox alignment="CENTER" layoutY="691.0" prefHeight="18.0" prefWidth="600.0">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="600.0" text="-------------------------------------------------------------------------------------------------------------------" />
+                                       </children>
+                                    </VBox>
+                                    <HBox alignment="CENTER_RIGHT" layoutY="709.0" prefHeight="30.0" prefWidth="600.0">
+                                       <children>
+                                          <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="143.0">
+                                             <children>
+                                                <Label text="Gross earnings:" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="141.0">
+                                             <children>
+                                                <Label fx:id="grossEarningsSalary" text="Label" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" layoutY="739.0" prefHeight="30.0" prefWidth="600.0">
+                                       <children>
+                                          <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="143.0">
+                                             <children>
+                                                <Label text="Taxes:" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="141.0">
+                                             <children>
+                                                <Label fx:id="taxesSalary" text="Label" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER_RIGHT" layoutY="769.0" prefHeight="30.0" prefWidth="600.0">
+                                       <children>
+                                          <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="143.0">
+                                             <children>
+                                                <Label text="Net earnings:" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="141.0">
+                                             <children>
+                                                <Label fx:id="netEarningsSalary" text="Label" />
+                                             </children>
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                    </HBox>
+                                    <VBox alignment="CENTER" layoutY="799.0" prefHeight="18.0" prefWidth="600.0">
+                                       <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="600.0" text="-------------------------------------------------------------------------------------------------------------------" />
+                                       </children>
+                                    </VBox>
                                  </children>
                               </Pane>
                            </children>
@@ -614,15 +744,6 @@
                      </children>
                   </VBox>
                </children></Pane>
-            <Pane fx:id="newUserPane" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label prefHeight="40.0" prefWidth="302.0" text="New user" textFill="LIGHTSKYBLUE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
             <Pane fx:id="editUserPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label prefHeight="40.0" prefWidth="302.0" text="Edit user" textFill="LIGHTSKYBLUE">
@@ -630,11 +751,184 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
+                  <HBox layoutY="40.0" prefHeight="936.0" prefWidth="1370.0">
+                     <children>
+                        <ListView fx:id="listViewDisplayUsers" onMouseClicked="#fillInInformation" prefHeight="936.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" />
+                        <VBox alignment="CENTER_LEFT" prefHeight="896.0" prefWidth="223.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Employee Id" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="52.0" prefWidth="356.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Name" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Adress" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Phone" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Social security number" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Shift type" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Role" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Manager Id" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="374.0" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Manager Name" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="426.0" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Hourly wage" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="426.0" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Authority" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="896.0" prefWidth="220.0" spacing="31.0">
+                           <children>
+                              <TextField fx:id="idLabelUserEdit" styleClass="txtfield" stylesheets="@application.css" />
+                              <TextField fx:id="nameLabelUserEdit" styleClass="txtfield" stylesheets="@application.css" />
+                              <TextField fx:id="adressLabelUserEdit" styleClass="txtfield" stylesheets="@application.css" />
+                              <TextField fx:id="phoneLabelUserEdit" styleClass="txtfield" stylesheets="@application.css" />
+                              <TextField fx:id="socialLabelUserEdit" styleClass="txtfield" stylesheets="@application.css" />
+                              <TextField fx:id="shiftLabelUserEdit" styleClass="txtfield" stylesheets="@application.css" />
+                              <TextField fx:id="roleLabelUserEdit" styleClass="txtfield" stylesheets="@application.css" />
+                              <TextField fx:id="managerIdLabelUserEdit" styleClass="txtfield" stylesheets="@application.css" />
+                              <TextField fx:id="managerNameLabelUserEdit" styleClass="txtfield" stylesheets="@application.css" />
+                              <TextField fx:id="hWageLabelUserEdit" styleClass="txtfield" stylesheets="@application.css" />
+                              <TextField fx:id="authorityLabelUserEdit" styleClass="txtfield" stylesheets="@application.css" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="896.0" prefWidth="253.0">
+                           <children>
+                              <Button fx:id="saveUserEditsButton" mnemonicParsing="false" onAction="#saveUserEdits" prefHeight="72.0" prefWidth="199.0" styleClass="signIn-btn" stylesheets="@application.css" text="Save changes" textFill="LIGHTSKYBLUE">
+                                 <graphic>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Images/save-128.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="100.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                  </HBox>
                </children>
             </Pane>
             <Pane fx:id="deleteUserPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label prefHeight="40.0" prefWidth="302.0" text="Delete user" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <HBox layoutY="40.0" prefHeight="936.0" prefWidth="1370.0">
+                     <children>
+                        <ListView fx:id="listViewDisplayUsers1" prefHeight="936.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" />
+                        <VBox alignment="BOTTOM_CENTER" prefHeight="896.0" prefWidth="299.0">
+                           <children>
+                              <Button fx:id="deleteUserEditsButton" mnemonicParsing="false" onAction="#deleteSelectedUser" prefHeight="72.0" prefWidth="246.0" styleClass="signIn-btn" stylesheets="@application.css" text="Delete selected user" textFill="LIGHTSKYBLUE">
+                                 <graphic>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Images/delete-128.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </Pane>
+            <Pane fx:id="changePasswordManagerPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="352.0" text="Change password as manager" textFill="LIGHTSKYBLUE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -648,6 +942,67 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
+                  <HBox alignment="CENTER" layoutY="40.0" prefHeight="936.0" prefWidth="1370.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="896.0" prefWidth="223.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="New Password" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="52.0" prefWidth="356.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Old password" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Old password" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="896.0" prefWidth="220.0" spacing="31.0">
+                           <children>
+                              <PasswordField fx:id="newPassword" styleClass="txtfield" stylesheets="@application.css" />
+                              <PasswordField fx:id="oldPassword1" styleClass="txtfield" stylesheets="@application.css" />
+                              <PasswordField fx:id="oldPassword2" styleClass="txtfield" stylesheets="@application.css" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="896.0" prefWidth="253.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#saveNewPassword" prefHeight="72.0" prefWidth="199.0" styleClass="signIn-btn" stylesheets="@application.css" text="Change" textFill="LIGHTSKYBLUE">
+                                 <graphic>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Images/save-128.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                     </children>
+                  </HBox>
                </children>
             </Pane>
          </children></AnchorPane>

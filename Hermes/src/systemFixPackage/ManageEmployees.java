@@ -3,6 +3,8 @@
  */
 package systemFixPackage;
 
+import java.util.ArrayList;
+
 import systemFixPackage.User;
 
 /**
@@ -39,13 +41,41 @@ public class ManageEmployees {
 	}
 
 	public void deleteUser(int targetUserId) {
-		if (this.classificationID == 3) {
+		if (this.classificationID == 3 && targetUserId != this.currentUser.getUserId()) {
 
 			DBC.deletUser(targetUserId);
 			System.out.println("The user has been terminated");
 		}
-		else
+		else if(this.classificationID != 3)
 			System.out.println("You are not authorized to perform the desired operation");
+		else if(targetUserId == this.currentUser.getUserId())
+			System.out.println("You can't delete your own account");
+	}
+
+	public ArrayList <String []> getAllUsers(){
+		return DBC.getAllUsers();
+	}
+
+	//Denna är provisorisk den andra funkar inte
+	public void changeUserInformationProvisorisk(int userId, String name, String adress, String number, String socials, String shiftId,
+			String role, String managerName, String hourlySalary, String classificationID,String managerId) {
+
+
+
+			String [] temp = name.split(" ");
+			String firstName = temp[0];
+			String lastName = temp[1];
+
+			//shiftId är en int allt jag får i gui är shift typ som är en sträng
+			//Detta fuckar if-satserna med
+			DBC.editUser(userId,Integer.parseInt(classificationID),2,
+					Integer.parseInt(hourlySalary),Integer.parseInt(managerId),
+					firstName, lastName, adress, number, socials);
+			System.out.println("The user information was succsesfully changed");
+
+
+		// classification ID is only allowed to be 1,2,3
+		// shiftID is only allowed to have any of the following the values 1,2,3,4
 	}
 
 	public void changeUserInformation(int userId, String name, String adress, String number, String socials, String shiftId,
@@ -53,7 +83,7 @@ public class ManageEmployees {
 
 		if (this.classificationID == 3) {
 
-			String [] temp = name.split(" ");
+			String [] temp = name.trim().split(" ");
 			String firstName = temp[0];
 			String lastName = temp[1];
 
@@ -84,6 +114,11 @@ public class ManageEmployees {
 		else
 			System.out.println("You are not authorized to perform the desired operation");
 
+	}
+
+	public void changeYourOwnPassword(int userId,String newPassword){
+		DBC.changePW(userId,newPassword);
+		System.out.println("The users password was succsesfully changed");
 	}
 
 	private boolean checkshiftId(String shiftId) {
