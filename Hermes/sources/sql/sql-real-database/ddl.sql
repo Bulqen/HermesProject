@@ -611,7 +611,8 @@ BEGIN
                   ELSE
                    mod(get_hours(outTime) - get_hours(inTime) + 24, 24)
             END ) as 'lon'
-    FROM time_report WHERE DATE_FORMAT(currentDate,"%Y-%m") = monthYear);
+    FROM time_report as tr INNER JOIN user as u ON tr.userId = u.id
+              WHERE DATE_FORMAT(currentDate,"%Y-%m") = '2019-03' AND u.id =uId);
   SET pay = hourlyP * totalHours;
 
 
