@@ -30,6 +30,8 @@ DROP PROCEDURE IF EXISTS edit_user;
 DROP PROCEDURE IF EXISTS delete_user;
 DROP PROCEDURE IF EXISTS change_pw;
 DROP PROCEDURE IF EXISTS get_all_users;
+DROP PROCEDURE IF EXISTS get_time_report_intervall;
+DROP PROCEDURE IF EXISTS get_users_by_manager;
 
 DROP FUNCTION IF EXISTS get_hours;
 
@@ -700,6 +702,38 @@ SELECT u.id, CONCAT(firstName, " ", lastName) as name, adress, phone, socialSecu
       FROM user as u
           INNER JOIN shift s on u.classificationId = s.id
           INNER JOIN classification c on c.id = u.classificationId;
+
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_time_report_intervall(
+  uId INT,
+  startt DATE,
+  stopp DATE
+)
+BEGIN
+
+SELECT *, get_hours(outTime)-get_hours(inTime) as hours FROM time_report WHERE userId = uId AND(currentDate BETWEEN startt AND stopp);
+
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE  get_users_by_manager(
+  manId INT
+)
+BEGIN
+
+  SELECT u.id, CONCAT(firstName, " ", lastName) as name, adress, phone, socialSecurityNumber, s.shiftType, c.role, managerId,
+    (SELECT  CONCAT(firstName, " ", lastName)from user as us WHERE u.managerId = us.id ) as managerName,
+      u.hourlyPay, u.classificationId, u.shiftId
+      FROM user as u
+          INNER JOIN shift s on u.classificationId = s.id
+          INNER JOIN classification c on c.id = u.classificationId WHERE u.managerId = manId;
+
 
 END ;;
 
