@@ -378,6 +378,32 @@ public class DBConnection {
 
 		return info;
 	}
+	
+	/**
+	 *
+	 *
+	 * @return String [] is a row, in this case,
+	 * start index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName, 9 hourlypay, 10 classificationId, 11 shiftId
+	 *
+	 */
+	
+	public ArrayList <String []> getUsersByManager(int managerId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{get_users_by_manager(?)}");
+			myCall.setInt(1, managerId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return info;
+	}
 	/**
 	 *
 	 * @param uId
@@ -494,6 +520,33 @@ public class DBConnection {
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL get_time_report(?)}");
 			myCall.setInt(1, uId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return info;
+	}
+	/**
+	 *
+	 * @param uId
+	 * @return ArrayList <String []> of all time reports on that specific user, within intervall (including intervall)
+	 * [0] id, [1] userId, [2] inTime, [3] outTime, [4] abscence, [5] currentDate, [6] comment, [7] hours
+	 * 
+	 */
+	
+	public ArrayList <String []> getTimeReportIntervall(int uId, String start, String end) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL get_time_report_intervall(?,?,?)}");
+			myCall.setInt(1, uId);
+			myCall.setString(2, start);
+			myCall.setString(3, end);
 
 			ResultSet myRs = myCall.executeQuery();
 			info = getAllAsList(myRs);
@@ -719,7 +772,7 @@ public class DBConnection {
 	 *
 	 * @param userId
 	 * @return [] String
-	 * [0] totalHours, [1] hourlyPay, [2] YYYY-MM, [3] pay, [4] namn, (funkar inte för nattskift just nu...)
+	 * [0] totalHours, [1] hourlyPay, [2] YYYY-MM, [3] pay, [4] namn, 
 	 */
 
 	public String [] generateSalaryslip(int userId) {
