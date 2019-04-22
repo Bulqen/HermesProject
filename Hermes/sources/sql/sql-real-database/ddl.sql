@@ -33,8 +33,8 @@ DROP PROCEDURE IF EXISTS get_all_users;
 DROP PROCEDURE IF EXISTS get_time_report_intervall;
 DROP PROCEDURE IF EXISTS get_users_by_manager;
 
-DROP FUNCTION IF EXISTS get_hours;
 
+DROP FUNCTION IF EXISTS get_hours;
 DROP TRIGGER IF EXISTS current_salary;
 
 DROP TABLE IF EXISTS oB;
