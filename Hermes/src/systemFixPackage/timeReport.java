@@ -39,6 +39,13 @@ public class timeReport {
 		salarySlip[2] = salaryInfo[2];
 		salarySlip[3] = salaryInfo[3];
 		salarySlip[4] = salaryInfo[4];
+
+		if(salaryInfo[0] == null)
+			salarySlip[0] = "0";
+		if(salaryInfo[3] == null)
+			salarySlip[3] = "0";
+
+
 		double tax;
 		double nettoPay;
 
@@ -61,9 +68,13 @@ public class timeReport {
 			tax = 0.24;
 			nettoPay = Double.parseDouble(salarySlip[3]) * tax;
 		}
-		else{
+		else if(Integer.parseInt(salarySlip[3]) <= 20000){
 			tax = 0.22;
 			nettoPay = Double.parseDouble(salarySlip[3]) * tax;
+		}
+		else{
+			tax = 0.22;
+			nettoPay = 0;
 		}
 		salarySlip[5] = Double.toString(nettoPay);
 		salarySlip[6] = Double.toString(tax);
