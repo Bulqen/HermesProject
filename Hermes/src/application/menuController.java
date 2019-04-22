@@ -149,7 +149,6 @@ public class menuController implements Initializable {
 	//Set up at launch
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		hideMainScreen.toFront();
 		mainMenuPain.toFront();
 
