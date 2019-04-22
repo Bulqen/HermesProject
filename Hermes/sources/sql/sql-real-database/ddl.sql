@@ -93,7 +93,9 @@ CREATE TABLE user (
     phone VARCHAR(20),
     socialSecurityNumber VARCHAR(13),
     PRIMARY KEY (id),
-    FOREIGN KEY (classificationId) REFERENCES shift(id)
+    FOREIGN KEY (classificationId) REFERENCES classification(id),
+    FOREIGN KEY (shiftId) REFERENCES shift(id)
+
 
 );
 -- ska nog lägga in mangerId Not null,
