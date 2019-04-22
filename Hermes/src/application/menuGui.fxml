@@ -19,9 +19,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="parent" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1880.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.menuController">
+<AnchorPane fx:id="parent" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1681.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.menuController">
    <children>
-      <HBox fx:id="top" alignment="CENTER_RIGHT" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="1880.0" spacing="5.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="top" alignment="CENTER_RIGHT" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="1681.0" spacing="5.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1817.0">
                <children>
@@ -91,7 +91,7 @@
             </HBox>
             <Pane fx:id="timePane" layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="756.0" prefWidth="500.0" spacing="40.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="561.0" prefWidth="500.0" spacing="40.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#inOut" prefHeight="77.0" prefWidth="139.0" styleClass="signIn-btn" stylesheets="@application.css" text="In/Out" textFill="LIGHTSKYBLUE">
                            <graphic>
@@ -162,7 +162,7 @@
             </Pane>
             <Pane fx:id="schedulePane" layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="756.0" prefWidth="500.0" spacing="40.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="561.0" prefWidth="500.0" spacing="40.0">
                      <padding>
                         <Insets left="150.0" />
                      </padding>
@@ -196,7 +196,7 @@
                </children></Pane>
             <Pane fx:id="projectPane" layoutY="220.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="756.0" prefWidth="500.0" spacing="40.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="561.0" prefWidth="500.0" spacing="40.0">
                      <children>
                         <Button mnemonicParsing="false" prefHeight="77.0" prefWidth="145.0" styleClass="signIn-btn" stylesheets="@application.css" text="Project" textFill="LIGHTSKYBLUE">
                            <graphic>
@@ -230,7 +230,7 @@
                </children></Pane>
             <Pane fx:id="salarySlipPane" layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="756.0" prefWidth="500.0" spacing="40.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="561.0" prefWidth="500.0" spacing="40.0">
                      <padding>
                         <Insets left="150.0" />
                      </padding>
@@ -262,79 +262,9 @@
                      </children>
                   </VBox>
                </children></Pane>
-            <Pane fx:id="ManageAccountsPane" layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
-               <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="756.0" prefWidth="500.0" spacing="40.0">
-                     <children>
-                        <Button fx:id="newUserButton" mnemonicParsing="false" onAction="#newUser" prefHeight="78.0" prefWidth="161.0" styleClass="signIn-btn" stylesheets="@application.css" text="New user" textFill="LIGHTSKYBLUE">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Images/key-3-128.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Calibri Bold" size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="editUserButton" mnemonicParsing="false" onAction="#editUser" prefHeight="78.0" prefWidth="158.0" styleClass="signIn-btn" stylesheets="@application.css" text="Edit user" textFill="LIGHTSKYBLUE">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Images/key-3-128.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Calibri Bold" size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="deleteUserButton" mnemonicParsing="false" onAction="#deleteUser" prefHeight="78.0" prefWidth="174.0" styleClass="signIn-btn" stylesheets="@application.css" text="Delete user" textFill="LIGHTSKYBLUE">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Images/key-3-128.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Calibri Bold" size="18.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePassword" prefHeight="77.0" prefWidth="220.0" styleClass="signIn-btn" stylesheets="@application.css" text="Change password" textFill="LIGHTSKYBLUE">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Images/key-3-128.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Calibri Bold" size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#back" prefHeight="77.0" prefWidth="124.0" styleClass="signIn-btn" stylesheets="@application.css" text="Back" textFill="LIGHTSKYBLUE">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Images/arrow-65-128.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Calibri Bold" size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                     <padding>
-                        <Insets left="150.0" />
-                     </padding>
-                  </VBox>
-               </children></Pane>
             <Pane fx:id="mainMenuPain" layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="754.0" prefWidth="500.0" spacing="40.0">
+                  <VBox alignment="CENTER_LEFT" prefHeight="561.0" prefWidth="500.0" spacing="40.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#time" prefHeight="77.0" prefWidth="126.0" styleClass="signIn-btn" stylesheets="@application.css" text="Time" textFill="LIGHTSKYBLUE">
                            <graphic>
@@ -405,6 +335,76 @@
                      </padding>
                   </VBox>
                </children></Pane>
+            <Pane fx:id="ManageAccountsPane" layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" prefHeight="561.0" prefWidth="500.0" spacing="40.0">
+                     <children>
+                        <Button fx:id="newUserButton" mnemonicParsing="false" onAction="#newUser" prefHeight="78.0" prefWidth="161.0" styleClass="signIn-btn" stylesheets="@application.css" text="New user" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/key-3-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="editUserButton" mnemonicParsing="false" onAction="#editUser" prefHeight="78.0" prefWidth="158.0" styleClass="signIn-btn" stylesheets="@application.css" text="Edit user" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/key-3-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="deleteUserButton" mnemonicParsing="false" onAction="#deleteUser" prefHeight="78.0" prefWidth="174.0" styleClass="signIn-btn" stylesheets="@application.css" text="Delete user" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/key-3-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePassword" prefHeight="77.0" prefWidth="220.0" styleClass="signIn-btn" stylesheets="@application.css" text="Change password" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/key-3-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#back" prefHeight="77.0" prefWidth="124.0" styleClass="signIn-btn" stylesheets="@application.css" text="Back" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/arrow-65-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets left="150.0" />
+                     </padding>
+                  </VBox>
+               </children></Pane>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="510.0" layoutY="7.0" prefHeight="976.0" prefWidth="1370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
@@ -419,119 +419,39 @@
                </children>
             </Pane>
             <Pane fx:id="hideMainScreen" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Pane fx:id="reportASickDay" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="newUserPane" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <HBox alignment="CENTER" layoutX="6.0" layoutY="40.0" prefHeight="936.0" prefWidth="1370.0" spacing="50.0">
-                     <children>
-                        <Button fx:id="CallInSickButton" mnemonicParsing="false" onAction="#callInSick" prefHeight="77.0" prefWidth="183.0" styleClass="signIn-btn" stylesheets="@application.css" text="Call in sick" textFill="LIGHTSKYBLUE">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Images/time-8-128.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Calibri Bold" size="18.0" />
-                           </font>
-                        </Button>
-                        <VBox alignment="CENTER" prefHeight="936.0" prefWidth="782.0">
-                           <children>
-                              <TextArea fx:id="commentOnWhySick" prefHeight="200.0" prefWidth="442.0" />
-                              <Label prefHeight="40.0" prefWidth="352.0" text="Comment on why you will stay home today." textFill="LIGHTSKYBLUE">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                  </HBox>
-                  <Label prefHeight="40.0" prefWidth="996.0" text="Report a sick day (You will be marked as absent today if you press the &quot;Call in sick&quot; button )" textFill="LIGHTSKYBLUE">
+                  <Label prefHeight="40.0" prefWidth="302.0" text="New user" textFill="LIGHTSKYBLUE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="inOutPane" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <HBox layoutY="40.0" prefHeight="936.0" prefWidth="1370.0" spacing="600.0">
-                     <children>
-                        <VBox alignment="CENTER_LEFT" prefHeight="896.0" prefWidth="214.0" spacing="50.0">
-                           <children>
-                              <Button fx:id="inButton" mnemonicParsing="false" onAction="#in" prefHeight="72.0" prefWidth="105.0" styleClass="signIn-btn" stylesheets="@application.css" text="IN" textFill="LIGHTSKYBLUE">
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../Images/time-8-128.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="outButton" mnemonicParsing="false" onAction="#out" prefHeight="72.0" prefWidth="121.0" styleClass="signIn-btn" stylesheets="@application.css" text="OUT" textFill="LIGHTSKYBLUE">
-                                 <graphic>
-                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../../Images/time-8-128.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                                 <font>
-                                    <Font name="Calibri Bold" size="18.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <padding>
-                              <Insets left="60.0" />
-                           </padding>
-                        </VBox>
-                        <TableView fx:id="timeReportTableView" prefHeight="896.0" prefWidth="482.0" styleClass="parent" stylesheets="@application.css">
-                          <columns>
-                            <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
-                            <TableColumn fx:id="inColumn" prefWidth="100.0" text="IN" />
-                              <TableColumn fx:id="outColumn" prefWidth="100.0" text="OUT" />
-                              <TableColumn fx:id="hoursColumn" prefWidth="100.0" text="Hours" />
-                              <TableColumn fx:id="absentColumn" prefWidth="75.0" text="Absent" />
-                          </columns>
-                        </TableView>
-                     </children>
-                     <padding>
-                        <Insets bottom="20.0" right="20.0" top="20.0" />
-                     </padding>
-                  </HBox>
-                  <Label prefHeight="40.0" prefWidth="996.0" text="Stamp In or out (In the table to the right can you see the time report for this month )" textFill="LIGHTSKYBLUE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="editWorkingHours" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="editWorkingHours" prefHeight="976.0" prefWidth="1110.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label prefHeight="40.0" prefWidth="220.0" text="Edit working hours" textFill="LIGHTSKYBLUE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER" layoutY="40.0" prefHeight="936.0" prefWidth="1370.0" spacing="20.0">
+                  <HBox alignment="CENTER" layoutY="40.0" prefHeight="741.0" prefWidth="1110.0" spacing="20.0">
                      <children>
-                        <TableView fx:id="timeReportTableView1" editable="true" prefHeight="896.0" prefWidth="482.0" styleClass="parent" stylesheets="@application.css">
-                           <columns>
-                              <TableColumn fx:id="dateColumn1" prefWidth="100.0" text="Date" />
-                              <TableColumn fx:id="inColumn1" onEditCommit="#changeInCellEvent" prefWidth="100.0" text="IN" />
-                              <TableColumn fx:id="outColumn1" onEditCommit="#changeOutCellEvent" prefWidth="100.0" text="OUT" />
-                              <TableColumn fx:id="hoursColumn1" prefWidth="100.0" text="Hours" />
-                              <TableColumn fx:id="absentColumn1" prefWidth="75.0" text="Absent" />
-                           </columns>
-                        </TableView>
-                        <VBox alignment="BOTTOM_CENTER" prefHeight="896.0" prefWidth="253.0">
+                        <VBox alignment="CENTER_LEFT" prefHeight="828.0" prefWidth="480.0">
+                           <children>
+                              <Text fill="LIGHTSKYBLUE" strokeType="OUTSIDE" strokeWidth="0.0" text="List of your last 7 shifts." />
+                              <TableView fx:id="timeReportTableView1" editable="true" prefHeight="243.0" prefWidth="480.0" styleClass="parent" stylesheets="@application.css">
+                                 <columns>
+                                    <TableColumn fx:id="dateColumn1" prefWidth="100.0" text="Date" />
+                                    <TableColumn fx:id="inColumn1" onEditCommit="#changeInCellEvent" prefWidth="100.0" text="IN" />
+                                    <TableColumn fx:id="outColumn1" onEditCommit="#changeOutCellEvent" prefWidth="100.0" text="OUT" />
+                                    <TableColumn fx:id="hoursColumn1" prefWidth="100.0" text="Hours" />
+                                    <TableColumn fx:id="absentColumn1" prefWidth="75.0" text="Absent" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="896.0" prefWidth="253.0">
                            <children>
                               <Button fx:id="SaveEditWorkingHours" mnemonicParsing="false" onAction="#SaveEditWorkingHoursAction" prefHeight="72.0" prefWidth="199.0" styleClass="signIn-btn" stylesheets="@application.css" text="Save changes" textFill="LIGHTSKYBLUE">
                                  <graphic>
@@ -554,9 +474,136 @@
                   </HBox>
                </children>
             </Pane>
-            <Pane fx:id="newUserPane" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="deleteUserPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label prefHeight="40.0" prefWidth="302.0" text="New user" textFill="LIGHTSKYBLUE">
+                  <Label prefHeight="40.0" prefWidth="302.0" text="Delete user" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutY="40.0" prefHeight="741.0" prefWidth="1171.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="896.0" prefWidth="379.0" spacing="50.0">
+                           <children>
+                              <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="299.0" spacing="5.0">
+                                 <children>
+                                    <Text fill="LIGHTSKYBLUE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose either &quot;No filter&quot; or a letter to filter the users by." />
+                                    <ComboBox fx:id="cBoxFilterDeleteUser" onAction="#filterComboBoxOfUsersDelete" prefWidth="150.0" promptText="Select a filter" stylesheets="@application.css" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="40.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="100.0" spacing="5.0">
+                                 <children>
+                                    <Text fill="LIGHTSKYBLUE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a user to delete." />
+                                    <ComboBox fx:id="cBoxOfUsersDelete" prefWidth="150.0" promptText="Users" stylesheets="@application.css" />
+                                 </children>
+                                 <padding>
+                                    <Insets left="40.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="100.0">
+                                 <children>
+                                    <Button fx:id="deleteUserEditsButton" mnemonicParsing="false" onAction="#deleteSelectedUser" prefHeight="72.0" prefWidth="246.0" styleClass="signIn-btn" stylesheets="@application.css" text="Delete selected user" textFill="LIGHTSKYBLUE">
+                                       <graphic>
+                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../Images/delete-128.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <font>
+                                          <Font name="Calibri Bold" size="18.0" />
+                                       </font>
+                                    </Button>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" />
+                           </padding>
+                        </VBox>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" top="20.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </Pane>
+            <Pane fx:id="changePasswordPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="302.0" text="Change password" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" layoutY="40.0" prefHeight="741.0" prefWidth="1171.0">
+                     <children>
+                        <VBox alignment="CENTER_LEFT" prefHeight="896.0" prefWidth="223.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="New Password" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="52.0" prefWidth="356.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Old password" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
+                                 <children>
+                                    <Label text="Old password" textFill="LIGHTSKYBLUE" />
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets left="40.0" />
+                           </padding>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="896.0" prefWidth="220.0" spacing="31.0">
+                           <children>
+                              <PasswordField fx:id="newPassword" styleClass="txtfield" stylesheets="@application.css" />
+                              <PasswordField fx:id="oldPassword1" styleClass="txtfield" stylesheets="@application.css" />
+                              <PasswordField fx:id="oldPassword2" styleClass="txtfield" stylesheets="@application.css" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="896.0" prefWidth="253.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#saveNewPassword" prefHeight="72.0" prefWidth="199.0" styleClass="signIn-btn" stylesheets="@application.css" text="Change" textFill="LIGHTSKYBLUE">
+                                 <graphic>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Images/save-128.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+            <Pane fx:id="changePasswordManagerPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label prefHeight="40.0" prefWidth="352.0" text="Change password as manager" textFill="LIGHTSKYBLUE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -570,11 +617,11 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <VBox alignment="CENTER" layoutY="40.0" prefHeight="936.0" prefWidth="1370.0">
+                  <VBox alignment="CENTER" layoutY="40.0" prefHeight="731.0" prefWidth="1171.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="877.0" prefWidth="1370.0">
+                        <HBox alignment="CENTER" prefHeight="741.0" prefWidth="1171.0">
                            <children>
-                              <Pane prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
+                              <Pane prefHeight="798.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;">
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="100.0" prefWidth="600.0" spacing="250.0">
                                        <children>
@@ -677,12 +724,12 @@
                                           </HBox>
                                        </children>
                                     </HBox>
-                                    <VBox alignment="CENTER" layoutY="691.0" prefHeight="18.0" prefWidth="600.0">
+                                    <VBox alignment="CENTER" layoutY="583.0" prefHeight="18.0" prefWidth="600.0">
                                        <children>
                                           <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="600.0" text="-------------------------------------------------------------------------------------------------------------------" />
                                        </children>
                                     </VBox>
-                                    <HBox alignment="CENTER_RIGHT" layoutY="709.0" prefHeight="30.0" prefWidth="600.0">
+                                    <HBox alignment="CENTER_RIGHT" layoutY="601.0" prefHeight="30.0" prefWidth="600.0">
                                        <children>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="143.0">
                                              <children>
@@ -699,7 +746,7 @@
                                           </HBox>
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_RIGHT" layoutY="739.0" prefHeight="30.0" prefWidth="600.0">
+                                    <HBox alignment="CENTER_RIGHT" layoutY="631.0" prefHeight="30.0" prefWidth="600.0">
                                        <children>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="143.0">
                                              <children>
@@ -716,7 +763,7 @@
                                           </HBox>
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_RIGHT" layoutY="769.0" prefHeight="30.0" prefWidth="600.0">
+                                    <HBox alignment="CENTER_RIGHT" layoutY="661.0" prefHeight="30.0" prefWidth="600.0">
                                        <children>
                                           <HBox alignment="CENTER_RIGHT" prefHeight="30.0" prefWidth="143.0">
                                              <children>
@@ -733,7 +780,7 @@
                                           </HBox>
                                        </children>
                                     </HBox>
-                                    <VBox alignment="CENTER" layoutY="799.0" prefHeight="18.0" prefWidth="600.0">
+                                    <VBox alignment="CENTER" layoutY="691.0" prefHeight="18.0" prefWidth="600.0">
                                        <children>
                                           <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="600.0" text="-------------------------------------------------------------------------------------------------------------------" />
                                        </children>
@@ -745,69 +792,29 @@
                      </children>
                   </VBox>
                </children></Pane>
-            <Pane fx:id="changePasswordManagerPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="inOutPane" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <Label prefHeight="40.0" prefWidth="352.0" text="Change password as manager" textFill="LIGHTSKYBLUE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Pane fx:id="changePasswordPane" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label prefHeight="40.0" prefWidth="302.0" text="Change password" textFill="LIGHTSKYBLUE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <HBox alignment="CENTER" layoutY="40.0" prefHeight="936.0" prefWidth="1370.0">
+                  <HBox layoutY="40.0" prefHeight="741.0" prefWidth="1171.0" spacing="450.0">
                      <children>
-                        <VBox alignment="CENTER_LEFT" prefHeight="896.0" prefWidth="223.0" spacing="10.0">
+                        <VBox alignment="CENTER_LEFT" prefHeight="883.0" prefWidth="214.0" spacing="50.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
-                                 <children>
-                                    <Label text="New Password" textFill="LIGHTSKYBLUE" />
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="52.0" prefWidth="356.0" spacing="5.0">
-                                 <children>
-                                    <Label text="Old password" textFill="LIGHTSKYBLUE" />
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </HBox>
-                              <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" prefHeight="52.0" prefWidth="260.0" spacing="5.0">
-                                 <children>
-                                    <Label text="Old password" textFill="LIGHTSKYBLUE" />
-                                 </children>
-                                 <opaqueInsets>
-                                    <Insets />
-                                 </opaqueInsets>
-                              </HBox>
-                           </children>
-                           <padding>
-                              <Insets left="40.0" />
-                           </padding>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="896.0" prefWidth="220.0" spacing="31.0">
-                           <children>
-                              <PasswordField fx:id="newPassword" styleClass="txtfield" stylesheets="@application.css" />
-                              <PasswordField fx:id="oldPassword1" styleClass="txtfield" stylesheets="@application.css" />
-                              <PasswordField fx:id="oldPassword2" styleClass="txtfield" stylesheets="@application.css" />
-                           </children>
-                        </VBox>
-                        <VBox alignment="CENTER" prefHeight="896.0" prefWidth="253.0">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#saveNewPassword" prefHeight="72.0" prefWidth="199.0" styleClass="signIn-btn" stylesheets="@application.css" text="Change" textFill="LIGHTSKYBLUE">
+                              <Button fx:id="inButton" mnemonicParsing="false" onAction="#in" prefHeight="72.0" prefWidth="105.0" styleClass="signIn-btn" stylesheets="@application.css" text="IN" textFill="LIGHTSKYBLUE">
                                  <graphic>
                                     <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../Images/save-128.png" />
+                                          <Image url="@../../Images/time-8-128.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Calibri Bold" size="18.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="outButton" mnemonicParsing="false" onAction="#out" prefHeight="72.0" prefWidth="121.0" styleClass="signIn-btn" stylesheets="@application.css" text="OUT" textFill="LIGHTSKYBLUE">
+                                 <graphic>
+                                    <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Images/time-8-128.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>
@@ -819,66 +826,64 @@
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
                         </VBox>
+                        <TableView fx:id="timeReportTableView" prefHeight="896.0" prefWidth="480.0" styleClass="parent" stylesheets="@application.css">
+                          <columns>
+                            <TableColumn fx:id="dateColumn" prefWidth="100.0" text="Date" />
+                            <TableColumn fx:id="inColumn" prefWidth="100.0" text="IN" />
+                              <TableColumn fx:id="outColumn" prefWidth="100.0" text="OUT" />
+                              <TableColumn fx:id="hoursColumn" prefWidth="100.0" text="Hours" />
+                              <TableColumn fx:id="absentColumn" prefWidth="75.0" text="Absent" />
+                          </columns>
+                        </TableView>
                      </children>
+                     <padding>
+                        <Insets bottom="20.0" right="20.0" top="20.0" />
+                     </padding>
                   </HBox>
-               </children>
-            </Pane>
-            <Pane fx:id="deleteUserPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <Label prefHeight="40.0" prefWidth="302.0" text="Delete user" textFill="LIGHTSKYBLUE">
+                  <Label prefHeight="40.0" prefWidth="996.0" text="Stamp In or out (In the table to the right can you see the time report for this month )" textFill="LIGHTSKYBLUE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER" layoutY="40.0" prefHeight="936.0" prefWidth="1370.0">
+               </children>
+            </Pane>
+            <Pane fx:id="reportASickDay" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <HBox alignment="CENTER" layoutX="6.0" layoutY="40.0" prefHeight="741.0" prefWidth="1171.0" spacing="50.0">
                      <children>
-                        <VBox alignment="CENTER" prefHeight="896.0" prefWidth="379.0" spacing="50.0">
+                        <Button fx:id="CallInSickButton" mnemonicParsing="false" onAction="#callInSick" prefHeight="77.0" prefWidth="183.0" styleClass="signIn-btn" stylesheets="@application.css" text="Call in sick" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/time-8-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <VBox alignment="CENTER" prefHeight="936.0" prefWidth="782.0">
                            <children>
-                              <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="299.0" spacing="5.0">
-                                 <children>
-                                    <Text fill="LIGHTSKYBLUE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose either &quot;No filter&quot; or a letter to filter the users by." />
-                                    <ComboBox fx:id="cBoxFilterDeleteUser" onAction="#filterComboBoxOfUsersDelete" prefWidth="150.0" promptText="Select a filter" stylesheets="@application.css" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="40.0" />
-                                 </padding>
-                              </VBox>
-                              <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="100.0" spacing="5.0">
-                                 <children>
-                                    <Text fill="LIGHTSKYBLUE" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a user to delete." />
-                                    <ComboBox fx:id="cBoxOfUsersDelete" prefWidth="150.0" promptText="Users" stylesheets="@application.css" />
-                                 </children>
-                                 <padding>
-                                    <Insets left="40.0" />
-                                 </padding>
-                              </VBox>
-                              <VBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="100.0">
-                                 <children>
-                                    <Button fx:id="deleteUserEditsButton" mnemonicParsing="false" onAction="#deleteSelectedUser" prefHeight="72.0" prefWidth="246.0" styleClass="signIn-btn" stylesheets="@application.css" text="Delete selected user" textFill="LIGHTSKYBLUE">
-                                       <graphic>
-                                          <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@../../Images/delete-128.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                       <font>
-                                          <Font name="Calibri Bold" size="18.0" />
-                                       </font>
-                                    </Button>
-                                 </children>
-                              </VBox>
+                              <TextArea fx:id="commentOnWhySick" prefHeight="200.0" prefWidth="442.0" />
+                              <Label prefHeight="40.0" prefWidth="352.0" text="Comment on why you will stay home today." textFill="LIGHTSKYBLUE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
                            </children>
-                           <padding>
-                              <Insets bottom="20.0" />
-                           </padding>
                         </VBox>
                      </children>
-                     <padding>
-                        <Insets bottom="20.0" top="20.0" />
-                     </padding>
                   </HBox>
+                  <Label prefHeight="40.0" prefWidth="996.0" text="Report a sick day (You will be marked as absent today if you press the &quot;Call in sick&quot; button )" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
             <Pane fx:id="editUserPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -888,7 +893,7 @@
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <HBox alignment="CENTER" layoutY="40.0" prefHeight="936.0" prefWidth="1370.0">
+                  <HBox alignment="CENTER" layoutY="40.0" prefHeight="741.0" prefWidth="1171.0">
                      <children>
                         <VBox alignment="CENTER" prefHeight="896.0" prefWidth="357.0">
                            <children>

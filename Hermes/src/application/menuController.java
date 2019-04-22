@@ -151,6 +151,7 @@ public class menuController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		hideMainScreen.toFront();
+		mainMenuPain.toFront();
 
 		setUpTableView();
 		setUpTableViewEditable();
@@ -252,26 +253,42 @@ public class menuController implements Initializable {
 		//Code here to stamp in or out
 		inOutPane.toFront();
 		setStatusOfStampButtons();
-		timeReportTableView.setItems(displayTimeReport());
+		timeReportTableView.setItems(displayTimeReport(-1));
 
 	}
 
-	private ObservableList<timeToObList> displayTimeReport(){
+	private ObservableList<timeToObList> displayTimeReport(int limit){
 		ObservableList<timeToObList> timeReport = FXCollections.observableArrayList();
 		ArrayList <String []> info = this.timeReporter.getTimeReport(user.getUserId());
 
 
+		if(limit > 0)
+		{
+			for(int i = (info.size()-limit); i<info.size(); i++){
+				//Replace k with hours worked
 
-		for(int i = 0; i<info.size(); i++){
-			//Replace k with hours worked
+				String absent = "no";
+				if(info.get(i)[4] != null){
+					absent = info.get(i)[4];
+				}
 
-			String absent = "no";
-			if(info.get(i)[4] != null){
-				absent = info.get(i)[4];
+				timeReport.add(new timeToObList(info.get(i)[2], info.get(i)[3], info.get(i)[5], info.get(i)[7], absent, Integer.parseInt(info.get(i)[0])));
 			}
-
-			timeReport.add(new timeToObList(info.get(i)[2], info.get(i)[3], info.get(i)[5], info.get(i)[7], absent, Integer.parseInt(info.get(i)[0])));
 		}
+		else
+		{
+			for(int i = 0; i<info.size(); i++){
+				//Replace k with hours worked
+
+				String absent = "no";
+				if(info.get(i)[4] != null){
+					absent = info.get(i)[4];
+				}
+
+				timeReport.add(new timeToObList(info.get(i)[2], info.get(i)[3], info.get(i)[5], info.get(i)[7], absent, Integer.parseInt(info.get(i)[0])));
+			}
+		}
+
 
 		return timeReport;
 	}
@@ -347,7 +364,7 @@ public class menuController implements Initializable {
 			//this.test.stampIn(1);
 			this.timeReporter.stampIn(user.getUserId());
 			setStatusOfStampButtons();
-			timeReportTableView.setItems(displayTimeReport());
+			timeReportTableView.setItems(displayTimeReport(-1));
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -375,7 +392,7 @@ public class menuController implements Initializable {
 			this.timeReporter.stampOut(user.getUserId());
 			//this.test.stampOut(1);
 			setStatusOfStampButtons();
-			timeReportTableView.setItems(displayTimeReport());
+			timeReportTableView.setItems(displayTimeReport(-1));
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -386,7 +403,7 @@ public class menuController implements Initializable {
 	@FXML
 	private void editWorkingHours(ActionEvent event){
 		editWorkingHours.toFront();
-		timeReportTableView1.setItems(displayTimeReport());
+		timeReportTableView1.setItems(displayTimeReport(7));
 	}
 
 	@FXML
@@ -429,7 +446,7 @@ public class menuController implements Initializable {
 			timeToObList row = timeReportTableView1.getItems().get(i);
 			this.timeReporter.editTimeReport(row.getIn(), row.getOut(), row.getDate(), row.getTimeRowId(), "");
 		}
-		timeReportTableView1.setItems(displayTimeReport());
+		timeReportTableView1.setItems(displayTimeReport(7));
 
     }
 
