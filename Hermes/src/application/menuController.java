@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -118,11 +119,14 @@ public class menuController implements Initializable {
 
 	//Items relating to delete user
 	@FXML
-	private ListView<String> listViewDisplayUsers1;
+	private ComboBox<String> cBoxFilterDeleteUser, cBoxOfUsersDelete;
 
 	//Items relating to edit user
+	//@FXML
+	//private ListView<String> listViewDisplayUsers;
+
 	@FXML
-	private ListView<String> listViewDisplayUsers;
+	private ComboBox<String> cBoxFilterEditUser, cBoxOfUsersEdit;
 	@FXML
 	private TextField idLabelUserEdit, nameLabelUserEdit, adressLabelUserEdit, phoneLabelUserEdit, socialLabelUserEdit,
 	shiftLabelUserEdit, roleLabelUserEdit, managerIdLabelUserEdit, managerNameLabelUserEdit, hWageLabelUserEdit, authorityLabelUserEdit;
@@ -536,7 +540,7 @@ public class menuController implements Initializable {
 			this.newPassword.clear();
 			this.oldPassword1.clear();
 			this.oldPassword2.clear();
-			
+
 			Alert enterAlert = new Alert(AlertType.INFORMATION);
 			enterAlert.setHeaderText(null);
 			enterAlert.setContentText("Password is changed");
@@ -566,52 +570,96 @@ public class menuController implements Initializable {
 	@FXML
 	private void deleteUser(ActionEvent event){
 		this.deleteUserPane.toFront();
-		updateListViewForDeleteUser();
+		setDeleteUserComboBoxFilter();
+		updateComboBoxOfUsersDelete();
 	}
 
-	private void updateListViewForDeleteUser(){
-		ArrayList<String[]> employeeList = this.manageEmployee.getAllUsers();
-		this.listViewDisplayUsers1.getItems().clear();
-		for(int i = 0; i<employeeList.size(); i++){
-			this.listViewDisplayUsers1.getItems().add(i, employeeList.get(i)[0]+ " " + employeeList.get(i)[1]);
-		}
+	private void setDeleteUserComboBoxFilter(){
+		this.cBoxFilterDeleteUser.getItems().addAll("No filter", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
 	}
+
+	@FXML
+	private void filterComboBoxOfUsersDelete(ActionEvent event){
+		updateComboBoxOfUsersDelete();
+	}
+
+	private void updateComboBoxOfUsersDelete(){
+		ArrayList<String[]> employeeList = this.manageEmployee.getAllUsers();
+		cBoxOfUsersDelete.getItems().clear();
+
+		if(cBoxFilterDeleteUser.getSelectionModel().getSelectedIndex() != -1)
+		{
+			for(int i = 0; i<employeeList.size(); i++)
+			{
+				if(cBoxFilterDeleteUser.getSelectionModel().getSelectedItem().equalsIgnoreCase("No filter") || employeeList.get(i)[1].trim().substring(0, 1).equalsIgnoreCase(cBoxFilterDeleteUser.getSelectionModel().getSelectedItem()))
+				{
+					cBoxOfUsersDelete.getItems().add("Name: " + employeeList.get(i)[1] + ", Employee ID: " + employeeList.get(i)[0]);
+				}
+			}
+		}
+		//Shows all users in DropDown box when no filter is selected
+		else{
+			for(int i = 0; i<employeeList.size(); i++)
+			{
+				cBoxOfUsersDelete.getItems().add("Name: " + employeeList.get(i)[1] + ", Employee ID: " + employeeList.get(i)[0]);
+			}
+		}
+
+	}
+
 
 	@FXML
 	private void deleteSelectedUser(ActionEvent event){
 		ArrayList<String[]> employeeList = this.manageEmployee.getAllUsers();
-
-		if(this.listViewDisplayUsers1.getSelectionModel().getSelectedIndex() != -1 && Integer.parseInt(employeeList.get(this.listViewDisplayUsers1.getSelectionModel().getSelectedIndex())[0]) != this.user.getUserId()) {
-
-			this.manageEmployee.deleteUser(Integer.parseInt(employeeList.get(this.listViewDisplayUsers1.getSelectionModel().getSelectedIndex())[0]));
-			updateListViewForDeleteUser();
+		int idRemove = -1;
+		for(int i = 0; i<employeeList.size(); i++){
+			if(("Name: " + employeeList.get(i)[1] + ", Employee ID: " + employeeList.get(i)[0]).equals(cBoxOfUsersDelete.getSelectionModel().getSelectedItem()))
+				idRemove = i;
 		}
-		else if(this.listViewDisplayUsers1.getSelectionModel().getSelectedIndex() == -1){
+
+
+		if(idRemove != -1 && Integer.parseInt(employeeList.get(idRemove)[0]) != this.user.getUserId()) {
+
+			System.out.println("Remove");
+			this.manageEmployee.deleteUser(idRemove);
+			//updateListViewForDeleteUser();
+		}
+		else if(idRemove == -1){
 			Alert enterAlert = new Alert(AlertType.ERROR);
 			enterAlert.setHeaderText(null);
 			enterAlert.setContentText("You need to select a user before deleting");
 			enterAlert.showAndWait();
 		}
-		else if(Integer.parseInt(employeeList.get(this.listViewDisplayUsers1.getSelectionModel().getSelectedIndex())[0]) == this.user.getUserId()){
+		else if(Integer.parseInt(employeeList.get(idRemove)[0]) == this.user.getUserId()){
 			Alert enterAlert = new Alert(AlertType.ERROR);
 			enterAlert.setHeaderText(null);
 			enterAlert.setContentText("You can't delete your own account");
 			enterAlert.showAndWait();
 		}
+
 	}
 
 	@FXML
 	private void editUser(ActionEvent event){
 		this.editUserPane.toFront();
-		updateListViewForUpdateUser();
+
+		setEditUserComboBoxFilter();
+		updateComboBoxOfUsersEdit();
 	}
 
-	private void updateListViewForUpdateUser(){
+	private void setEditUserComboBoxFilter(){
+	this.cBoxFilterEditUser.getItems().addAll("No filter", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+	}
+
+	@FXML
+	private void filterComboBoxOfUsersEdit(ActionEvent event){
+		updateComboBoxOfUsersEdit();
+	}
+
+	private void updateComboBoxOfUsersEdit(){
 		ArrayList<String[]> employeeList = this.manageEmployee.getAllUsers();
-		this.listViewDisplayUsers.getItems().clear();
-		for(int i = 0; i<employeeList.size(); i++){
-			this.listViewDisplayUsers.getItems().add(i, employeeList.get(i)[0]+ " " + employeeList.get(i)[1]);
-		}
+		cBoxOfUsersEdit.getItems().clear();
+
 		this.idLabelUserEdit.clear();
     	this.nameLabelUserEdit.clear();
     	this.adressLabelUserEdit.clear();
@@ -623,18 +671,43 @@ public class menuController implements Initializable {
     	this.managerNameLabelUserEdit.clear();
     	this.hWageLabelUserEdit.clear();
     	this.authorityLabelUserEdit.clear();
+
+		if(cBoxFilterEditUser.getSelectionModel().getSelectedIndex() != -1)
+		{
+			for(int i = 0; i<employeeList.size(); i++)
+			{
+				if(cBoxFilterEditUser.getSelectionModel().getSelectedItem().equalsIgnoreCase("No filter") || employeeList.get(i)[1].trim().substring(0, 1).equalsIgnoreCase(cBoxFilterEditUser.getSelectionModel().getSelectedItem()))
+				{
+					cBoxOfUsersEdit.getItems().add("Name: " + employeeList.get(i)[1] + ", Employee ID: " + employeeList.get(i)[0]);
+				}
+			}
+		}
+		//Shows all users in DropDown box when no filter is selected
+		else{
+			for(int i = 0; i<employeeList.size(); i++)
+			{
+				cBoxOfUsersEdit.getItems().add("Name: " + employeeList.get(i)[1] + ", Employee ID: " + employeeList.get(i)[0]);
+			}
+		}
+
 	}
 
 	@FXML
 	private void saveUserEdits(ActionEvent event){
+		ArrayList<String[]> employeeList = this.manageEmployee.getAllUsers();
+		int selected = -1;
+		for(int i = 0; i<employeeList.size(); i++){
+			if(("Name: " + employeeList.get(i)[1] + ", Employee ID: " + employeeList.get(i)[0]).equals(cBoxOfUsersEdit.getSelectionModel().getSelectedItem()))
+				selected = i;
+		}
 
-		if(this.listViewDisplayUsers.getSelectionModel().getSelectedIndex() != -1){
+		if(selected != -1){
 			//Byt metod sen
 			this.manageEmployee.changeUserInformationProvisorisk(Integer.parseInt(this.idLabelUserEdit.getText()), this.nameLabelUserEdit.getText(), this.adressLabelUserEdit.getText(),
 					this.phoneLabelUserEdit.getText(), this.socialLabelUserEdit.getText(), this.shiftLabelUserEdit.getText(), this.roleLabelUserEdit.getText(),
 					this.managerNameLabelUserEdit.getText(), this.hWageLabelUserEdit.getText(), this.authorityLabelUserEdit.getText(), this.managerIdLabelUserEdit.getText());
 
-			updateListViewForUpdateUser();
+			updateComboBoxOfUsersEdit();
 		}
 		else{
 			Alert enterAlert = new Alert(AlertType.ERROR);
@@ -646,22 +719,28 @@ public class menuController implements Initializable {
 	}
 
     @FXML
-    void fillInInformation(MouseEvent event) {
-    	ArrayList<String[]> employeeList = this.manageEmployee.getAllUsers();
-    	int selected = this.listViewDisplayUsers.getSelectionModel().getSelectedIndex();
-    	System.out.println(selected);
+    void fillInInformation(ActionEvent event) {
 
-    	this.idLabelUserEdit.setText(employeeList.get(selected)[0]);
-    	this.nameLabelUserEdit.setText(employeeList.get(selected)[1]);
-    	this.adressLabelUserEdit.setText(employeeList.get(selected)[2]);
-    	this.phoneLabelUserEdit.setText(employeeList.get(selected)[3]);
-    	this.socialLabelUserEdit.setText(employeeList.get(selected)[4]);
-    	this.shiftLabelUserEdit.setText(employeeList.get(selected)[5]);
-    	this.roleLabelUserEdit.setText(employeeList.get(selected)[6]);
-    	this.managerIdLabelUserEdit.setText(employeeList.get(selected)[7]);
-    	this.managerNameLabelUserEdit.setText(employeeList.get(selected)[8]);
-    	this.hWageLabelUserEdit.setText(employeeList.get(selected)[9]);
-    	this.authorityLabelUserEdit.setText(employeeList.get(selected)[10]);
+    	ArrayList<String[]> employeeList = this.manageEmployee.getAllUsers();
+		int selected = -1;
+		for(int i = 0; i<employeeList.size(); i++){
+			if(("Name: " + employeeList.get(i)[1] + ", Employee ID: " + employeeList.get(i)[0]).equals(cBoxOfUsersEdit.getSelectionModel().getSelectedItem()))
+				selected = i;
+		}
+		if(selected != -1){
+			this.idLabelUserEdit.setText(employeeList.get(selected)[0]);
+	    	this.nameLabelUserEdit.setText(employeeList.get(selected)[1]);
+	    	this.adressLabelUserEdit.setText(employeeList.get(selected)[2]);
+	    	this.phoneLabelUserEdit.setText(employeeList.get(selected)[3]);
+	    	this.socialLabelUserEdit.setText(employeeList.get(selected)[4]);
+	    	this.shiftLabelUserEdit.setText(employeeList.get(selected)[5]);
+	    	this.roleLabelUserEdit.setText(employeeList.get(selected)[6]);
+	    	this.managerIdLabelUserEdit.setText(employeeList.get(selected)[7]);
+	    	this.managerNameLabelUserEdit.setText(employeeList.get(selected)[8]);
+	    	this.hWageLabelUserEdit.setText(employeeList.get(selected)[9]);
+	    	this.authorityLabelUserEdit.setText(employeeList.get(selected)[10]);
+		}
+
     }
 
 	@FXML
