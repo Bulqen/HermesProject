@@ -33,8 +33,8 @@ DROP PROCEDURE IF EXISTS get_all_users;
 DROP PROCEDURE IF EXISTS get_time_report_intervall;
 DROP PROCEDURE IF EXISTS get_users_by_manager;
 
-DROP FUNCTION IF EXISTS get_hours;
 
+DROP FUNCTION IF EXISTS get_hours;
 DROP TRIGGER IF EXISTS current_salary;
 
 DROP TABLE IF EXISTS oB;
@@ -93,7 +93,9 @@ CREATE TABLE user (
     phone VARCHAR(20),
     socialSecurityNumber VARCHAR(13),
     PRIMARY KEY (id),
-    FOREIGN KEY (classificationId) REFERENCES shift(id)
+    FOREIGN KEY (classificationId) REFERENCES classification(id),
+    FOREIGN KEY (shiftId) REFERENCES shift(id)
+
 
 );
 -- ska nog lägga in mangerId Not null,
