@@ -261,7 +261,7 @@ public class menuController implements Initializable {
 		ArrayList <String []> info = this.timeReporter.getTimeReport(user.getUserId());
 
 
-		if(limit > 0)
+		if(limit > 0 && info.size() > limit)
 		{
 			for(int i = (info.size()-limit); i<info.size(); i++){
 				//Replace k with hours worked
