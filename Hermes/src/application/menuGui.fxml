@@ -264,7 +264,7 @@
                </children></Pane>
             <Pane fx:id="mainMenuPain" layoutX="10.0" layoutY="230.0" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="220.0">
                <children>
-                  <VBox alignment="CENTER_LEFT" prefHeight="561.0" prefWidth="500.0" spacing="40.0">
+                  <VBox alignment="CENTER_LEFT" spacing="40.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#time" styleClass="signIn-btn" stylesheets="@application.css" text="Time" textFill="LIGHTSKYBLUE">
                            <graphic>
@@ -278,7 +278,7 @@
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#schedule" prefHeight="77.0" prefWidth="156.0" styleClass="signIn-btn" stylesheets="@application.css" text="Schedule" textFill="LIGHTSKYBLUE">
+                        <Button mnemonicParsing="false" onAction="#schedule" styleClass="signIn-btn" stylesheets="@application.css" text="Schedule" textFill="LIGHTSKYBLUE">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -290,7 +290,7 @@
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#salarySlip" prefHeight="77.0" prefWidth="165.0" styleClass="signIn-btn" stylesheets="@application.css" text="Salary slip" textFill="LIGHTSKYBLUE">
+                        <Button mnemonicParsing="false" onAction="#salarySlip" styleClass="signIn-btn" stylesheets="@application.css" text="Salary slip" textFill="LIGHTSKYBLUE">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -302,7 +302,7 @@
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#manageAccounts" prefHeight="78.0" prefWidth="220.0" styleClass="signIn-btn" stylesheets="@application.css" text="Manage accounts" textFill="LIGHTSKYBLUE">
+                        <Button mnemonicParsing="false" onAction="#manageAccounts" styleClass="signIn-btn" stylesheets="@application.css" text="Manage accounts" textFill="LIGHTSKYBLUE">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -314,7 +314,7 @@
                               <Font name="Calibri Bold" size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#project" prefHeight="77.0" prefWidth="145.0" styleClass="signIn-btn" stylesheets="@application.css" text="Project" textFill="LIGHTSKYBLUE">
+                        <Button mnemonicParsing="false" onAction="#project" styleClass="signIn-btn" stylesheets="@application.css" text="Project" textFill="LIGHTSKYBLUE">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
