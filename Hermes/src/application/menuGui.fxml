@@ -21,7 +21,7 @@
 
 <AnchorPane fx:id="parent" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1681.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.menuController">
    <children>
-      <HBox fx:id="top" alignment="CENTER_RIGHT" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="1681.0" spacing="5.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="top" alignment="CENTER_RIGHT" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="1681.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1817.0">
                <children>
@@ -58,7 +58,7 @@
             <Insets bottom="1.0" left="1.0" right="5.0" top="1.0" />
          </padding>
       </HBox>
-      <AnchorPane layoutY="24.0" prefHeight="976.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="24.0">
+      <AnchorPane fx:id="parent1" layoutY="24.0" prefHeight="976.0" prefWidth="500.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="24.0">
          <effect>
             <DropShadow />
          </effect>
@@ -266,7 +266,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="561.0" prefWidth="500.0" spacing="40.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#time" prefHeight="77.0" prefWidth="126.0" styleClass="signIn-btn" stylesheets="@application.css" text="Time" textFill="LIGHTSKYBLUE">
+                        <Button mnemonicParsing="false" onAction="#time" styleClass="signIn-btn" stylesheets="@application.css" text="Time" textFill="LIGHTSKYBLUE">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -407,7 +407,7 @@
                </children></Pane>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="510.0" layoutY="7.0" prefHeight="976.0" prefWidth="1370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
+      <AnchorPane fx:id="parent2" layoutX="510.0" layoutY="7.0" prefHeight="976.0" prefWidth="1370.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="510.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
          <children>
             <Pane fx:id="applyForVaccation" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
@@ -419,7 +419,7 @@
                </children>
             </Pane>
             <Pane fx:id="hideMainScreen" prefHeight="200.0" prefWidth="200.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Pane fx:id="editWorkingHours" prefHeight="976.0" prefWidth="1110.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="61.0" AnchorPane.topAnchor="0.0">
+            <Pane fx:id="editWorkingHours" prefHeight="976.0" prefWidth="1110.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Label prefHeight="40.0" prefWidth="220.0" text="Edit working hours" textFill="LIGHTSKYBLUE">
                      <font>

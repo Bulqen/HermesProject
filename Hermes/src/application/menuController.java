@@ -63,6 +63,8 @@ public class menuController implements Initializable {
 	//Main AnchorPane everything is painted on
 	@FXML
 	private AnchorPane parent;
+	@FXML
+	private HBox top;
 
 	//Label to display username and date + time
 	@FXML
@@ -226,9 +228,18 @@ public class menuController implements Initializable {
 
 	@FXML
 	private void minimize_stage(MouseEvent event){
-        //stage.setMaximized(true);
 
-        stage.setIconified(true);
+
+
+        if(stage.isMaximized()){
+        	stage.setMaximized(false);
+        }
+        else{
+        	stage.setMaximized(true);
+        }
+
+        //stage.setIconified(true);
+
 	}
 
 	@FXML
