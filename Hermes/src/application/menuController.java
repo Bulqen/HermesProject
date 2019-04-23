@@ -153,6 +153,13 @@ public class menuController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		hideMainScreen.toFront();
 		mainMenuPain.toFront();
+		
+		this.timePane.setVisible(false);
+		this.schedulePane.setVisible(false);
+		this.projectPane.setVisible(false);
+		this.salarySlipPane.setVisible(false);
+		this.ManageAccountsPane.setVisible(false);
+		this.mainMenuPain.setVisible(true);
 
 		setUpTableView();
 		setUpTableViewEditable();
@@ -251,6 +258,15 @@ public class menuController implements Initializable {
 	@FXML
 	private void time(ActionEvent event){
 		timePane.toFront();
+		this.timePane.setVisible(true);
+		this.schedulePane.setVisible(false);
+		this.projectPane.setVisible(false);
+		this.salarySlipPane.setVisible(false);
+		this.ManageAccountsPane.setVisible(false);
+		this.mainMenuPain.setVisible(false);
+		
+		
+		
 	}
 
 	@FXML
@@ -518,11 +534,25 @@ public class menuController implements Initializable {
 	@FXML
 	private void schedule(ActionEvent event){
 		schedulePane.toFront();
+		
+		this.timePane.setVisible(false);
+		this.schedulePane.setVisible(true);
+		this.projectPane.setVisible(false);
+		this.salarySlipPane.setVisible(false);
+		this.ManageAccountsPane.setVisible(false);
+		this.mainMenuPain.setVisible(false);
 	}
 
 	@FXML
 	private void salarySlip(ActionEvent event){
 		salarySlipPane.toFront();
+		
+		this.timePane.setVisible(false);
+		this.schedulePane.setVisible(false);
+		this.projectPane.setVisible(false);
+		this.salarySlipPane.setVisible(true);
+		this.ManageAccountsPane.setVisible(false);
+		this.mainMenuPain.setVisible(false);
 	}
 
 	@FXML
@@ -781,6 +811,14 @@ public class menuController implements Initializable {
 	@FXML
 	private void manageAccounts(ActionEvent event){
 		ManageAccountsPane.toFront();
+		
+		this.timePane.setVisible(false);
+		this.schedulePane.setVisible(false);
+		this.projectPane.setVisible(false);
+		this.salarySlipPane.setVisible(false);
+		this.ManageAccountsPane.setVisible(true);
+		this.mainMenuPain.setVisible(false);
+		
 		this.newUserButton.setDisable(!this.manageEmployee.checkClassificationID());
 		this.deleteUserButton.setDisable(!this.manageEmployee.checkClassificationID());
 		this.editUserButton.setDisable(!this.manageEmployee.checkClassificationID());
@@ -789,12 +827,24 @@ public class menuController implements Initializable {
 	@FXML
 	private void project(ActionEvent event){
 		projectPane.toFront();
+		this.timePane.setVisible(false);
+		this.schedulePane.setVisible(false);
+		this.projectPane.setVisible(true);
+		this.salarySlipPane.setVisible(false);
+		this.ManageAccountsPane.setVisible(false);
+		this.mainMenuPain.setVisible(false);
 	}
 
 	@FXML
 	private void back(ActionEvent event){
 		mainMenuPain.toFront();
 		hideMainScreen.toFront();
+		this.timePane.setVisible(false);
+		this.schedulePane.setVisible(false);
+		this.projectPane.setVisible(false);
+		this.salarySlipPane.setVisible(false);
+		this.ManageAccountsPane.setVisible(false);
+		this.mainMenuPain.setVisible(true);
 	}
 
 

@@ -61,7 +61,7 @@
       </HBox>
       <Pane fx:id="content" layoutY="24.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="668.0" prefWidth="1080.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="24.0">
          <children>
-            <Button fx:id="signIn" layoutX="469.0" layoutY="390.0" mnemonicParsing="false" onAction="#handle_login" prefHeight="66.0" prefWidth="143.0" styleClass="signIn-btn" text="Sign in" textFill="LIGHTSKYBLUE">
+            <Button fx:id="signIn" layoutX="469.0" layoutY="390.0" mnemonicParsing="false" onAction="#handle_login" styleClass="signIn-btn" text="Sign in" textFill="LIGHTSKYBLUE">
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" onKeyPressed="#handle_login" pickOnBounds="true" preserveRatio="true">
                      <image>
