@@ -47,22 +47,27 @@ public class menuController implements Initializable {
 
 
 
-	//Used to make stage dragable
+	//Node used to get the current scene
 	private Node node;
 	private Stage stage;
+	//Used to make stage dragable
 	private double xOffSet = 0;
 	private double yOffSet = 0;
 
-	//Fixa så rätt user används och att jag kan använda user factory
-	//private DBConnection test = new DBConnection();
+
+	//User factory to create different users
 	private UserFactory userFac;
+	//The user that is currently logged in
 	private User user;
+	//TimeReporter is used for sending and getting data from the database relating to the time use cases
 	private timeReport timeReporter = new timeReport();
+	//ManageEmployess is used for sending and getting data from the database relating to the manage user usecases
 	private ManageEmployees manageEmployee;
 
 	//Main AnchorPane everything is painted on
 	@FXML
 	private AnchorPane parent;
+	//Hbox that contains exit and minimize options for the window
 	@FXML
 	private HBox top;
 
@@ -73,6 +78,7 @@ public class menuController implements Initializable {
 	//Pane to display main menu
 	@FXML
 	private Pane mainMenuPain;
+
 	//Panes to display buttons for choices done in the main menu
 	@FXML
 	private Pane timePane, schedulePane, salarySlipPane, ManageAccountsPane, projectPane;
@@ -81,7 +87,7 @@ public class menuController implements Initializable {
 	@FXML
 	private Pane hideMainScreen;
 
-	//Panes to display content to the right when sub menu options is choosen
+	//Panes to display content to the right when sub menu options is chosen
 	@FXML
 	private Pane  reportASickDay, applyForVaccation, editWorkingHours, inOutPane, generateSalarySlip;
 
@@ -111,7 +117,6 @@ public class menuController implements Initializable {
 	private Button CallInSickButton;
 
 	//FXML items relating to editWorkingHours
-
 	@FXML
 	private Button SaveEditWorkingHours;
 	@FXML
@@ -124,9 +129,6 @@ public class menuController implements Initializable {
 	private ComboBox<String> cBoxFilterDeleteUser, cBoxOfUsersDelete;
 
 	//Items relating to edit user
-	//@FXML
-	//private ListView<String> listViewDisplayUsers;
-
 	@FXML
 	private ComboBox<String> cBoxFilterEditUser, cBoxOfUsersEdit;
 	@FXML
@@ -153,7 +155,7 @@ public class menuController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		hideMainScreen.toFront();
 		mainMenuPain.toFront();
-		
+
 		this.timePane.setVisible(false);
 		this.schedulePane.setVisible(false);
 		this.projectPane.setVisible(false);
@@ -168,6 +170,7 @@ public class menuController implements Initializable {
 
 	}
 
+	//Method to set up the columns for the table view that displays shifts in the stamp in/out function
 	private void setUpTableView(){
 		dateColumn.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("date"));
 		inColumn.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("in"));
@@ -176,6 +179,8 @@ public class menuController implements Initializable {
 		absentColumn.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("absent"));
 	}
 
+	//Method to set up the columns for the table view that displays shifts in the edit working hours
+	//Makes in and out time editable
 	private void setUpTableViewEditable(){
 		dateColumn1.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("date"));
 		inColumn1.setCellValueFactory(new PropertyValueFactory<timeToObList, String>("in"));
@@ -188,7 +193,7 @@ public class menuController implements Initializable {
 		outColumn1.setCellFactory(TextFieldTableCell.forTableColumn());
 	}
 
-
+	//Method to create and display the date and time
 	private void displayTime() {
 		Clock time = new Clock();
 		dateAndTimeLabel.textProperty().bind(time.messageProperty());
@@ -196,6 +201,7 @@ public class menuController implements Initializable {
 
 	}
 
+	//Makes the stage dragable when you klick and hold on the stage
 	private void makeStageDragable(){
 		parent.setOnMousePressed((event) -> {
 			node = (Node) event.getSource();
@@ -221,7 +227,8 @@ public class menuController implements Initializable {
 
 	}
 
-	//Ändra så det är setUser , skapa och initiera en user
+	//Sets the user and initiates it as a worker
+	//Initiates the manageEmployee
 	public void setUser(String userName){
 
 		userFac = UserFactory.initiateUserFactory(userName);
@@ -233,28 +240,33 @@ public class menuController implements Initializable {
 
 	}
 
+	//Method to minimize the stage
 	@FXML
 	private void minimize_stage(MouseEvent event){
 
 
-
+		/*
+		 * Code to be used later to make it possible to maximize
         if(stage.isMaximized()){
         	stage.setMaximized(false);
         }
         else{
         	stage.setMaximized(true);
         }
+        */
 
-        //stage.setIconified(true);
+        stage.setIconified(true);
 
 	}
 
+	//Exit
 	@FXML
 	private void close_app(MouseEvent event){
 		System.exit(0);
 
 	}
 
+	//Brings the requested pane to the front and sets every thing else to not visible
 	@FXML
 	private void time(ActionEvent event){
 		timePane.toFront();
@@ -264,9 +276,9 @@ public class menuController implements Initializable {
 		this.salarySlipPane.setVisible(false);
 		this.ManageAccountsPane.setVisible(false);
 		this.mainMenuPain.setVisible(false);
-		
-		
-		
+
+
+
 	}
 
 	@FXML
@@ -426,40 +438,42 @@ public class menuController implements Initializable {
 		}
 	}
 
+	//7an borde vara en variabel som initieras i början
 	@FXML
 	private void editWorkingHours(ActionEvent event){
 		editWorkingHours.toFront();
 		timeReportTableView1.setItems(displayTimeReport(7));
 	}
 
-	@FXML
-	public void changeInCellEvent(CellEditEvent edittedCell)
-    {
-		timeToObList row =  timeReportTableView1.getSelectionModel().getSelectedItem();
-		if(edittedCell.getNewValue().toString().matches("\\d{2}:\\d{2}:\\d{2}"))
-			row.setIn((edittedCell.getNewValue().toString()));
-		else
-		{
+	private boolean checkFormatForTime(String input){
+		if(input.matches("\\d{2}:\\d{2}:\\d{2}")){
+			return true;
+		}
+		else{
 			Alert enterAlert = new Alert(AlertType.ERROR);
 			enterAlert.setHeaderText("Wrong format");
 			enterAlert.setContentText("Please use to following format 00:00:00");
 			enterAlert.showAndWait();
+			return false;
 		}
+	}
+
+	@FXML
+	public void changeInCellEvent(CellEditEvent edittedCell)
+    {
+		timeToObList row =  timeReportTableView1.getSelectionModel().getSelectedItem();
+		//if(edittedCell.getNewValue().toString().matches("\\d{2}:\\d{2}:\\d{2}"))
+		if(checkFormatForTime(edittedCell.getNewValue().toString()))
+			row.setIn((edittedCell.getNewValue().toString()));
     }
 
 	@FXML
 	public void changeOutCellEvent(CellEditEvent edittedCell)
     {
 		timeToObList row =  timeReportTableView1.getSelectionModel().getSelectedItem();
-		if(edittedCell.getNewValue().toString().matches("\\d{2}:\\d{2}:\\d{2}"))
+		//if(edittedCell.getNewValue().toString().matches("\\d{2}:\\d{2}:\\d{2}"))
+		if(checkFormatForTime(edittedCell.getNewValue().toString()))
 			row.setOut((edittedCell.getNewValue().toString()));
-		else
-		{
-			Alert enterAlert = new Alert(AlertType.ERROR);
-			enterAlert.setHeaderText("Wrong format");
-			enterAlert.setContentText("Please use to following format 00:00:00");
-			enterAlert.showAndWait();
-		}
     }
 
 	@FXML
@@ -534,7 +548,7 @@ public class menuController implements Initializable {
 	@FXML
 	private void schedule(ActionEvent event){
 		schedulePane.toFront();
-		
+
 		this.timePane.setVisible(false);
 		this.schedulePane.setVisible(true);
 		this.projectPane.setVisible(false);
@@ -546,7 +560,7 @@ public class menuController implements Initializable {
 	@FXML
 	private void salarySlip(ActionEvent event){
 		salarySlipPane.toFront();
-		
+
 		this.timePane.setVisible(false);
 		this.schedulePane.setVisible(false);
 		this.projectPane.setVisible(false);
@@ -811,14 +825,14 @@ public class menuController implements Initializable {
 	@FXML
 	private void manageAccounts(ActionEvent event){
 		ManageAccountsPane.toFront();
-		
+
 		this.timePane.setVisible(false);
 		this.schedulePane.setVisible(false);
 		this.projectPane.setVisible(false);
 		this.salarySlipPane.setVisible(false);
 		this.ManageAccountsPane.setVisible(true);
 		this.mainMenuPain.setVisible(false);
-		
+
 		this.newUserButton.setDisable(!this.manageEmployee.checkClassificationID());
 		this.deleteUserButton.setDisable(!this.manageEmployee.checkClassificationID());
 		this.editUserButton.setDisable(!this.manageEmployee.checkClassificationID());

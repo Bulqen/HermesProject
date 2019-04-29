@@ -21,11 +21,11 @@
 
 <AnchorPane fx:id="parent" minHeight="-Infinity" minWidth="-Infinity" prefHeight="805.0" prefWidth="1681.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.menuController">
    <children>
-      <HBox fx:id="top" alignment="CENTER_RIGHT" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="24.0" prefWidth="1681.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox fx:id="top" alignment="CENTER_RIGHT" layoutY="2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="22.0" prefWidth="1817.0">
                <children>
-                  <Label prefHeight="22.0" prefWidth="65.0" text="Hermes" textFill="LIGHTSKYBLUE">
+                  <Label text="Hermes" textFill="LIGHTSKYBLUE">
                      <font>
                         <Font name="Calibri" size="19.0" />
                      </font>
