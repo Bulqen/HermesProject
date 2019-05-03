@@ -206,6 +206,33 @@ public class DBConnection {
 		}
 
 	}
+	/**
+	 * 
+	 * @param uId
+	 * @param start
+	 * @param end
+	 * @param comment
+	 * will report vacation between the dates (including)
+	 */
+	
+	public void applyVacationDates(int uId, String start, String end, String comment) {
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL apply_vacation_dates(?, ?, ?, ?)}");
+			myCall.setInt(4, uId);
+			myCall.setString(1, start);
+			myCall.setString(2, comment);
+			myCall.setString(3, comment);
+
+			myCall.executeUpdate();
+
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
 
 	/**
 	 *
@@ -404,6 +431,58 @@ public class DBConnection {
 
 		return info;
 	}
+	
+	/**
+	 * 
+	 * @param projectId
+	 * @return ArrayList <String []> 
+	 * String [] is a row, in this case,
+	 * index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName, 9 hourlypay, 10 classificationId, 11 shiftId
+	 */
+	public ArrayList <String []> getUsersByProject(int projectId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{get_users_by_project(?)}");
+			myCall.setInt(1, projectId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return info;
+	}
+	/**
+	 * 
+	 * @param managerId
+	 * @return ArrayList <String []> 
+	 * String [] is a row, in this case,
+	 * index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName, 9 hourlypay, 10 classificationId, 11 shiftId
+	 */
+	
+	public ArrayList <String []> getUsersByProjectManager(int managerId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{get_users_by_project(?)}");
+			myCall.setInt(1, managerId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return info;
+	}
+	
+	
 	/**
 	 *
 	 * @param uId

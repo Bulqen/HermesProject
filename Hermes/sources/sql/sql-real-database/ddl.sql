@@ -32,9 +32,12 @@ DROP PROCEDURE IF EXISTS change_pw;
 DROP PROCEDURE IF EXISTS get_all_users;
 DROP PROCEDURE IF EXISTS get_time_report_intervall;
 DROP PROCEDURE IF EXISTS get_users_by_manager;
-
+DROP PROCEDURE IF EXISTS get_users_by_project;
+DROP PROCEDURE IF EXISTS get_users_by_project_manager;
+DROP PROCEDURE IF EXISTS apply_vacation_dates;
 
 DROP FUNCTION IF EXISTS get_hours;
+
 DROP TRIGGER IF EXISTS current_salary;
 
 DROP TABLE IF EXISTS oB;
@@ -142,6 +145,7 @@ CREATE TABLE project (
     goals VARCHAR(1000),
     budget INT,
     status VARCHAR(20),
+    manager INT, -- not foreign cause don´t know which procedures that will be affected
     PRIMARY KEY (id)
 );
 
@@ -152,7 +156,7 @@ CREATE TABLE project_cart (
     FOREIGN KEY(projectId) REFERENCES project(id)
 );
 
-CREATE TABLE scheduled_activities (
+CREATE TABLE scheduled_activities ( -- info VARCHAR(200) add
     start TIME,
     stop TIME,
     currentDate DATE,
@@ -450,13 +454,14 @@ CREATE PROCEDURE project_create(
    stop Date,
    goal VARCHAR(1000),
    budg INT,
-   Status VARCHAR(20)
+   Status VARCHAR(20),
+   man INT
 
 )
 BEGIN
 
-    Insert into project (startDate, endDate, goals, budget, status)
-        VALUES(start, stop, goal, budg, Status);
+    Insert into project (startDate, endDate, goals, budget, status, manager)
+        VALUES(start, stop, goal, budg, Status, man);
 
 END ;;
 
@@ -740,3 +745,69 @@ BEGIN
 END ;;
 
 DELIMITER ;
+
+
+
+DELIMITER ;;
+CREATE PROCEDURE  get_users_by_project(
+  proId INT
+
+)
+BEGIN
+
+  SELECT u.id, CONCAT(firstName, " ", lastName) as name, adress, phone, socialSecurityNumber, s.shiftType, c.role, managerId,
+    (SELECT  CONCAT(firstName, " ", lastName)from user as us WHERE u.managerId = us.id ) as managerName,
+      u.hourlyPay, u.classificationId, u.shiftId
+      FROM user as u
+          INNER JOIN shift s on u.classificationId = s.id
+          INNER JOIN classification c on c.id = u.classificationId
+          INNER JOIN project_cart cart on u.id = cart.userId WHERE cart.projectId = proId;
+
+
+END ;;
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS get_users_by_project_manager;
+DELIMITER ;;
+CREATE PROCEDURE  get_users_by_project_manager(
+  manId INT
+
+)
+BEGIN
+
+SELECT u.id, CONCAT(firstName, " ", lastName) as name, adress, phone, socialSecurityNumber, s.shiftType, c.role, managerId,
+    (SELECT  CONCAT(firstName, " ", lastName)from user as us WHERE u.managerId = us.id ) as managerName,
+      u.hourlyPay, u.classificationId, u.shiftId
+      FROM user as u
+          INNER JOIN shift s on u.classificationId = s.id
+          INNER JOIN classification c on c.id = u.classificationId
+          INNER JOIN project_cart cart on u.id = cart.userId
+          INNER JOIN project p on cart.projectId = p.id WHERE p.manager = manId;
+
+
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE  apply_vacation_dates(
+  starts DATE,
+  stops DATE,
+  com VARCHAR(200),
+  uId INT
+)
+BEGIN
+
+
+  WHILE starts <= stops DO
+
+  INSERT INTO time_report(userId, absence, currentDate, comment)
+    VALUES (uid, 'vacation',starts, com);
+    SET starts = starts + INTERVAL 1 DAY;
+
+
+END WHILE;
+
+
+END ;;
