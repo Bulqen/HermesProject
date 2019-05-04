@@ -871,6 +871,31 @@ public class DBConnection {
 
 		return info.get(0);
 	}
+	/**
+	 * 
+	 * @param userId
+	 * @return [] String
+	 * [0] startTime, [1] endTime, [2] startDay, [3] endDay, [4] type-shift , ex( [0] "08:00",[1]"17:00", [2] "6",[3] "7", [4] "helg"), 1-7, mån-sön
+	 */
+	
+	public String [] generateSchedule(int userId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL generate_schedule(?)}");
+			myCall.setInt(1, userId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return info.get(0);
+	}
+
 
 
 

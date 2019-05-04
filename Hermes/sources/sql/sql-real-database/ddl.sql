@@ -35,6 +35,7 @@ DROP PROCEDURE IF EXISTS get_users_by_manager;
 DROP PROCEDURE IF EXISTS get_users_by_project;
 DROP PROCEDURE IF EXISTS get_users_by_project_manager;
 DROP PROCEDURE IF EXISTS apply_vacation_dates;
+DROP PROCEDURE IF EXISTS generate_schedule;
 
 DROP FUNCTION IF EXISTS get_hours;
 
@@ -811,3 +812,31 @@ END WHILE;
 
 
 END ;;
+
+
+DELIMITER ;;
+CREATE PROCEDURE generate_schedule(
+  uId INT
+)
+BEGIN
+
+
+
+  SET @shift = (SELECT shiftId FROM user WHERE id = uId);
+
+  IF @shift = 1 THEN
+      SELECT "16:00" as starts, "23:00" as ends, 3 as start_day, 7 as end_day, "2-shift" as type;
+    ELSEIF @shift = 2 THEN
+      SELECT "08:00" as starts, "17:00" as ends, 1 as start_day, 5 as end_day, "förmiddag" as type;
+    ELSEIF @shift = 3 THEN
+      SELECT "18:00" as starts, "03:00" as ends, 1 as start_day, 5 as end_day, "natt" as type;
+    ELSEIF @shift = 4 THEN
+      SELECT "08:00" as starts, "17:00" as ends, 6 as start_day, 7 as end_day, "helg" as type;
+    ELSE
+      SELECT "08:00" as starts, "17:00" as ends, 1 as start_day, 7 as end_day, "default" as type;
+  END IF ;
+
+
+END ;;
+
+DELIMITER ;
