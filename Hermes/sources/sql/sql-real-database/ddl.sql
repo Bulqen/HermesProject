@@ -399,7 +399,7 @@ CREATE PROCEDURE get_time_report(
 
 )
 BEGIN
-   SELECT *, get_hours(outTime)-get_hours(inTime) as hours FROM time_report WHERE userId = uId;
+   SELECT *, Round(get_hours(outTime)-get_hours(inTime),2) as hours FROM time_report WHERE userId = uId;
 END ;;
 
 DELIMITER ;
@@ -581,7 +581,7 @@ RETURNS DOUBLE
   NOT DETERMINISTIC NO SQL
   BEGIN
 
-    RETURN HOUR(tid) + MINUTE(tid)/60;
+    RETURN ROUND(HOUR(tid) + MINUTE(tid)/60, 2);
 
   end ;;
 
@@ -723,7 +723,7 @@ CREATE PROCEDURE get_time_report_intervall(
 )
 BEGIN
 
-SELECT *, get_hours(outTime)-get_hours(inTime) as hours FROM time_report WHERE userId = uId AND(currentDate BETWEEN startt AND stopp);
+SELECT *, ROUND(get_hours(outTime)-get_hours(inTime),2) as hours FROM time_report WHERE userId = uId AND(currentDate BETWEEN startt AND stopp);
 
 END ;;
 

@@ -30,4 +30,6 @@ SET NAMES 'utf8';
 -- log av stored procedures
 SET GLOBAL log_bin_trust_function_creators = 1;
 -- timezone fix
-SET GLOBAL time_zone = '+1:00';
+
+SET GLOBAL time_zone = '+2:00';
+SET time_zone = '+2:00';
