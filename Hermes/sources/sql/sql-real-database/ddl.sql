@@ -463,8 +463,8 @@ CREATE PROCEDURE project_create(
 )
 BEGIN
 
-    Insert into project (startDate, endDate, goals, budget, status, manager, namn)
-        VALUES(start, stop, goal, budg, Status, man, name);
+    Insert into project (startDate, endDate, goals, budget, status, manager, name)
+        VALUES(start, stop, goal, budg, Status, man, namn);
 
 END ;;
 

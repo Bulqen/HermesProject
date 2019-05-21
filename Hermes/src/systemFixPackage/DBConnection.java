@@ -700,14 +700,14 @@ public class DBConnection {
 	public void projectCreate(String start, String stop, String goal, int budg, String status, String namn, int managerId) {
 
 		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL project_create(?, ?, ?, ?, ?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL project_create(?, ?, ?, ?, ?, ?, ?)}");
 			myCall.setInt(4, budg);
 			myCall.setString(1, start);
 			myCall.setString(2, stop);
 			myCall.setString(3, goal);
 			myCall.setString(5, status);
 			myCall.setString(6, namn);
-			myCall.setInt(6, managerId);
+			myCall.setInt(7, managerId);
 
 			myCall.executeUpdate();
 
