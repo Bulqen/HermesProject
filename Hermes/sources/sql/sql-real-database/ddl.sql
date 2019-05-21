@@ -146,6 +146,7 @@ CREATE TABLE project (
     goals VARCHAR(1000),
     budget INT,
     status VARCHAR(20),
+    name VARCHAR(30),
     manager INT, -- not foreign cause don´t know which procedures that will be affected
     PRIMARY KEY (id)
 );
@@ -456,13 +457,14 @@ CREATE PROCEDURE project_create(
    goal VARCHAR(1000),
    budg INT,
    Status VARCHAR(20),
+   namn VARCHAR(30),
    man INT
 
 )
 BEGIN
 
-    Insert into project (startDate, endDate, goals, budget, status, manager)
-        VALUES(start, stop, goal, budg, Status, man);
+    Insert into project (startDate, endDate, goals, budget, status, manager, namn)
+        VALUES(start, stop, goal, budg, Status, man, name);
 
 END ;;
 

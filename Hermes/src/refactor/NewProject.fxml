@@ -1,16 +1,100 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane fx:id="newProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.NewProjectController">
+<Pane fx:id="newProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="684.0" prefWidth="1043.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.NewProjectController">
    <children>
       <Label layoutX="10.0" layoutY="10.0" text="New project" textFill="LIGHTSKYBLUE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <VBox alignment="CENTER_LEFT" layoutX="166.0" layoutY="14.0" prefHeight="315.0" prefWidth="213.0" spacing="40.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="5.0">
+               <children>
+                  <Label text="Name" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="5.0">
+               <children>
+                  <Label text="Start-date" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" spacing="5.0">
+               <children>
+                  <Label text="end-date(preliminary)" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" spacing="5.0">
+               <children>
+                  <Label text="budget" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" spacing="5.0">
+               <children>
+                  <Label text="Status" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="5.0">
+               <children>
+                  <Label text="Goal/description" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="379.0" layoutY="10.0" prefHeight="266.0" prefWidth="173.0" spacing="31.0">
+         <children>
+            <TextField fx:id="nameLabel" prefHeight="2.0" prefWidth="168.0" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="startDateLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="endDateLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="budgetLabel" prefWidth="170.0" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="statusLabel" prefHeight="20.0" prefWidth="173.0" styleClass="txtfield" stylesheets="@application.css" />
+         </children>
+      </VBox>
+      <TextArea fx:id="goalTextArea" layoutX="379.0" layoutY="294.0" prefHeight="216.0" prefWidth="370.0" styleClass="txtfield" stylesheets="@application.css" />
+      <Button fx:id="buttonCreateProject" alignment="CENTER_RIGHT" layoutX="140.0" layoutY="367.0" mnemonicParsing="false" onAction="#createProject" prefHeight="68.0" prefWidth="213.0" styleClass="signIn-btn" stylesheets="@application.css" text="Create project" textFill="LIGHTSKYBLUE">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="58.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/save-128.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
    </children>
 </Pane>
