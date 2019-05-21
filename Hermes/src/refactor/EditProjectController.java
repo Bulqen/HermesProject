@@ -15,8 +15,7 @@ public class EditProjectController {
 	private timeReport timeReporter = new timeReport();
 	private DBConnection db = new DBConnection();
 
-	int pr = db.getProjectByManager(mainC.getUser().getUserId());
-	String [] project = db.getProjectInfo(pr);
+
 
 	public void injectMainController(MenuGuiController mainC){
 		this.mainC = mainC;
@@ -36,6 +35,12 @@ public class EditProjectController {
 
     @FXML
     private ComboBox<?> cBoxAddUsers, cBoxremoveUsers;
+    
+    
+    public void setup () {
+    	int pr = db.getProjectByManager(mainC.getUser().getUserId());
+    	String [] project = db.getProjectInfo(pr);
+    }
 
     @FXML
     void addUser(ActionEvent event) {

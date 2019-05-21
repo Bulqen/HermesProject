@@ -358,6 +358,7 @@ public class MenuGuiController {
 	@FXML
 	private void editProject(ActionEvent event) {
 		editProjectPane.toFront();
+		editProjectController.setup();
 	}
 
 	@FXML
