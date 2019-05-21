@@ -1,16 +1,178 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<Pane fx:id="editProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.EditProjectController">
+<Pane fx:id="editProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="763.0" prefWidth="1376.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.EditProjectController">
    <children>
       <Label layoutX="10.0" layoutY="10.0" text="Edit project" textFill="LIGHTSKYBLUE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <VBox alignment="CENTER_LEFT" layoutX="20.0" layoutY="51.0" prefHeight="453.0" prefWidth="137.0" spacing="40.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="5.0">
+               <children>
+                  <Label text="Project id" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="5.0">
+               <children>
+                  <Label text="Name" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" spacing="5.0">
+               <children>
+                  <Label text="Start-date" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" spacing="5.0">
+               <children>
+                  <Label text="End-date" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" spacing="5.0">
+               <children>
+                  <Label text="Budget" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
+               <children>
+                  <Label text="Status" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="5.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="136.0" text="Goal" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="374.0" spacing="5.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="426.0" spacing="5.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="426.0" spacing="5.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="176.0" layoutY="45.0" spacing="31.0">
+         <children>
+            <TextField fx:id="projectIdLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="nameLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="startDateLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="endDateLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="budgetLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="statusLabel" styleClass="txtfield" stylesheets="@application.css" />
+         </children>
+      </VBox>
+      <TextArea layoutX="176.0" layoutY="382.0" prefHeight="193.0" prefWidth="348.0" styleClass="txtfield" stylesheets="@application.css" />
+      <Button fx:id="editProjectButton" layoutX="532.0" layoutY="503.0" mnemonicParsing="false" onAction="#editProject" styleClass="signIn-btn" stylesheets="@application.css" text="Save changes" textFill="LIGHTSKYBLUE">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="577.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/save-128.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Button>
+      <VBox alignment="CENTER_LEFT" layoutX="524.0" layoutY="35.0" prefHeight="119.0" prefWidth="239.0" spacing="5.0">
+         <children>
+            <Text fill="LIGHTSKYBLUE" strokeType="OUTSIDE" strokeWidth="0.0" text="Add user to project" />
+            <ComboBox fx:id="cBoxAddUsers" onAction="#cBoxAdd" prefWidth="150.0" promptText="user" stylesheets="@application.css" />
+         </children>
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER_LEFT" layoutX="524.0" layoutY="155.0" prefHeight="119.0" prefWidth="178.0" spacing="5.0">
+         <children>
+            <Text fill="LIGHTSKYBLUE" strokeType="OUTSIDE" strokeWidth="0.0" text="Remove user from project" />
+            <ComboBox fx:id="cBoxremoveUsers" onAction="#cBoxRemove" prefWidth="150.0" promptText="user" stylesheets="@application.css" />
+         </children>
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+      </VBox>
+      <Button fx:id="removeUserButton" layoutX="738.0" layoutY="179.0" mnemonicParsing="false" onAction="#removeUser" styleClass="signIn-btn" stylesheets="@application.css" text="Remove user" textFill="LIGHTSKYBLUE">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/save-128.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="AddUserButton" layoutX="738.0" layoutY="59.0" mnemonicParsing="false" onAction="#addUser" styleClass="signIn-btn" stylesheets="@application.css" text="Add user" textFill="LIGHTSKYBLUE">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/save-128.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

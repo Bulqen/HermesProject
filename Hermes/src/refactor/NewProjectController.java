@@ -4,9 +4,11 @@ import systemFixPackage.timeReport;
 import systemFixPackage.DBConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 
 public class NewProjectController {
@@ -36,6 +38,19 @@ public class NewProjectController {
 	    	
 	    	db.projectCreate(startDateLabel.getText(), endDateLabel.getText(), goalTextArea.getText(), Integer.parseInt(budgetLabel.getText())
 	    			, statusLabel.getText(), nameLabel.getText(), mainC.getUser().getUserId());
+	    	
+	  
+	    
+	    	Alert enterAlert = new Alert(AlertType.INFORMATION);
+			enterAlert.setHeaderText(null);
+			enterAlert.setContentText("Successfully created new project!");
+			enterAlert.showAndWait();
+			nameLabel.clear();
+	    	startDateLabel.clear();
+	    	budgetLabel.clear();
+	    	statusLabel.clear();
+	    	endDateLabel.clear();
+	    	goalTextArea.clear();
 
 	    }
 }

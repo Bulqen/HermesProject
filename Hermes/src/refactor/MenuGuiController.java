@@ -358,6 +358,7 @@ public class MenuGuiController {
 	@FXML
 	private void editProject(ActionEvent event) {
 		editProjectPane.toFront();
+		editProjectController.setUp();
 	}
 
 	@FXML
@@ -377,7 +378,7 @@ public class MenuGuiController {
 		inOutController.initializeInOutWindow();
 	}
 
-	// 7an borde vara en variabel som initieras i början
+	// 7an borde vara en variabel som initieras i bï¿½rjan
 	@FXML
 	private void editWorkingHours(ActionEvent event) {
 		editWorkingHours.toFront();
@@ -530,8 +531,8 @@ public class MenuGuiController {
 	@FXML
 	private void SaveEditWorkingHoursAction(ActionEvent event) {
 
-		// fixa så vi inte kan spara om input är fel
-		//Man måste även trycka enter för att ändra fixa detta
+		// fixa sï¿½ vi inte kan spara om input ï¿½r fel
+		//Man mï¿½ste ï¿½ven trycka enter fï¿½r att ï¿½ndra fixa detta
 		System.out.println("test");
 		ArrayList <String []> info = new ArrayList<String[]>();
 
@@ -556,8 +557,8 @@ public class MenuGuiController {
 		this.socialLabelSalary.setText(user.getSocials());
 		this.periodLabelSalary.setText(salarySlip[2]);
 		this.employeeIdLabelSalary.setText(Integer.toString(user.getUserId()));
-		// Bör lägga in if statement för att avgöra vad som ska visas med ob och
-		// så
+		// Bï¿½r lï¿½gga in if statement fï¿½r att avgï¿½ra vad som ska visas med ob och
+		// sï¿½
 		this.descriptionSalary.setText("Basic Pay");
 		this.amountSalary.setText(salarySlip[0]);
 		this.hWageSalary.setText(salarySlip[1]);

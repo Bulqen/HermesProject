@@ -96,5 +96,7 @@
             </ImageView>
          </graphic>
       </Button>
+      <Label layoutX="564.0" layoutY="79.0" prefHeight="17.0" prefWidth="193.0" text="date format: yyyy-mm-dd" textFill="LIGHTSKYBLUE" />
+      <Label layoutX="564.0" layoutY="135.0" prefHeight="17.0" prefWidth="193.0" text="date format: yyyy-mm-dd" textFill="LIGHTSKYBLUE" />
    </children>
 </Pane>

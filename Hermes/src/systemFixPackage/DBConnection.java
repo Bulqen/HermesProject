@@ -379,6 +379,29 @@ public class DBConnection {
 
 		return info.get(0);
 	}
+	/**
+	 * 
+	 * @param projectId
+	 * @return
+	 */
+	public String [] getProjectInfo(int projectId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+
+			CallableStatement myCall = myConn.prepareCall("{CALL get_project(?)}");
+			myCall.setInt(1, projectId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return info.get(0);
+	}
 
 	/**
 	 *
@@ -456,6 +479,31 @@ public class DBConnection {
 
 		return info;
 	}
+	/**
+	 * 
+	 * @param projectId
+	 * @return users not in project id, namn
+	 */
+	
+	public ArrayList <String []> getUsersNotInProject(int projectId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{get_users_not_in_project(?)}");
+			myCall.setInt(1, projectId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return info;
+	}
+	
+	
 	/**
 	 * 
 	 * @param managerId
@@ -719,6 +767,34 @@ public class DBConnection {
 
 	}
 	/**
+	 * 
+	 * @param managerId
+	 * @return projectId
+	 */
+	public int getProjectByManager(int managerId) {
+		int projectId = -2;
+		ArrayList <String []> info = new ArrayList<String []>();
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL get_project_by_manager(?)}");
+			myCall.setInt(1, managerId);
+			
+
+			
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+			projectId = Integer.parseInt(info.get(0)[0]);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return projectId;
+		
+	}
+	
+	
+	/**
 	 *
 	 * @param projectId
 	 * @param userId
@@ -743,6 +819,96 @@ public class DBConnection {
 		}
 
 	}
+	/**
+	 * 
+	 * @param projectId
+	 * @param userId
+	 */
+	
+	public void removeUserToProject(int projectId, int userId) {
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL remove_from_projectr(?, ?)}");
+			myCall.setInt(1, userId);
+			myCall.setInt(2, projectId);
+
+
+
+			myCall.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	/**
+	 * 
+	 * @param projectId
+	 * @param start
+	 * @param stop
+	 * @param goal
+	 * @param budg
+	 * @param status
+	 * @param namn
+	 * @param managerId
+	 */
+	
+	public void editProjectt(int projectId, String start, String stop, String goal, int budg, String status, String namn, int managerId) {
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL project_edit(?, ?, ?, ?, ?, ?, ?, ?)}");
+			myCall.setInt(4, budg);
+			myCall.setString(1, start);
+			myCall.setString(2, stop);
+			myCall.setString(3, goal);
+			myCall.setString(5, status);
+			myCall.setString(6, namn);
+			myCall.setInt(7, managerId);
+			myCall.setInt(8, projectId);
+
+			myCall.executeUpdate();
+			
+			
+
+
+
+			myCall.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void finishProject(int projectId) {
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL finish_Project(?)}");
+			
+			myCall.setInt(1, projectId);
+
+			myCall.executeUpdate();
+			
+			
+
+
+
+			myCall.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	
+	
 
 	/**
 	 *

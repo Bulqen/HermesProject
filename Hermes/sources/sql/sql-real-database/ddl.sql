@@ -36,6 +36,12 @@ DROP PROCEDURE IF EXISTS get_users_by_project;
 DROP PROCEDURE IF EXISTS get_users_by_project_manager;
 DROP PROCEDURE IF EXISTS apply_vacation_dates;
 DROP PROCEDURE IF EXISTS generate_schedule;
+DROP PROCEDURE IF EXISTS get_project_by_manager;
+DROP PROCEDURE IF EXISTS get_users_not_in_project;
+DROP PROCEDURE IF EXISTS remove_from_project;
+DROP PROCEDURE IF EXISTS finish_Project;
+DROP PROCEDURE IF EXISTS project_edit;
+DROP PROCEDURE IF EXISTS get_project;
 
 DROP FUNCTION IF EXISTS get_hours;
 
@@ -838,6 +844,106 @@ BEGIN
       SELECT "08:00" as starts, "17:00" as ends, 1 as start_day, 7 as end_day, "default" as type;
   END IF ;
 
+
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE  get_project_by_manager(
+  uId INT
+)
+BEGIN
+
+
+
+ SELECT * From project WHERE manager = uId;
+
+
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE  get_users_not_in_project(
+  pId INT
+)
+BEGIN
+
+  set @manId = (SELECT manager FROM project WHERE id = pId);
+
+
+
+SELECT u.id, CONCAT(u.firstName, " ", u.lastName) as name
+    FROM user as u LEFT JOIN (SELECT us.id, CONCAT(us.firstName, " ", us.lastName) as name, us.adress, us.phone, us.socialSecurityNumber
+      FROM user as us
+          INNER JOIN project_cart cart on us.id = cart.userId WHERE cart.projectId = pID) as pc ON u.id = pc.id WHERE (pc.id IS NULL AND u.id != @manId );
+
+
+
+END ;;
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE  remove_from_project(
+  pId INT,
+  uId INT
+)
+BEGIN
+
+ DELETE FROM project_cart WHERE userId = uId AND projectId = pId;
+
+
+
+END ;;
+DELIMITER ;
+
+
+
+DELIMITER ;;
+CREATE PROCEDURE  finish_Project(
+  pId INT
+)
+BEGIN
+
+ UPDATE project SET manager = -1 where id = pId;
+
+
+
+END ;;
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE project_edit(
+   start Date,
+   stop Date,
+   goal VARCHAR(1000),
+   budg INT,
+   Status VARCHAR(20),
+   namn VARCHAR(30),
+   man INT,
+  pId INT
+
+)
+BEGIN
+
+    UPDATE project  SET startDate = start, endDate = stop, goals = goal, budget = budg, status = Status, manager = man, name = namn
+        WHERE id = pId;
+
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_project(
+  pId INT
+
+)
+BEGIN
+
+  SELECT * FROM project WHERE id = pId;
 
 END ;;
 
