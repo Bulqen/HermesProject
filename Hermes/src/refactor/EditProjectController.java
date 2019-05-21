@@ -23,9 +23,7 @@ public class EditProjectController {
 		System.out.println("This message shows us that the controller is set up (EditProject)");
 	}
 	
-	 public void setUp() {
-		   
-	   }
+	
 
 	@FXML
     private Pane editProject;
