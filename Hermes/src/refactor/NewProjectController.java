@@ -35,7 +35,11 @@ public class NewProjectController {
 
 	    @FXML
 	    void createProject(ActionEvent event) {
+	    	int pr;
+	    	pr = db.getProjectByManager(mainC.getUser().getUserId());
+	    	System.out.println(pr);
 	    	
+	    	if(pr == -2) {
 	    	db.projectCreate(startDateLabel.getText(), endDateLabel.getText(), goalTextArea.getText(), Integer.parseInt(budgetLabel.getText())
 	    			, statusLabel.getText(), nameLabel.getText(), mainC.getUser().getUserId());
 	    	
@@ -51,6 +55,12 @@ public class NewProjectController {
 	    	statusLabel.clear();
 	    	endDateLabel.clear();
 	    	goalTextArea.clear();
+	    	} else {
+	    		Alert enterAlert = new Alert(AlertType.ERROR);
+				enterAlert.setHeaderText(null);
+				enterAlert.setContentText("You are already maniging a project");
+				enterAlert.showAndWait();
+	    	}
 
 	    }
 }

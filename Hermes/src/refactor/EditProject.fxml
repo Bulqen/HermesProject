@@ -119,7 +119,7 @@
             <TextField fx:id="statusLabel" styleClass="txtfield" stylesheets="@application.css" />
          </children>
       </VBox>
-      <TextArea layoutX="176.0" layoutY="382.0" prefHeight="193.0" prefWidth="348.0" styleClass="txtfield" stylesheets="@application.css" />
+      <TextArea fx:id="goalText" layoutX="176.0" layoutY="382.0" prefHeight="193.0" prefWidth="348.0" styleClass="txtfield" stylesheets="@application.css" />
       <Button fx:id="editProjectButton" layoutX="532.0" layoutY="503.0" mnemonicParsing="false" onAction="#editProject" styleClass="signIn-btn" stylesheets="@application.css" text="Save changes" textFill="LIGHTSKYBLUE">
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="577.0" pickOnBounds="true" preserveRatio="true">
@@ -174,5 +174,18 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </Button>
+      <Button fx:id="finishProjectButton" layoutX="871.0" layoutY="503.0" mnemonicParsing="false" onAction="#finishProject" styleClass="signIn-btn" stylesheets="@application.css" text="Finish Project" textFill="LIGHTSKYBLUE">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/save-128.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Button>
+      <Text fill="LIGHTSKYBLUE" layoutX="886.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This will end your project!" />
    </children>
 </Pane>

@@ -441,7 +441,7 @@ public class DBConnection {
 		ArrayList <String []> info = new ArrayList<String []>();
 
 		try {
-			CallableStatement myCall = myConn.prepareCall("{get_users_by_manager(?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL get_users_by_manager(?)}");
 			myCall.setInt(1, managerId);
 
 			ResultSet myRs = myCall.executeQuery();
@@ -466,7 +466,7 @@ public class DBConnection {
 		ArrayList <String []> info = new ArrayList<String []>();
 
 		try {
-			CallableStatement myCall = myConn.prepareCall("{get_users_by_project(?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL get_users_by_project(?)}");
 			myCall.setInt(1, projectId);
 
 			ResultSet myRs = myCall.executeQuery();
@@ -489,7 +489,7 @@ public class DBConnection {
 		ArrayList <String []> info = new ArrayList<String []>();
 
 		try {
-			CallableStatement myCall = myConn.prepareCall("{get_users_not_in_project(?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL get_users_not_in_project(?)}");
 			myCall.setInt(1, projectId);
 
 			ResultSet myRs = myCall.executeQuery();
@@ -516,7 +516,7 @@ public class DBConnection {
 		ArrayList <String []> info = new ArrayList<String []>();
 
 		try {
-			CallableStatement myCall = myConn.prepareCall("{get_users_by_project(?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL get_users_by_project(?)}");
 			myCall.setInt(1, managerId);
 
 			ResultSet myRs = myCall.executeQuery();
@@ -782,7 +782,8 @@ public class DBConnection {
 			
 			ResultSet myRs = myCall.executeQuery();
 			info = getAllAsList(myRs);
-			projectId = Integer.parseInt(info.get(0)[0]);
+			if(!info.isEmpty())
+				projectId = Integer.parseInt(info.get(0)[0]);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -828,10 +829,10 @@ public class DBConnection {
 	public void removeUserToProject(int projectId, int userId) {
 
 		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL remove_from_projectr(?, ?)}");
-			myCall.setInt(1, userId);
-			myCall.setInt(2, projectId);
-
+			CallableStatement myCall = myConn.prepareCall("{CALL remove_from_project(?, ?)}");
+			myCall.setInt(1, projectId);
+			myCall.setInt(2, userId);
+	
 
 
 			myCall.executeUpdate();
@@ -855,7 +856,7 @@ public class DBConnection {
 	 * @param managerId
 	 */
 	
-	public void editProjectt(int projectId, String start, String stop, String goal, int budg, String status, String namn, int managerId) {
+	public void editProject(int projectId, String start, String stop, String goal, int budg, String status, String namn, int managerId) {
 
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL project_edit(?, ?, ?, ?, ?, ?, ?, ?)}");
