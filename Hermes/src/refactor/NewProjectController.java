@@ -37,7 +37,7 @@ public class NewProjectController {
 	    void createProject(ActionEvent event) {
 	    	int pr; 
 	    	pr = db.getProjectByManager(mainC.getUser().getUserId());
-	    	System.out.println(pr);
+	    	System.out.println(pr); 
 	    	
 	    	if(pr == -2) {
 	    	db.projectCreate(startDateLabel.getText(), endDateLabel.getText(), goalTextArea.getText(), Integer.parseInt(budgetLabel.getText())
