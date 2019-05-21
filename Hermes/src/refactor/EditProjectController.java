@@ -14,7 +14,7 @@ public class EditProjectController {
 	private MenuGuiController mainC;
 	private timeReport timeReporter = new timeReport();
 	private DBConnection db = new DBConnection();
-	
+
 	int pr = db.getProjectByManager(mainC.getUser().getUserId());
 	String [] project = db.getProjectInfo(pr);
 
@@ -22,8 +22,8 @@ public class EditProjectController {
 		this.mainC = mainC;
 		System.out.println("This message shows us that the controller is set up (EditProject)");
 	}
-	
-	
+
+
 
 	@FXML
     private Pane editProject;
@@ -36,12 +36,6 @@ public class EditProjectController {
 
     @FXML
     private ComboBox<?> cBoxAddUsers, cBoxremoveUsers;
-
-   
-  
-    
-    
-
 
     @FXML
     void addUser(ActionEvent event) {
