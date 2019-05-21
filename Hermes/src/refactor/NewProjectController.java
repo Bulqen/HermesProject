@@ -35,7 +35,7 @@ public class NewProjectController {
 
 	    @FXML
 	    void createProject(ActionEvent event) {
-	    	int pr;
+	    	int pr; 
 	    	pr = db.getProjectByManager(mainC.getUser().getUserId());
 	    	System.out.println(pr);
 	    	
