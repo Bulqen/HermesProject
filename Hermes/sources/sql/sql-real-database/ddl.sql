@@ -42,6 +42,8 @@ DROP PROCEDURE IF EXISTS remove_from_project;
 DROP PROCEDURE IF EXISTS finish_Project;
 DROP PROCEDURE IF EXISTS project_edit;
 DROP PROCEDURE IF EXISTS get_project;
+DROP PROCEDURE IF EXISTS edit_scheduled_activities;
+DROP PROCEDURE IF EXISTS remove_scheduled_activities;
 
 DROP FUNCTION IF EXISTS get_hours;
 
@@ -164,11 +166,13 @@ CREATE TABLE project_cart (
     FOREIGN KEY(projectId) REFERENCES project(id)
 );
 
-CREATE TABLE scheduled_activities ( -- info VARCHAR(200) add
+CREATE TABLE scheduled_activities (
+    id INT AUTO_INCREMENT NOT NULL,
     start TIME,
     stop TIME,
     currentDate DATE,
     projectId INT NOT NULL,
+    PRIMARY KEY (id),
     FOREIGN KEY(projectId) REFERENCES project(id)
 );
 CREATE TABLE oT (
@@ -526,7 +530,7 @@ CREATE PROCEDURE get_project_activities_user(
 )
 BEGIN
 
-SELECT DISTINCT userId ,sa.projectId, sa.start, sa.stop, sa.currentDate FROM scheduled_activities as sa
+SELECT DISTINCT userId ,sa.projectId, sa.start, sa.stop, sa.currentDate, sa.id FROM scheduled_activities as sa
     INNER JOIN project_cart as pc
         ON sa.projectId = pc.projectId WHERE pc.userId = uId;
 END ;;
@@ -944,6 +948,40 @@ CREATE PROCEDURE get_project(
 BEGIN
 
   SELECT * FROM project WHERE id = pId;
+
+END ;;
+
+DELIMITER ;
+
+
+DELIMITER ;;
+CREATE PROCEDURE edit_scheduled_activities(
+  scheduleId INT,
+  starts TIME,
+  stops TIME,
+  datum DATE,
+  pId INT
+
+
+)
+BEGIN
+
+  UPDATE scheduled_activities SET start = starts, stop = stops, currentDate = datum, projectId =pId
+      WHERE id = scheduleId;
+
+END ;;
+
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE remove_scheduled_activities(
+  scheduleId INT
+
+
+)
+BEGIN
+
+  DELETE FROM scheduled_activities WHERE id = scheduleId;
 
 END ;;
 

@@ -940,12 +940,64 @@ public class DBConnection {
 		}
 
 	}
+	/**
+	 * 
+	 * @param projectId
+	 * @param starts
+	 * @param stops
+	 * @param currDate
+	 * @param scheduleId
+	 * editar activiteten med scheduleid.
+	 */
+	
+	public void editScheduledActivities(int projectId, String starts, String stops, String currDate, int scheduleId) {
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL edit_scheduled_activities(?, ?, ?, ?, ?)}");
+			myCall.setInt(1, scheduleId);
+			myCall.setString(2, starts);
+			myCall.setString(3, stops);
+			myCall.setString(4, currDate);
+			myCall.setInt(5, projectId);
+
+
+
+			myCall.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void removeScheduledActivities(int scheduleId) {
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL remove_scheduled_activities(?)}");
+			myCall.setInt(1, scheduleId);
+			
+
+
+
+			myCall.executeUpdate();
+
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+	
+	
 
 	/**
 	 *
 	 * @param projectId
 	 * @return ArrayList <String []>
-	 * [0] id, [1] startDate, [2] endDate, [3] goals, [4] budget, [5] status
+	 * [0] id, [1] startDate, [2] endDate, [3] currentDate, [4] projectID
 	 */
 
 	public ArrayList <String []> getProcjectActivities(int projectId) {
@@ -971,7 +1023,7 @@ public class DBConnection {
 	 * @param projectId
 	 * @return ArrayList <String []>
 	 * get all project scheduled activities for one user
-	 * [0] userId, [1] projectId, [2] startTime , [3] stoppTime, [4] theDate
+	 * [0] userId, [1] projectId, [2] startTime , [3] stoppTime, [4] theDate, [5] id
 	 */
 
 	public ArrayList <String []> getProcjectActivitiesForUser(int userId) {
