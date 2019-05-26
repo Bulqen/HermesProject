@@ -1,10 +1,13 @@
 package refactor;
 
-import java.awt.Button;
-import javafx.scene.layout.Pane;
-import java.awt.event.ActionEvent;
+
+
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
+
 import systemFixPackage.timeReport;
 
 public class AddOrEditActivityToProjectController {
@@ -20,7 +23,6 @@ public class AddOrEditActivityToProjectController {
 	private Pane hiddenPane;
 	
 	
-	@FXML
 	public void injectMainController(MenuGuiController mainC){
 		this.mainC = mainC;
 		System.out.println("This message shows us that the controller is set up (AddOrEditActivityToProject)");
