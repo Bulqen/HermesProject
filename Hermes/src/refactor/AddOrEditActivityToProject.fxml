@@ -38,7 +38,6 @@
          <children>
             <TextField fx:id="activityDescription" layoutX="139.0" layoutY="185.0" styleClass="txtfield" stylesheets="@application.css" />
             <Label layoutX="32.0" layoutY="36.0" text="Project Id" textFill="LIGHTSKYBLUE" />
-            <TextField fx:id="projectId" layoutX="139.0" layoutY="32.0" styleClass="txtfield" stylesheets="@application.css" />
             <Label layoutX="32.0" layoutY="87.0" text="Start date" textFill="LIGHTSKYBLUE" />
             <Label layoutX="32.0" layoutY="138.0" text="End date" textFill="LIGHTSKYBLUE" />
             <TextField fx:id="startDate" layoutX="139.0" layoutY="83.0" styleClass="txtfield" stylesheets="@application.css" />
@@ -54,6 +53,7 @@
                   <Image url="@../../Images/parallel-tasks-128.png" />
                </image>
             </ImageView>
+            <Label fx:id="LblProject" layoutX="199.0" layoutY="36.0" textFill="LIGHTSKYBLUE" />
          </children></Pane>
    </children>
 </Pane>
