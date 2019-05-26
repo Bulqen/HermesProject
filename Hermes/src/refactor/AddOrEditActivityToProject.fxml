@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="addOrEditActivityToProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="597.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.AddOrEditActivityToProjectController">
+<Pane fx:id="addOrEditActivityToProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="597.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.AddOrEditActivityToProjectController">
    <children>
-      <Button fx:id="button2" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#editActivity" styleClass="signIn-btn" stylesheets="@application.css" text="Edit Project" textFill="LIGHTSKYBLUE">
+      <Button fx:id="button2" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#editActivity" styleClass="signIn-btn" stylesheets="@application.css" text="Edit activity" textFill="LIGHTSKYBLUE">
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
