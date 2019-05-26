@@ -51,8 +51,8 @@ public class EditProjectController {
 	public void setup () {
 
 		pr = db.getProjectByManager(mainC.getUser().getUserId());
-		String [] project = db.getProjectInfo(pr);
-		if(project !=null) {
+		if(pr !=-2) {
+			String [] project = db.getProjectInfo(pr);
 			projectIdLabel.setText(project[0]);
 			startDateLabel.setText(project[1]);
 			endDateLabel.setText(project[2]);
