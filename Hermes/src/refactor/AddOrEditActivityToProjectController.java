@@ -121,39 +121,11 @@ public class AddOrEditActivityToProjectController {
 	@FXML
 	private void finalizeEditActivity(ActionEvent event) {
 
-		ArrayList <String []> info = new ArrayList<String []>();
-		int k = c.getProjectByManager(mainC.getUser().getUserId());
-			//[0] id, [1] startDate, [2] endDate, [3] currentDate, [4] projectID, [5] description
-		info = c.getProjectActivities(k);
+
 
 		String activityId = cBoxOfActivities.getSelectionModel().getSelectedItem();
 
-		int i = 0;
-		boolean found = false;
-		while(i<info.size() && found == false) {
-			if(info.get(i)[0].equals(activityId))
-				found = true;
-			else
-				i++;
-		}
-
-
-		String activityId2 = info.get(i)[0];
-		String startTime = info.get(i)[1];
-		String endTime = info.get(i)[2];
-		String date = info.get(i)[3];
-		String projectId = info.get(i)[4];
-		String description = info.get(i)[5];
-
-		//startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswer;
-
-		LblProject2.setText(projectId);
-		startTimeAnswer1.setText(startTime);
-		endTimeAnswer1.setText(endTime);
-		dateAnswer1.setText(date);
-		activityDescriptionAnswer1.setText(description);
-
-		c.editScheduledActivities(Integer.parseInt(projectId),startTimeAnswer1.getText(),endTimeAnswer1.getText(),
+		c.editScheduledActivities(Integer.parseInt(LblProject2.getText()),startTimeAnswer1.getText(),endTimeAnswer1.getText(),
 				dateAnswer1.getText(), Integer.parseInt(activityId), activityDescriptionAnswer1.getText());
 
 	//int projectId, String starts, String stops, String currDate, int scheduleId, String description
@@ -184,21 +156,28 @@ public class AddOrEditActivityToProjectController {
 		System.out.println(info.get(0)[0] + info.get(0)[1] +info.get(0)[2] +info.get(0)[3]+info.get(0)[4]+info.get(0)[5]);
 
 		System.out.println(index);
+		startTimeAnswer1.clear();
+		endTimeAnswer1.clear();
+		dateAnswer1.clear();
+		activityDescriptionAnswer1.clear();
 
-		String activityId = info.get(index)[0];
-		String startTime = info.get(index)[1];
-		String endTime = info.get(index)[3];
-		String date = info.get(index)[4];
-		String projectId = info.get(index)[5];
-		String description = info.get(index)[2];
+		if(index >= 0){
+			String activityId = info.get(index)[0];
+			String startTime = info.get(index)[1];
+			String endTime = info.get(index)[3];
+			String date = info.get(index)[4];
+			String projectId = info.get(index)[5];
+			String description = info.get(index)[2];
 
-		//startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswerd
+			//startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswerd
 
-		LblProject2.setText(projectId);
-		startTimeAnswer1.setText(startTime);
-		endTimeAnswer1.setText(endTime);
-		dateAnswer1.setText(date);
-		activityDescriptionAnswer1.setText(description);
+			LblProject2.setText(projectId);
+			startTimeAnswer1.setText(startTime);
+			endTimeAnswer1.setText(endTime);
+			dateAnswer1.setText(date);
+			activityDescriptionAnswer1.setText(description);
+		}
+
 	}
 	/*
 	 * Your code should be below this

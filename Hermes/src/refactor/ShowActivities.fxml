@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="showActivities" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="646.0" prefWidth="954.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.ShowActivitiesController">
+<Pane fx:id="showActivities" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.ShowActivitiesController">
    <children>
       <Label layoutX="10.0" layoutY="10.0" text="Show activities" textFill="LIGHTSKYBLUE">
          <font>
@@ -36,7 +36,7 @@
             <Insets left="40.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER_LEFT" layoutX="414.0" layoutY="25.0" prefHeight="453.0" prefWidth="137.0" spacing="40.0">
+      <VBox alignment="CENTER_LEFT" layoutX="252.0" layoutY="30.0" spacing="40.0">
          <children>
             <HBox alignment="CENTER_LEFT" spacing="5.0">
                <children>
@@ -78,47 +78,12 @@
                   <Insets />
                </opaqueInsets>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="5.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="374.0" spacing="5.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="426.0" spacing="5.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="426.0" spacing="5.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
          </children>
          <padding>
             <Insets left="40.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" layoutX="563.0" layoutY="5.0" prefHeight="231.0" prefWidth="167.0" spacing="31.0">
+      <VBox alignment="CENTER" layoutX="401.0" layoutY="10.0" prefHeight="231.0" prefWidth="167.0" spacing="31.0">
          <children>
             <TextField fx:id="ActivityIdLabel" styleClass="txtfield" stylesheets="@application.css" />
             <TextField fx:id="dateLabel" styleClass="txtfield" stylesheets="@application.css" />
@@ -126,6 +91,6 @@
             <TextField fx:id="endLabel" styleClass="txtfield" stylesheets="@application.css" />
          </children>
       </VBox>
-      <TextArea fx:id="descriptionLabel" layoutX="557.0" layoutY="249.0" prefHeight="191.0" prefWidth="342.0" />
+      <TextArea fx:id="descriptionLabel" layoutX="395.0" layoutY="254.0" prefHeight="191.0" prefWidth="342.0" />
    </children>
 </Pane>

@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="editProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="763.0" prefWidth="1376.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.EditProjectController">
+<Pane fx:id="editProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.EditProjectController">
    <children>
       <Label layoutX="10.0" layoutY="10.0" text="Edit project" textFill="LIGHTSKYBLUE">
          <font>
@@ -174,7 +174,7 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </Button>
-      <Button fx:id="finishProjectButton" layoutX="871.0" layoutY="503.0" mnemonicParsing="false" onAction="#finishProject" styleClass="signIn-btn" stylesheets="@application.css" text="Finish Project" textFill="LIGHTSKYBLUE">
+      <Button fx:id="finishProjectButton" layoutX="736.0" layoutY="503.0" mnemonicParsing="false" onAction="#finishProject" styleClass="signIn-btn" stylesheets="@application.css" text="Finish Project" textFill="LIGHTSKYBLUE">
          <graphic>
             <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -186,6 +186,6 @@
             <Font name="Calibri Bold" size="18.0" />
          </font>
       </Button>
-      <Text fill="LIGHTSKYBLUE" layoutX="886.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This will end your project!" />
+      <Text fill="LIGHTSKYBLUE" layoutX="751.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="This will end your project!" />
    </children>
 </Pane>
