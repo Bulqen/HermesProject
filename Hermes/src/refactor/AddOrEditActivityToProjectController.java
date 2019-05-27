@@ -153,8 +153,8 @@ public class AddOrEditActivityToProjectController {
 		dateAnswer1.setText(date);
 		activityDescriptionAnswer1.setText(description);
 
-		c.editScheduledActivities(Integer.parseInt(projectId),startTimeAnswer.getText(),endTimeAnswer.getText(),
-				dateAnswer.getText(), Integer.parseInt(activityId), activityDescriptionAnswer.getText());
+		c.editScheduledActivities(Integer.parseInt(projectId),startTimeAnswer1.getText(),endTimeAnswer1.getText(),
+				dateAnswer1.getText(), Integer.parseInt(activityId), activityDescriptionAnswer1.getText());
 
 	//int projectId, String starts, String stops, String currDate, int scheduleId, String description
 
@@ -193,10 +193,10 @@ public class AddOrEditActivityToProjectController {
 		//startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswer;
 
 		LblProject2.setText(projectId);
-		startTimeAnswer.setText(startTime);
-		endTimeAnswer.setText(endTime);
-		dateAnswer.setText(date);
-		activityDescriptionAnswer.setText(description);
+		startTimeAnswer1.setText(startTime);
+		endTimeAnswer1.setText(endTime);
+		dateAnswer1.setText(date);
+		activityDescriptionAnswer1.setText(description);
 	}
 	/*
 	 * Your code should be below this
