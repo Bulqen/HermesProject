@@ -101,29 +101,29 @@ public class AddOrEditActivityToProjectController {
 
 		c.addScheduledActivities(k, startTimeAnswer.getText(), endTimeAnswer.getText(),
 					dateAnswer.getText(),activityDescriptionAnswer.getText());
-		
+
 		Alert enterAlert = new Alert(AlertType.CONFIRMATION);
 		enterAlert.setHeaderText(null);
 		enterAlert.setContentText("Activity Sucsesfully created");
 		enterAlert.showAndWait();
-		
+
 		startTimeAnswer.clear();
 		endTimeAnswer.clear();
 		dateAnswer.clear();
 		activityDescriptionAnswer.clear();
-		
-		
+
+
 	}
 	@FXML
 	private void finalizeEditActivity(ActionEvent event) {
 
 		ArrayList <String []> info = new ArrayList<String []>();
 		int k = c.getProjectByManager(mainC.getUser().getUserId());
-			//[0] id, [1] startDate, [2] endDate, [3] currentDate, [4] projectID, [5] description	
+			//[0] id, [1] startDate, [2] endDate, [3] currentDate, [4] projectID, [5] description
 		info = c.getProjectActivities(k);
-		
+
 		String activityId = cBoxOfActivities.getSelectionModel().getSelectedItem();
-		
+
 		int i = 0;
 		boolean found = false;
 		while(i<info.size() && found == false) {
@@ -132,40 +132,67 @@ public class AddOrEditActivityToProjectController {
 			else
 				i++;
 		}
-		
+
+
 		String activityId2 = info.get(i)[0];
 		String startTime = info.get(i)[1];
 		String endTime = info.get(i)[2];
 		String date = info.get(i)[3];
 		String projectId = info.get(i)[4];
 		String description = info.get(i)[5];
-		
+
 		//startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswer;
-		
+
 		LblProject2.setText(projectId);
 		startTimeAnswer.setText(startTime);
 		endTimeAnswer.setText(endTime);
 		dateAnswer.setText(date);
 		activityDescriptionAnswer.setText(description);
-		
-		c.editScheduledActivities(projectId,startTimeAnswer.getText(),endTimeAnswer.getText(), 
-				dateAnswer.getText(), activityId, activityDescriptionAnswer.getText());
-		
-	//int projectId, String starts, String stops, String currDate, int scheduleId, String description		
-	
-		
-		
+
+		c.editScheduledActivities(Integer.parseInt(projectId),startTimeAnswer.getText(),endTimeAnswer.getText(),
+				dateAnswer.getText(), Integer.parseInt(activityId), activityDescriptionAnswer.getText());
+
+	//int projectId, String starts, String stops, String currDate, int scheduleId, String description
+
+
+
 		Alert enterAlert = new Alert(AlertType.CONFIRMATION);
 		enterAlert.setHeaderText(null);
 		enterAlert.setContentText("Activity Sucsesfully edited");
 		enterAlert.showAndWait();
-		
+
 		startTimeAnswer.clear();
 		endTimeAnswer.clear();
 		dateAnswer.clear();
 		activityDescriptionAnswer.clear();
-		
-		
+
+
+	}
+
+	@FXML
+	private void setCBox(ActionEvent event){
+		ArrayList <String []> info = new ArrayList<String []>();
+		int k = c.getProjectByManager(mainC.getUser().getUserId());
+			//[0] id, [1] startDate, [2] endDate, [3] currentDate, [4] projectID, [5] description
+		info = c.getProjectActivities(k);
+
+		int activityId = cBoxOfActivities.getSelectionModel().getSelectedIndex();
+		System.out.println(info.get(0)[0] + info.get(0)[1] +info.get(0)[2] +info.get(0)[3]+info.get(0)[4]+info.get(0)[5]);
+
+		String activityId2 = info.get(activityId)[0];
+		String startTime = info.get(activityId)[1];
+		String endTime = info.get(activityId)[2];
+		String date = info.get(activityId)[3];
+		String projectId = info.get(activityId)[4];
+		String description = info.get(activityId)[5];
+
+		//startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswer;
+
+		LblProject2.setText(projectId);
+		startTimeAnswer.setText(startTime);
+		endTimeAnswer.setText(endTime);
+		dateAnswer.setText(date);
+		activityDescriptionAnswer.setText(description);
 	}
 	/*
 	 * Your code should be below this

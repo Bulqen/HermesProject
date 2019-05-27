@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="addOrEditActivityToProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="597.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.AddOrEditActivityToProjectController">
+<Pane fx:id="addOrEditActivityToProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="597.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.AddOrEditActivityToProjectController">
    <children>
       <Button fx:id="button2" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#editActivity" styleClass="signIn-btn" stylesheets="@application.css" text="Edit activity" textFill="LIGHTSKYBLUE">
          <graphic>
@@ -85,7 +85,7 @@
                   <ComboBox fx:id="cBoxOfActivities" layoutX="139.0" layoutY="83.0" prefWidth="150.0" promptText="Activities" stylesheets="@application.css" />
                   <Label layoutX="32.0" layoutY="240.0" text="New Date" textFill="LIGHTSKYBLUE" />
                   <TextField fx:id="endDate11" layoutX="139.0" layoutY="236.0" styleClass="txtfield" stylesheets="@application.css" />
-                  <ComboBox fx:id="cBoxOfActivities" layoutX="139.0" layoutY="83.0" prefWidth="150.0" promptText="Activities" stylesheets="@application.css" />
+                  <ComboBox fx:id="cBoxOfActivities" layoutX="139.0" layoutY="83.0" onAction="#setCBox" prefWidth="150.0" promptText="Activities" stylesheets="@application.css" />
                   <Label fx:id="LblProject2" layoutX="143.0" layoutY="36.0" prefHeight="18.0" prefWidth="113.0" textFill="LIGHTSKYBLUE" />
                </children>
             </Pane>
