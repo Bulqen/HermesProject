@@ -56,7 +56,7 @@ public class EditProjectController {
 			projectIdLabel.setText(project[0]);
 			startDateLabel.setText(project[1]);
 			endDateLabel.setText(project[2]);
-			goalText.setText(project[3]);
+			goalText.setText(project[3]); 
 			budgetLabel.setText(project[4]);
 			statusLabel.setText(project[5]);
 			nameLabel.setText(project[6]);
