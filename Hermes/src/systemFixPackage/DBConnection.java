@@ -1020,6 +1020,24 @@ public class DBConnection {
 
 		return info;
 	}
+	
+	public ArrayList <String []> getManagers() {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL get_managers()}");
+			
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return info;
+	}
 
 	/**
 	 *

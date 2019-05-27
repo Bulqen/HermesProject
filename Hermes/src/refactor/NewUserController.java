@@ -72,6 +72,11 @@ public class NewUserController {
 				int pay = Integer.parseInt(hWageLabel.getText());
 				String [] name = nameLabel.getText().trim().split(" ");
 				String [] man = cBoxManager.getSelectionModel().getSelectedItem().split(",");
+				
+				System.out.println("auth:"+auth[0]);
+				System.out.println("auth:"+man[0]);
+				System.out.println("auth:"+shif[0]);
+
 
 
 
