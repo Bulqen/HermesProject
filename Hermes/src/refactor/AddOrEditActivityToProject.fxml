@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="addOrEditActivityToProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="597.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.AddOrEditActivityToProjectController">
+<Pane fx:id="addOrEditActivityToProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="597.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.AddOrEditActivityToProjectController">
    <children>
       <Button fx:id="button2" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#editActivity" styleClass="signIn-btn" stylesheets="@application.css" text="Edit activity" textFill="LIGHTSKYBLUE">
          <graphic>
@@ -58,7 +58,7 @@
                   </ImageView>
                   <Label fx:id="LblProject1" layoutX="199.0" layoutY="36.0" textFill="LIGHTSKYBLUE" />
                   <Label layoutX="32.0" layoutY="87.0" text="Activity ID" textFill="LIGHTSKYBLUE" />
-                  <ComboBox fx:id="cBoxOfActivities" layoutX="139.0" layoutY="83.0" onAction="#fillInInformation" prefWidth="150.0" promptText="Activities" stylesheets="@application.css" />
+                  <ComboBox fx:id="cBoxOfActivities" layoutX="139.0" layoutY="83.0" prefWidth="150.0" promptText="Activities" stylesheets="@application.css" />
                </children>
             </Pane>
             <Pane fx:id="hiddenPane" prefHeight="457.0" prefWidth="325.0" styleClass="parent" stylesheets="@application.css">
