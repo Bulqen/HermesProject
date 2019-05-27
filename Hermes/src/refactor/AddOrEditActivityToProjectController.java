@@ -187,10 +187,10 @@ public class AddOrEditActivityToProjectController {
 
 		String activityId = info.get(index)[0];
 		String startTime = info.get(index)[1];
-		String endTime = info.get(index)[2];
-		String date = info.get(index)[3];
-		String projectId = info.get(index)[4];
-		String description = info.get(index)[5];
+		String endTime = info.get(index)[3];
+		String date = info.get(index)[4];
+		String projectId = info.get(index)[5];
+		String description = info.get(index)[2];
 
 		//startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswerd
 
