@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -66,27 +67,22 @@
                   <Insets />
                </opaqueInsets>
             </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
-               <children>
-                  <Label text="Role" textFill="LIGHTSKYBLUE" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
-               <children>
-                  <Label text="Manager Id" textFill="LIGHTSKYBLUE" />
-               </children>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-            </HBox>
+            <Label text="Manager Id" textFill="LIGHTSKYBLUE" />
             <Label text="Hourly wage" textFill="LIGHTSKYBLUE" />
             <Label text="Authority" textFill="LIGHTSKYBLUE" />
             <Label text="username" textFill="LIGHTSKYBLUE" />
             <Label text="password" textFill="LIGHTSKYBLUE" />
             <Label text="repeat password" textFill="LIGHTSKYBLUE" />
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="374.0" spacing="5.0">
                <opaqueInsets>
                   <Insets />
@@ -107,17 +103,16 @@
             <Insets left="40.0" />
          </padding>
       </VBox>
-      <VBox alignment="CENTER" layoutX="337.0" layoutY="29.0" prefHeight="681.0" prefWidth="169.0" spacing="31.0">
+      <VBox alignment="CENTER" layoutX="337.0" layoutY="-6.0" prefHeight="699.0" prefWidth="172.0" spacing="31.0">
          <children>
             <TextField fx:id="nameLabel" styleClass="txtfield" stylesheets="@application.css" />
             <TextField fx:id="adressLabel" styleClass="txtfield" stylesheets="@application.css" />
             <TextField fx:id="phoneLabel" styleClass="txtfield" stylesheets="@application.css" />
             <TextField fx:id="socialLabel" styleClass="txtfield" stylesheets="@application.css" />
-            <TextField fx:id="shiftLabel" styleClass="txtfield" stylesheets="@application.css" />
-            <TextField fx:id="roleLabel" styleClass="txtfield" stylesheets="@application.css" />
-            <TextField fx:id="managerIdLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <ComboBox fx:id="cBoxShiftLabel" prefHeight="27.0" prefWidth="177.0" promptText="shift" />
+            <ComboBox fx:id="cBoxManager" prefHeight="27.0" prefWidth="177.0" promptText="mangers" />
             <TextField fx:id="hWageLabel" styleClass="txtfield" stylesheets="@application.css" />
-            <TextField fx:id="authorityLabel" prefHeight="17.0" prefWidth="167.0" styleClass="txtfield" stylesheets="@application.css" />
+            <ComboBox fx:id="cBoxAuthority" prefHeight="27.0" prefWidth="171.0" promptText="authority classes" />
             <TextField fx:id="userNameLabel" prefHeight="17.0" prefWidth="167.0" styleClass="txtfield" stylesheets="@application.css" />
             <PasswordField fx:id="passwordLabel1" styleClass="txtfield" stylesheets="@application.css" />
             <PasswordField fx:id="passwordLabel2" styleClass="txtfield" stylesheets="@application.css" />

@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.Pane;
 import systemFixPackage.DBConnection;
 import systemFixPackage.timeReport;
+import javafx.scene.control.ComboBox;
 public class AddOrEditActivityToProjectController {
 	private MenuGuiController mainC;
 	private DBConnection c = new DBConnection();
@@ -24,12 +25,26 @@ public class AddOrEditActivityToProjectController {
 	private Button addActivity;
 	@FXML
 	private Button editActivity;
+	
+	@FXML 
+	private Button finalizeEditActivity;
+	
+	@FXML
+	private Button finalizeAddActivity;
+	
 	@FXML
 	private Label LblProject;
+	
 
 
 	@FXML
 	private Pane hiddenPane;
+	
+	@FXML
+	private Pane hiddenPane1;
+	
+	@FXML
+	private ComboBox <String> cBoxOfActivities;
 
 
 	public void injectMainController(MenuGuiController mainC){
@@ -54,12 +69,29 @@ public class AddOrEditActivityToProjectController {
 			enterAlert.showAndWait();
 		}
 	}
-	@FXML
+	
 	private void editActivity(ActionEvent event) {
-
-
+		ArrayList <String []> info = new ArrayList<String []>();
+		int k = c.getProjectByManager(mainC.getUser().getUserId());
+		
+		info = c.getProcjectActivities(k);
+		
+		if(!info.isEmpty()) {
+			for(int i = 0; i<info.size(); i++)
+				cBoxOfActivities.getItems().add(info.get(i)[0]);		
+		}
 	}
-
+	
+	private void finalizeEditActivity(ActionEvent event) {
+		
+		
+		
+		
+	}
+	
+	private void finalizeAddActivity(ActionEvent event) {
+		
+	}
 
 	/*
 	 * Your code should be below this

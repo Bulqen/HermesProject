@@ -12,7 +12,7 @@ public class DBConnection {
 	private String PW;
 	private Connection myConn;
 
-	//Kan �ndra till icke public sen
+	//Kan �ndra till icke public senare
 	public DBConnection() {
 
 		try {
@@ -327,6 +327,30 @@ public class DBConnection {
 
 
 		return usernames;
+	}
+	/**
+	 * 
+	 * @return
+	 *  id, name, classificationID
+	 */
+	
+	public ArrayList <String []> getManagers() {
+		ArrayList <String []> managers = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL get_managers()}");
+
+
+			ResultSet myRs = myCall.executeQuery();
+			if(this.check(myRs))
+				managers = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return managers;
 	}
 	/**
 	 *
@@ -921,14 +945,15 @@ public class DBConnection {
 	 * Add a scheduled activity for a specific project
 	 */
 
-	public void addScheduledActivities(int projectId, String starts, String stops, String currDate) {
+	public void addScheduledActivities(int projectId, String starts, String stops, String currDate, String description) {
 
 		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL scheduled_activities_add(?, ?, ?, ?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL scheduled_activities_add(?, ?, ?, ?, ?)}");
 			myCall.setInt(1, projectId);
 			myCall.setString(2, starts);
 			myCall.setString(3, stops);
 			myCall.setString(4, currDate);
+			myCall.setString(5, description);
 
 
 
@@ -1028,7 +1053,7 @@ public class DBConnection {
 	 * [0] userId, [1] projectId, [2] startTime , [3] stoppTime, [4] theDate, [5] id
 	 */
 
-	public ArrayList <String []> getProcjectActivitiesForUser(int userId) {
+	public ArrayList <String []> getProjectActivitiesForUser(int userId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
 		try {
