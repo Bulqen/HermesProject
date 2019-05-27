@@ -119,7 +119,7 @@ public class NewUserController {
 			String row = rows[0] + ","+rows[1];
 			cBoxManager.getItems().add(row);
 
-		}
+		} 
 
 
 
