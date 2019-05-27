@@ -31,10 +31,10 @@ public class AddOrEditActivityToProjectController {
 
 	@FXML
 	private TextField startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswer;
-	
+
 	@FXML
 	private TextField startTimeAnswer1,endTimeAnswer1,dateAnswer1, activityDescriptionAnswer1;
-	
+
 	@FXML
 	private Pane hiddenPane;
 
@@ -182,6 +182,8 @@ public class AddOrEditActivityToProjectController {
 
 		int activityId = cBoxOfActivities.getSelectionModel().getSelectedIndex();
 		System.out.println(info.get(0)[0] + info.get(0)[1] +info.get(0)[2] +info.get(0)[3]+info.get(0)[4]+info.get(0)[5]);
+
+		System.out.println(activityId);
 
 		String activityId2 = info.get(activityId)[0];
 		String startTime = info.get(activityId)[1];
