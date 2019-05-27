@@ -84,6 +84,7 @@ public class ShowActivitiesController {
 	    	endLabel.setDisable(true);
 	    	descriptionLabel.setDisable(true);
 	    	ArrayList<String[]> projects = db.getAllProjects();
+	    	cBoxProjects.getItems().clear();
 	    	
 	    	
 	    	for(int i = 0; i < projects.size(); i++) {
