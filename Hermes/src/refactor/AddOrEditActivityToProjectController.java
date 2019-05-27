@@ -30,6 +30,9 @@ public class AddOrEditActivityToProjectController {
 
 	@FXML
 	private Pane hiddenPane;
+	
+	@FXML
+	private Pane hiddenPane1;
 
 
 	public void injectMainController(MenuGuiController mainC){
@@ -56,7 +59,13 @@ public class AddOrEditActivityToProjectController {
 	}
 	@FXML
 	private void editActivity(ActionEvent event) {
-
+		ArrayList <String []> info = new ArrayList<String []>();
+		int k = c.getProjectByManager(mainC.getUser().getUserId());
+		
+		info = c.getProjectInfo(k);
+		
+		
+		
 
 	}
 

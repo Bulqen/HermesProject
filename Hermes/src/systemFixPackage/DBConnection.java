@@ -1028,7 +1028,7 @@ public class DBConnection {
 	 * [0] userId, [1] projectId, [2] startTime , [3] stoppTime, [4] theDate, [5] id
 	 */
 
-	public ArrayList <String []> getProcjectActivitiesForUser(int userId) {
+	public ArrayList <String []> getProjectActivitiesForUser(int userId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
 		try {
