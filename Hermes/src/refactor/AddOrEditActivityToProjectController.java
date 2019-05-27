@@ -26,7 +26,11 @@ public class AddOrEditActivityToProjectController {
 	@FXML
 	private Button editActivity;
 
+<<<<<<< HEAD
 	@FXML 
+=======
+	@FXML
+>>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
 	private Button finalizeEditActivity;
 
 	@FXML
@@ -34,10 +38,16 @@ public class AddOrEditActivityToProjectController {
 
 	@FXML
 	private Label LblProject;
+<<<<<<< HEAD
 	
 	@FXML 
 	private TextField startTimeAnswer,endTimeAnswer,dateAnswer,
 						activityDescriptionAnswer;
+=======
+
+
+
+>>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
 	@FXML
 	private Pane hiddenPane;
 
@@ -71,6 +81,10 @@ public class AddOrEditActivityToProjectController {
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	@FXML
+>>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
 	private void editActivity(ActionEvent event) {
 		ArrayList <String []> info = new ArrayList<String []>();
 		int k = c.getProjectByManager(mainC.getUser().getUserId());
@@ -79,12 +93,23 @@ public class AddOrEditActivityToProjectController {
 
 		if(!info.isEmpty()) {
 			for(int i = 0; i<info.size(); i++)
-				cBoxOfActivities.getItems().add(info.get(i)[0]);		
+				cBoxOfActivities.getItems().add(info.get(i)[0]);
 		}
 	}
 
+<<<<<<< HEAD
+=======
+	private void finalizeEditActivity(ActionEvent event) {
+
+
+
+
+	}
+
+>>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
 	private void finalizeAddActivity(ActionEvent event) {
 
+<<<<<<< HEAD
 		// int projectId, String starts, String stops, String currDate
 		
 		ArrayList <String []> info = new ArrayList<String []>();
@@ -92,6 +117,8 @@ public class AddOrEditActivityToProjectController {
 		
 		c.addScheduledActivities(k, startTimeAnswer.getText(), endTimeAnswer.getText(),
 					dateAnswer.getText(),activityDescriptionAnswer.getText());
+=======
+>>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
 	}
 
 	private void finalizeEditActivity(ActionEvent event) {

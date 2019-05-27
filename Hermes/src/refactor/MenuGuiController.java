@@ -406,6 +406,7 @@ public class MenuGuiController {
 	@FXML
 	private void showSchedule(ActionEvent event){
 		showSchedulePane.toFront();
+		this.showScheduleController.test();
 	}
 
 	@FXML
@@ -444,6 +445,7 @@ public class MenuGuiController {
 	@FXML
 	private void newUser(ActionEvent event) {
 		this.newUserPane.toFront();
+		this.newUserController.setup();
 	}
 
 	@FXML
