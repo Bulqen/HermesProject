@@ -31,6 +31,10 @@ public class AddOrEditActivityToProjectController {
 
 	@FXML
 	private TextField startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswer;
+	
+	@FXML
+	private TextField startTimeAnswer1,endTimeAnswer1,dateAnswer1, activityDescriptionAnswer1;
+	
 	@FXML
 	private Pane hiddenPane;
 
@@ -144,10 +148,10 @@ public class AddOrEditActivityToProjectController {
 		//startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswer;
 
 		LblProject2.setText(projectId);
-		startTimeAnswer.setText(startTime);
-		endTimeAnswer.setText(endTime);
-		dateAnswer.setText(date);
-		activityDescriptionAnswer.setText(description);
+		startTimeAnswer1.setText(startTime);
+		endTimeAnswer1.setText(endTime);
+		dateAnswer1.setText(date);
+		activityDescriptionAnswer1.setText(description);
 
 		c.editScheduledActivities(Integer.parseInt(projectId),startTimeAnswer.getText(),endTimeAnswer.getText(),
 				dateAnswer.getText(), Integer.parseInt(activityId), activityDescriptionAnswer.getText());
@@ -161,10 +165,10 @@ public class AddOrEditActivityToProjectController {
 		enterAlert.setContentText("Activity Sucsesfully edited");
 		enterAlert.showAndWait();
 
-		startTimeAnswer.clear();
-		endTimeAnswer.clear();
-		dateAnswer.clear();
-		activityDescriptionAnswer.clear();
+		startTimeAnswer1.clear();
+		endTimeAnswer1.clear();
+		dateAnswer1.clear();
+		activityDescriptionAnswer1.clear();
 
 
 	}
