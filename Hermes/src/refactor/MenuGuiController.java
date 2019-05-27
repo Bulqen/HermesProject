@@ -73,6 +73,8 @@ public class MenuGuiController {
 	private AddOrEditActivityToProjectController addOrEditActivityToProjectController;
 	@FXML
 	private ShowActivitiesController showActivitiesController;
+	@FXML
+	private ShowScheduleController showScheduleController;
 
 	// Node used to get the current scene
 	private Node node;
@@ -132,13 +134,6 @@ public class MenuGuiController {
 	@FXML
 	private Label grossEarningsSalary, taxesSalary, netEarningsSalary;
 
-	// FXML items relating to reportASickDay
-	//@FXML
-	//private TextArea commentOnWhySick;
-
-	//@FXML
-	//private Button CallInSickButton;
-
 	// FXML items relating to editWorkingHours
 	@FXML
 	private Button SaveEditWorkingHours;
@@ -159,6 +154,10 @@ public class MenuGuiController {
 
 	@FXML
 	private Pane newProjectPane, editProjectPane, addOrEditActivityToProjectPane, showActivitiesPane;
+
+	//Pane that shows schedule
+	@FXML
+	private Pane showSchedulePane;
 
 	// Set up at launch
 
@@ -217,6 +216,7 @@ public class MenuGuiController {
 		editProjectController.injectMainController(this);
 		addOrEditActivityToProjectController.injectMainController(this);
 		showActivitiesController.injectMainController(this);
+		showScheduleController.injectMainController(this);
 	}
 
 	// Makes the stage dragable when you klick and hold on the stage
@@ -401,6 +401,11 @@ public class MenuGuiController {
 		this.salarySlipPane.setVisible(false);
 		this.ManageAccountsPane.setVisible(false);
 		this.mainMenuPain.setVisible(false);
+	}
+
+	@FXML
+	private void showSchedule(ActionEvent event){
+		showSchedulePane.toFront();
 	}
 
 	@FXML

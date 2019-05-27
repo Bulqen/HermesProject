@@ -172,7 +172,7 @@
                         <Insets left="50.0" />
                      </padding>
                      <children>
-                        <Button mnemonicParsing="false" styleClass="signIn-btn" stylesheets="@application.css" text="Vad ska va här" textFill="LIGHTSKYBLUE">
+                        <Button mnemonicParsing="false" onAction="#showSchedule" styleClass="signIn-btn" stylesheets="@application.css" text="Show my schedule" textFill="LIGHTSKYBLUE">
                            <graphic>
                               <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -740,6 +740,11 @@
                <children>
                   <fx:include fx:id="showActivities" source="ShowActivities.fxml" />
                </children></Pane>
+            <Pane fx:id="showSchedulePane" prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <fx:include fx:id="showSchedule" source="ShowSchedule.fxml" />
+               </children>
+            </Pane>
          </children></AnchorPane>
    </children>
 </AnchorPane>
