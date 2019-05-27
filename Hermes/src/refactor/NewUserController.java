@@ -110,7 +110,7 @@ public class NewUserController {
 		cBoxShiftLabel.getItems().add("2,natt");
 		cBoxShiftLabel.getItems().add("3,helg");
 
-		ArrayList<String[]> managers = db.getManagers();
+		ArrayList<String[]> managers = db.getManagers(); 
 
 		cBoxManager.getItems().add("0,no manager");
 
