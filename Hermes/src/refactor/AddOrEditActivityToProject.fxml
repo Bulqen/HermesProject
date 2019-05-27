@@ -67,8 +67,8 @@
                   <Label layoutX="32.0" layoutY="36.0" text="Project Id" textFill="LIGHTSKYBLUE" />
                   <Label layoutX="32.0" layoutY="138.0" text="New start time" textFill="LIGHTSKYBLUE" />
                   <Label layoutX="32.0" layoutY="189.0" text="New end time" textFill="LIGHTSKYBLUE" />
-                  <TextField fx:id="startDateAnswer1" layoutX="139.0" layoutY="134.0" styleClass="txtfield" stylesheets="@application.css" />
-                  <TextField fx:id="endDateAnswer1" layoutX="139.0" layoutY="185.0" styleClass="txtfield" stylesheets="@application.css" />
+                  <TextField fx:id="startTimeAnswer1" layoutX="139.0" layoutY="134.0" styleClass="txtfield" stylesheets="@application.css" />
+                  <TextField fx:id="endTimeAnswer1" layoutX="139.0" layoutY="185.0" styleClass="txtfield" stylesheets="@application.css" />
                   <Label layoutY="291.0" text="New activity description" textFill="LIGHTSKYBLUE" />
                   <Button layoutX="32.0" layoutY="350.0" mnemonicParsing="false" onAction="#finalizeEditActivity" prefHeight="68.0" prefWidth="185.0" styleClass="signIn-btn" stylesheets="@application.css" text="         Edit activity" textFill="LIGHTSKYBLUE">
                      <font>
@@ -84,7 +84,7 @@
                   <Label layoutX="32.0" layoutY="87.0" text="Activity ID" textFill="LIGHTSKYBLUE" />
                   <ComboBox fx:id="cBoxOfActivities" layoutX="139.0" layoutY="83.0" prefWidth="150.0" promptText="Activities" stylesheets="@application.css" />
                   <Label layoutX="32.0" layoutY="240.0" text="New Date" textFill="LIGHTSKYBLUE" />
-                  <TextField fx:id="endDateAnswer1" layoutX="139.0" layoutY="236.0" styleClass="txtfield" stylesheets="@application.css" />
+                  <TextField fx:id="DateAnswer1" layoutX="139.0" layoutY="236.0" styleClass="txtfield" stylesheets="@application.css" />
                   <ComboBox fx:id="cBoxOfActivities" layoutX="139.0" layoutY="83.0" onAction="#setCBox" prefWidth="150.0" promptText="Activities" stylesheets="@application.css" />
                   <Label fx:id="LblProject2" layoutX="143.0" layoutY="36.0" prefHeight="18.0" prefWidth="113.0" textFill="LIGHTSKYBLUE" />
                </children>

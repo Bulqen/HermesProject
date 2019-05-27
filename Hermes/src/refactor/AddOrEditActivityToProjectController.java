@@ -192,7 +192,7 @@ public class AddOrEditActivityToProjectController {
 		String projectId = info.get(activityId)[4];
 		String description = info.get(activityId)[5];
 
-		//startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswer;
+		//startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswerd;
 
 		LblProject2.setText(projectId);
 		startTimeAnswer1.setText(startTime);
