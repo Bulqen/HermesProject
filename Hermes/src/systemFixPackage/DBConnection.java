@@ -329,30 +329,6 @@ public class DBConnection {
 		return usernames;
 	}
 	/**
-	 * 
-	 * @return
-	 *  id, name, classificationID
-	 */
-	
-	public ArrayList <String []> getManagers() {
-		ArrayList <String []> managers = new ArrayList<String []>();
-
-		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL get_managers()}");
-
-
-			ResultSet myRs = myCall.executeQuery();
-			if(this.check(myRs))
-				managers = getAllAsList(myRs);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
-		return managers;
-	}
-	/**
 	 *
 	 * @param uId
 	 * @param username
@@ -945,15 +921,14 @@ public class DBConnection {
 	 * Add a scheduled activity for a specific project
 	 */
 
-	public void addScheduledActivities(int projectId, String starts, String stops, String currDate, String description) {
+	public void addScheduledActivities(int projectId, String starts, String stops, String currDate) {
 
 		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL scheduled_activities_add(?, ?, ?, ?, ?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL scheduled_activities_add(?, ?, ?, ?)}");
 			myCall.setInt(1, projectId);
 			myCall.setString(2, starts);
 			myCall.setString(3, stops);
 			myCall.setString(4, currDate);
-			myCall.setString(5, description);
 
 
 
@@ -1027,7 +1002,7 @@ public class DBConnection {
 	 * [0] id, [1] startDate, [2] endDate, [3] currentDate, [4] projectID, [5] description
 	 */
 
-	public ArrayList <String []> getProjectActivities(int projectId) {
+	public ArrayList <String []> getProcjectActivities(int projectId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
 		try {
