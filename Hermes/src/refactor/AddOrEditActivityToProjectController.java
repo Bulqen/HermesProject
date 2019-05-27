@@ -44,6 +44,7 @@ public class AddOrEditActivityToProjectController {
 		int p = c.getProjectByManager(mainC.getUser().getUserId());
 		if(p >= 0){
 			hiddenPane.setVisible(true);
+			hiddenPane.toFront();
 			LblProject.setText(String.valueOf(p));
 		}
 		else{

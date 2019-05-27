@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="addOrEditActivityToProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="597.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.AddOrEditActivityToProjectController">
+<Pane fx:id="addOrEditActivityToProject" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="597.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.AddOrEditActivityToProjectController">
    <children>
       <Button fx:id="button2" layoutX="14.0" layoutY="125.0" mnemonicParsing="false" onAction="#editActivity" styleClass="signIn-btn" stylesheets="@application.css" text="Edit activity" textFill="LIGHTSKYBLUE">
          <graphic>
@@ -36,6 +36,7 @@
       </Button>
       <Pane layoutX="258.0" layoutY="31.0">
          <children>
+            <Pane prefHeight="457.0" prefWidth="325.0" styleClass="parent" stylesheets="@application.css" />
             <Pane fx:id="hiddenPane" prefHeight="457.0" prefWidth="325.0">
                <children>
                   <TextField fx:id="activityDescription" layoutX="139.0" layoutY="185.0" styleClass="txtfield" stylesheets="@application.css" />
@@ -58,7 +59,6 @@
                   <Label fx:id="LblProject" layoutX="199.0" layoutY="36.0" textFill="LIGHTSKYBLUE" />
                </children>
             </Pane>
-            <Pane prefHeight="457.0" prefWidth="325.0" styleClass="parent" stylesheets="@application.css" />
          </children>
       </Pane>
    </children>
