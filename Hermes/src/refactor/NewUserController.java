@@ -84,10 +84,30 @@ public class NewUserController {
 				int user = db.userCreate(Integer.parseInt(auth[0]), Integer.parseInt(shif[0]),
 						pay, Integer.parseInt(man[0]), name[0], name[1], adressLabel.getText(),
 						phoneLabel.getText(), socialLabel.getText());
+				
+				System.out.println(user);
+				
 
 				db.loginCreate(user, userNameLabel.getText(), passwordLabel1.getText());
+				Alert enterAlert = new Alert(AlertType.INFORMATION);
+				enterAlert.setHeaderText(null);
+				enterAlert.setContentText("Sucess");
+				enterAlert.showAndWait();
+				
+				cBoxManager.getItems().clear();
+				cBoxAuthority.getItems().clear();
+				cBoxShiftLabel.getItems().clear();
+				
+				passwordLabel2.clear();
+				passwordLabel1.clear();
+				nameLabel.clear();
+				adressLabel.clear();
+				socialLabel.clear();
+				userNameLabel.clear();
+				hWageLabel.clear();
+				phoneLabel.clear();
+				
 				setup();
-
 
 			} else {
 				Alert enterAlert = new Alert(AlertType.ERROR);
@@ -96,7 +116,7 @@ public class NewUserController {
 				enterAlert.showAndWait();
 			}
 
-
+			
 
 
 	}
@@ -105,10 +125,10 @@ public class NewUserController {
 		cBoxAuthority.getItems().add("2,project manager");
 		cBoxAuthority.getItems().add("3,department manager");
 
-		cBoxShiftLabel.getItems().add("0,2-shift");
-		cBoxShiftLabel.getItems().add("1,förmiddag");
-		cBoxShiftLabel.getItems().add("2,natt");
-		cBoxShiftLabel.getItems().add("3,helg");
+		cBoxShiftLabel.getItems().add("1,2-shift");
+		cBoxShiftLabel.getItems().add("2,förmiddag");
+		cBoxShiftLabel.getItems().add("3,natt");
+		cBoxShiftLabel.getItems().add("4,helg");
 
 		ArrayList<String[]> managers = db.getManagers(); 
 
