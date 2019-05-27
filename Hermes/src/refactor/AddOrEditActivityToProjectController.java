@@ -177,20 +177,20 @@ public class AddOrEditActivityToProjectController {
 	private void setCBox(ActionEvent event){
 		ArrayList <String []> info = new ArrayList<String []>();
 		int k = c.getProjectByManager(mainC.getUser().getUserId());
-			//[0] id, [1] startDate, [2] endDate, [3] currentDate, [4] projectID, [5] description
+			//[0] id-activity, [1] start time, [2] description, [3] end time, [4] date, [5] projectID
 		info = c.getProjectActivities(k);
 
-		int activityId = cBoxOfActivities.getSelectionModel().getSelectedIndex();
+		int index = cBoxOfActivities.getSelectionModel().getSelectedIndex();
 		System.out.println(info.get(0)[0] + info.get(0)[1] +info.get(0)[2] +info.get(0)[3]+info.get(0)[4]+info.get(0)[5]);
 
-		System.out.println(activityId);
+		System.out.println(index);
 
-		String activityId2 = info.get(activityId)[0];
-		String startTime = info.get(activityId)[1];
-		String endTime = info.get(activityId)[2];
-		String date = info.get(activityId)[3];
-		String projectId = info.get(activityId)[4];
-		String description = info.get(activityId)[5];
+		String activityId = info.get(index)[0];
+		String startTime = info.get(index)[1];
+		String endTime = info.get(index)[2];
+		String date = info.get(index)[3];
+		String projectId = info.get(index)[4];
+		String description = info.get(index)[5];
 
 		//startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswerd
 
