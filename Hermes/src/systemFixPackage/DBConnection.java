@@ -540,14 +540,14 @@ public class DBConnection {
 	 * adding a pass for a certain employee
 	 */
 
-	public void addScheduledPass(int uId, String start, String stop, String currentDate, String description) {
+	public void addScheduledPass(int uId, String start, String stop, String currentDate) {
 		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL add_scehduled_pass(?, ?, ?, ?, ?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL add_scehduled_pass(?, ?, ?, ?)}");
 			myCall.setInt(1, uId);
 			myCall.setString(2, start);
 			myCall.setString(3, stop);
 			myCall.setString(4, currentDate);
-			myCall.setString(5, description);
+			
 
 			myCall.executeUpdate();
 
@@ -921,14 +921,15 @@ public class DBConnection {
 	 * Add a scheduled activity for a specific project
 	 */
 
-	public void addScheduledActivities(int projectId, String starts, String stops, String currDate) {
+	public void addScheduledActivities(int projectId, String starts, String stops, String currDate, String description) {
 
 		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL scheduled_activities_add(?, ?, ?, ?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL scheduled_activities_add(?, ?, ?, ?, ?)}");
 			myCall.setInt(1, projectId);
 			myCall.setString(2, starts);
 			myCall.setString(3, stops);
 			myCall.setString(4, currDate);
+			myCall.setString(5, description);
 
 
 
