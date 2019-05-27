@@ -402,6 +402,32 @@ public class DBConnection {
 
 		return info.get(0);
 	}
+	/**
+	 * 
+	 * @param scheduleId
+	 * @return
+	 * id, start, description,stop, date, projectId
+	 */
+	public String [] getScheduledActiviry(int scheduleId) {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+
+			CallableStatement myCall = myConn.prepareCall("{CALL get_scheduled_activity(?)}");
+			myCall.setInt(1, scheduleId);
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return info.get(0);
+	}
+	
+	
 
 	/**
 	 *
@@ -416,6 +442,28 @@ public class DBConnection {
 
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL get_all_users()}");
+
+
+			ResultSet myRs = myCall.executeQuery();
+			info = getAllAsList(myRs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+		return info;
+	}
+	/**
+	 * 
+	 * @return
+	 * id, startDate, endDate, Goals, budget,status,name, manager
+	 */
+	public ArrayList <String []> getAllProjects() {
+		ArrayList <String []> info = new ArrayList<String []>();
+
+		try {
+			CallableStatement myCall = myConn.prepareCall("{CALL get_projects()}");
 
 
 			ResultSet myRs = myCall.executeQuery();
