@@ -37,38 +37,16 @@
       </Button>
       <Pane layoutX="248.0" layoutY="14.0">
          <children>
-            <Pane fx:id="hiddenPane" prefHeight="457.0" prefWidth="325.0" styleClass="parent" stylesheets="@application.css">
-               <children>
-                  <TextField fx:id="activityDescription" layoutX="139.0" layoutY="185.0" styleClass="txtfield" stylesheets="@application.css" />
-                  <Label layoutX="32.0" layoutY="36.0" text="Project Id" textFill="LIGHTSKYBLUE" />
-                  <Label layoutX="32.0" layoutY="87.0" text="Start date" textFill="LIGHTSKYBLUE" />
-                  <Label layoutX="32.0" layoutY="138.0" text="End date" textFill="LIGHTSKYBLUE" />
-                  <TextField fx:id="startDate" layoutX="139.0" layoutY="83.0" styleClass="txtfield" stylesheets="@application.css" />
-                  <TextField fx:id="endDate" layoutX="139.0" layoutY="134.0" styleClass="txtfield" stylesheets="@application.css" />
-                  <Label layoutX="20.0" layoutY="189.0" text="Activity description" textFill="LIGHTSKYBLUE" />
-                  <Button fx:id="button11" layoutX="100.0" layoutY="280.0" mnemonicParsing="false" onAction="#addActivity" styleClass="signIn-btn" stylesheets="@application.css" text="Add activity" textFill="LIGHTSKYBLUE">
-                     <font>
-                        <Font name="Calibri Bold" size="18.0" />
-                     </font>
-                  </Button>
-                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="40.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../Images/parallel-tasks-128.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="LblProject" layoutX="199.0" layoutY="36.0" textFill="LIGHTSKYBLUE" />
-               </children>
-            </Pane>
             <Pane fx:id="hiddenPane1" layoutX="10.0" layoutY="10.0" prefHeight="457.0" prefWidth="325.0" styleClass="parent" stylesheets="@application.css">
                <children>
-                  <TextField fx:id="activityDescription1" layoutX="139.0" layoutY="236.0" styleClass="txtfield" stylesheets="@application.css" />
+                  <TextField fx:id="activityDescription1" layoutX="145.0" layoutY="236.0" styleClass="txtfield" stylesheets="@application.css" />
                   <Label layoutX="32.0" layoutY="36.0" text="Project Id" textFill="LIGHTSKYBLUE" />
-                  <Label layoutX="32.0" layoutY="138.0" text="Start date" textFill="LIGHTSKYBLUE" />
-                  <Label layoutX="32.0" layoutY="189.0" text="End date" textFill="LIGHTSKYBLUE" />
+                  <Label layoutX="32.0" layoutY="138.0" text="New start date" textFill="LIGHTSKYBLUE" />
+                  <Label layoutX="32.0" layoutY="189.0" text="New end date" textFill="LIGHTSKYBLUE" />
                   <TextField fx:id="startDate1" layoutX="139.0" layoutY="134.0" styleClass="txtfield" stylesheets="@application.css" />
                   <TextField fx:id="endDate1" layoutX="139.0" layoutY="185.0" styleClass="txtfield" stylesheets="@application.css" />
-                  <Label layoutX="20.0" layoutY="240.0" text="Activity description" textFill="LIGHTSKYBLUE" />
-                  <Button fx:id="button111" layoutX="100.0" layoutY="338.0" mnemonicParsing="false" onAction="#addActivity" styleClass="signIn-btn" stylesheets="@application.css" text="Edit activity" textFill="LIGHTSKYBLUE">
+                  <Label layoutY="240.0" text="New activity description" textFill="LIGHTSKYBLUE" />
+                  <Button fx:id="finalizeEditActivity" layoutX="32.0" layoutY="319.0" mnemonicParsing="false" onAction="#addActivity" prefHeight="68.0" prefWidth="185.0" styleClass="signIn-btn" stylesheets="@application.css" text="         Edit activity" textFill="LIGHTSKYBLUE">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
@@ -79,8 +57,30 @@
                      </image>
                   </ImageView>
                   <Label fx:id="LblProject1" layoutX="199.0" layoutY="36.0" textFill="LIGHTSKYBLUE" />
+                  <Label layoutX="32.0" layoutY="87.0" text="Activity ID" textFill="LIGHTSKYBLUE" />
+                  <ComboBox fx:id="cBoxOfActivities" layoutX="139.0" layoutY="83.0" onAction="#fillInInformation" prefWidth="150.0" promptText="Activities" stylesheets="@application.css" />
+               </children>
+            </Pane>
+            <Pane fx:id="hiddenPane" prefHeight="457.0" prefWidth="325.0" styleClass="parent" stylesheets="@application.css">
+               <children>
+                  <TextField fx:id="activityDescription" layoutX="139.0" layoutY="185.0" styleClass="txtfield" stylesheets="@application.css" />
+                  <Label layoutX="32.0" layoutY="36.0" text="Project Id" textFill="LIGHTSKYBLUE" />
                   <Label layoutX="32.0" layoutY="87.0" text="Start date" textFill="LIGHTSKYBLUE" />
-                  <ComboBox fx:id="cBoxOfUsersEdit" layoutX="139.0" layoutY="83.0" onAction="#fillInInformation" prefWidth="150.0" promptText="Activities" stylesheets="@application.css" />
+                  <Label layoutX="32.0" layoutY="138.0" text="End date" textFill="LIGHTSKYBLUE" />
+                  <TextField fx:id="startDate" layoutX="139.0" layoutY="83.0" styleClass="txtfield" stylesheets="@application.css" />
+                  <TextField fx:id="endDate" layoutX="139.0" layoutY="134.0" styleClass="txtfield" stylesheets="@application.css" />
+                  <Label layoutX="20.0" layoutY="189.0" text="Activity description" textFill="LIGHTSKYBLUE" />
+                  <Button fx:id="finalizeAddActivity" layoutX="35.0" layoutY="258.0" mnemonicParsing="false" onAction="#addActivity" prefHeight="76.0" prefWidth="166.0" styleClass="signIn-btn" stylesheets="@application.css" text="            Add activity" textFill="LIGHTSKYBLUE">
+                     <font>
+                        <Font name="Calibri Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="40.0" layoutY="266.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/parallel-tasks-128.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="LblProject" layoutX="199.0" layoutY="36.0" textFill="LIGHTSKYBLUE" />
                </children>
             </Pane>
          </children>
