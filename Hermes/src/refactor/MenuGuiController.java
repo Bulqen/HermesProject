@@ -370,6 +370,7 @@ public class MenuGuiController {
 	@FXML
 	private void showActivities(ActionEvent event) {
 		showActivitiesPane.toFront();
+		this.showActivitiesController.setup();
 	}
 
 	@FXML

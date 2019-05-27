@@ -31,6 +31,15 @@
                   <Insets />
                </opaqueInsets>
             </HBox>
+            <Label alignment="CENTER" layoutX="1616.0" layoutY="12.0" onMouseClicked="#logOut" prefHeight="20.0" prefWidth="20.0" styleClass="min-btn">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Images/minus-3-24.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
             <Label alignment="CENTER" onMouseClicked="#minimize_stage" prefHeight="20.0" prefWidth="20.0" styleClass="min-btn">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
