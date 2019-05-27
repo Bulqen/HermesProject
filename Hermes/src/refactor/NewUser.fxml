@@ -109,10 +109,10 @@
             <TextField fx:id="adressLabel" styleClass="txtfield" stylesheets="@application.css" />
             <TextField fx:id="phoneLabel" styleClass="txtfield" stylesheets="@application.css" />
             <TextField fx:id="socialLabel" styleClass="txtfield" stylesheets="@application.css" />
-            <ComboBox fx:id="cBoxShiftLabel" prefHeight="27.0" prefWidth="177.0" />
-            <ComboBox fx:id="cBoxManager" prefHeight="27.0" prefWidth="177.0" />
+            <ComboBox fx:id="cBoxShiftLabel" prefHeight="27.0" prefWidth="177.0" promptText="shift" />
+            <ComboBox fx:id="cBoxManager" prefHeight="27.0" prefWidth="177.0" promptText="mangers" />
             <TextField fx:id="hWageLabel" styleClass="txtfield" stylesheets="@application.css" />
-            <ComboBox fx:id="cBoxAuthority" prefHeight="27.0" prefWidth="171.0" />
+            <ComboBox fx:id="cBoxAuthority" prefHeight="27.0" prefWidth="171.0" promptText="authority classes" />
             <TextField fx:id="userNameLabel" prefHeight="17.0" prefWidth="167.0" styleClass="txtfield" stylesheets="@application.css" />
             <PasswordField fx:id="passwordLabel1" styleClass="txtfield" stylesheets="@application.css" />
             <PasswordField fx:id="passwordLabel2" styleClass="txtfield" stylesheets="@application.css" />
