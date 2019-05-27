@@ -27,7 +27,7 @@ public class AddOrEditActivityToProjectController {
 	private Button editActivity;
 
 	@FXML
-	private Label LblProject;
+	private Label LblProject,LblProject2;
 
 	@FXML
 	private TextField startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswer;
@@ -101,16 +101,71 @@ public class AddOrEditActivityToProjectController {
 
 		c.addScheduledActivities(k, startTimeAnswer.getText(), endTimeAnswer.getText(),
 					dateAnswer.getText(),activityDescriptionAnswer.getText());
+		
+		Alert enterAlert = new Alert(AlertType.CONFIRMATION);
+		enterAlert.setHeaderText(null);
+		enterAlert.setContentText("Activity Sucsesfully created");
+		enterAlert.showAndWait();
+		
+		startTimeAnswer.clear();
+		endTimeAnswer.clear();
+		dateAnswer.clear();
+		activityDescriptionAnswer.clear();
+		
+		
 	}
 	@FXML
 	private void finalizeEditActivity(ActionEvent event) {
 
 		ArrayList <String []> info = new ArrayList<String []>();
 		int k = c.getProjectByManager(mainC.getUser().getUserId());
-
-
-
-
+			//[0] id, [1] startDate, [2] endDate, [3] currentDate, [4] projectID, [5] description	
+		info = c.getProjectActivities(k);
+		
+		String activityId = cBoxOfActivities.getSelectionModel().getSelectedItem();
+		
+		int i = 0;
+		boolean found = false;
+		while(i<info.size() && found == false) {
+			if(info.get(i)[0].equals(activityId))
+				found = true;
+			else
+				i++;
+		}
+		
+		String activityId2 = info.get(i)[0];
+		String startTime = info.get(i)[1];
+		String endTime = info.get(i)[2];
+		String date = info.get(i)[3];
+		String projectId = info.get(i)[4];
+		String description = info.get(i)[5];
+		
+		//startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswer;
+		
+		LblProject2.setText(projectId);
+		startTimeAnswer.setText(startTime);
+		endTimeAnswer.setText(endTime);
+		dateAnswer.setText(date);
+		activityDescriptionAnswer.setText(description);
+		
+		c.editScheduledActivities(projectId,startTimeAnswer.getText(),endTimeAnswer.getText(), 
+				dateAnswer.getText(), activityId, activityDescriptionAnswer.getText());
+		
+	//int projectId, String starts, String stops, String currDate, int scheduleId, String description		
+	
+		
+		
+		Alert enterAlert = new Alert(AlertType.CONFIRMATION);
+		enterAlert.setHeaderText(null);
+		enterAlert.setContentText("Activity Sucsesfully edited");
+		enterAlert.showAndWait();
+		
+		startTimeAnswer.clear();
+		endTimeAnswer.clear();
+		dateAnswer.clear();
+		activityDescriptionAnswer.clear();
+		
+		
 	}
 	/*
 	 * Your code should be below this
