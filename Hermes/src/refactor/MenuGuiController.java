@@ -446,7 +446,6 @@ public class MenuGuiController {
 	private void newUser(ActionEvent event) {
 		this.newUserPane.toFront();
 		//this.newUserController.setup();
-
 	}
 
 	@FXML
