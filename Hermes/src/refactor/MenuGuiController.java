@@ -323,11 +323,11 @@ public class MenuGuiController {
 
 		//add you loading or delays - ;-
         stage.close();
-        
+
         try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("LogIn.fxml"));
 			Parent root = (Parent) loader.load();
-			
+
 			Stage stage1 = new Stage();
 			stage1.initStyle(StageStyle.UNDECORATED);
 			stage1.setScene(new Scene(root));
@@ -594,7 +594,7 @@ public class MenuGuiController {
 		this.socialLabelSalary.setText(user.getSocials());
 		this.periodLabelSalary.setText(salarySlip[2]);
 		this.employeeIdLabelSalary.setText(Integer.toString(user.getUserId()));
-		// B�r l�gga in if statement f�r att avg�ra vad som ska visas med ob och
+		// B�r l�gga in if statement f�r att avg�ra vad som sa visas med ob och
 		// s�
 		this.descriptionSalary.setText("Basic Pay");
 		this.amountSalary.setText(salarySlip[0]);
