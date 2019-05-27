@@ -72,7 +72,7 @@ public class NewUserController {
     		
     		
     		int user = db.userCreate(Integer.parseInt(auth[0]), Integer.parseInt(shif[0]),
-    				pay, managerId, name[0], name[1], adressLabel.getText(),
+    				pay, 0, name[0], name[1], adressLabel.getText(),
     				phoneLabel.getText(), socialLabel.getText());
     		
     		db.loginCreate(user, userNameLabel.getText(), passwordLabel1.getText());
@@ -93,6 +93,8 @@ public class NewUserController {
     	cBoxShiftLabel.getItems().add("3,helg");
     	
     	ArrayList<String[]> managers = db.getManagers();
+    	
+    	cBoxManager.getItems().add("0,no manager");
     	
     	for(int i = 0; i < managers.size(); i++) {
     		
