@@ -27,17 +27,10 @@ public class AddOrEditActivityToProjectController {
 	private Button editActivity;
 
 	@FXML
-	private Button finalizeEditActivity;
-
-	@FXML
-	private Button finalizeAddActivity;
-
-	@FXML
 	private Label LblProject;
-	
-	@FXML 
-	private TextField startTimeAnswer,endTimeAnswer,dateAnswer,
-						activityDescriptionAnswer;
+
+	@FXML
+	private TextField startTimeAnswer,endTimeAnswer,dateAnswer, activityDescriptionAnswer;
 	@FXML
 	private Pane hiddenPane;
 
@@ -51,6 +44,9 @@ public class AddOrEditActivityToProjectController {
 	public void injectMainController(MenuGuiController mainC){
 		this.mainC = mainC;
 		System.out.println("This message shows us that the controller is set up (AddOrEditActivityToProject)");
+	}
+
+	public void setUp(){
 		hiddenPane.setVisible(false);
 		hiddenPane1.setVisible(false);
 	}
@@ -76,16 +72,18 @@ public class AddOrEditActivityToProjectController {
 
 	@FXML
 	private void editActivity(ActionEvent event) {
-		
+
 		hiddenPane1.setVisible(true);
 		hiddenPane1.toFront();
 		hiddenPane.setVisible(false);
-		
-		
+
+
 		ArrayList <String []> info = new ArrayList<String []>();
 		int k = c.getProjectByManager(mainC.getUser().getUserId());
 
-		info = c.getProcjectActivities(k);
+		info = c.getProjectActivities(k);
+
+		this.cBoxOfActivities.getItems().clear();
 
 		if(!info.isEmpty()) {
 			for(int i = 0; i<info.size(); i++)
@@ -97,10 +95,10 @@ public class AddOrEditActivityToProjectController {
 	private void finalizeAddActivity(ActionEvent event) {
 
 		// int projectId, String starts, String stops, String currDate
-		
+
 		ArrayList <String []> info = new ArrayList<String []>();
 		int k = c.getProjectByManager(mainC.getUser().getUserId());
-		
+
 		c.addScheduledActivities(k, startTimeAnswer.getText(), endTimeAnswer.getText(),
 					dateAnswer.getText(),activityDescriptionAnswer.getText());
 	}
@@ -109,8 +107,8 @@ public class AddOrEditActivityToProjectController {
 
 		ArrayList <String []> info = new ArrayList<String []>();
 		int k = c.getProjectByManager(mainC.getUser().getUserId());
-		
-		
+
+
 
 
 	}

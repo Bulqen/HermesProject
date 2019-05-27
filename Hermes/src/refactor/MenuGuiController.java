@@ -364,6 +364,7 @@ public class MenuGuiController {
 	@FXML
 	private void addOrEditActivityToProject(ActionEvent event) {
 		addOrEditActivityToProjectPane.toFront();
+		this.addOrEditActivityToProjectController.setUp();
 	}
 
 	@FXML

@@ -46,7 +46,7 @@
                   <TextField fx:id="startDate1" layoutX="139.0" layoutY="134.0" styleClass="txtfield" stylesheets="@application.css" />
                   <TextField fx:id="endDate1" layoutX="139.0" layoutY="185.0" styleClass="txtfield" stylesheets="@application.css" />
                   <Label layoutY="291.0" text="New activity description" textFill="LIGHTSKYBLUE" />
-                  <Button fx:id="finalizeEditActivity" layoutX="32.0" layoutY="350.0" mnemonicParsing="false" onAction="#addActivity" prefHeight="68.0" prefWidth="185.0" styleClass="signIn-btn" stylesheets="@application.css" text="         Edit activity" textFill="LIGHTSKYBLUE">
+                  <Button layoutX="32.0" layoutY="350.0" mnemonicParsing="false" onAction="#finalizeEditActivity" prefHeight="68.0" prefWidth="185.0" styleClass="signIn-btn" stylesheets="@application.css" text="         Edit activity" textFill="LIGHTSKYBLUE">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
@@ -58,13 +58,10 @@
                   </ImageView>
                   <Label fx:id="LblProject1" layoutX="199.0" layoutY="36.0" textFill="LIGHTSKYBLUE" />
                   <Label layoutX="32.0" layoutY="87.0" text="Activity ID" textFill="LIGHTSKYBLUE" />
-<<<<<<< HEAD
-                  <ComboBox fx:id="cBoxOfActivities" layoutX="139.0" layoutY="83.0" onAction="#fillInInformation" prefWidth="150.0" promptText="Activities" stylesheets="@application.css" />
+                  <ComboBox fx:id="cBoxOfActivities" layoutX="139.0" layoutY="83.0" prefWidth="150.0" promptText="Activities" stylesheets="@application.css" />
                   <Label layoutX="32.0" layoutY="240.0" text="New Date" textFill="LIGHTSKYBLUE" />
                   <TextField fx:id="endDate11" layoutX="139.0" layoutY="236.0" styleClass="txtfield" stylesheets="@application.css" />
-=======
                   <ComboBox fx:id="cBoxOfActivities" layoutX="139.0" layoutY="83.0" prefWidth="150.0" promptText="Activities" stylesheets="@application.css" />
->>>>>>> branch 'master' of https://github.com/Bulqen/HermesProject.git
                </children>
             </Pane>
             <Pane fx:id="hiddenPane" prefHeight="457.0" prefWidth="325.0" styleClass="parent" stylesheets="@application.css">
@@ -76,7 +73,7 @@
                   <TextField fx:id="startTimeAnswer" layoutX="139.0" layoutY="83.0" styleClass="txtfield" stylesheets="@application.css" />
                   <TextField fx:id="endTimeAnswer" layoutX="139.0" layoutY="134.0" styleClass="txtfield" stylesheets="@application.css" />
                   <Label layoutX="20.0" layoutY="240.0" text="Activity description" textFill="LIGHTSKYBLUE" />
-                  <Button fx:id="finalizeAddActivity" layoutX="28.0" layoutY="296.0" mnemonicParsing="false" onAction="#addActivity" prefHeight="76.0" prefWidth="166.0" styleClass="signIn-btn" stylesheets="@application.css" text="            Add activity" textFill="LIGHTSKYBLUE">
+                  <Button layoutX="28.0" layoutY="296.0" mnemonicParsing="false" onAction="#finalizeAddActivity" prefHeight="76.0" prefWidth="166.0" styleClass="signIn-btn" stylesheets="@application.css" text="            Add activity" textFill="LIGHTSKYBLUE">
                      <font>
                         <Font name="Calibri Bold" size="18.0" />
                      </font>
