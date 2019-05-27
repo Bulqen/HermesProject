@@ -1,15 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="applyVacation" prefHeight="248.0" prefWidth="528.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.ApplyVacationController">
+<Pane fx:id="applyVacation" prefHeight="428.0" prefWidth="697.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.ApplyVacationController">
    <children>
       <Label text="Apply for vacation" textFill="LIGHTSKYBLUE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <Button fx:id="applyVacationButton" layoutX="53.0" layoutY="293.0" mnemonicParsing="false" onAction="#applyVacation" styleClass="signIn-btn" stylesheets="@application.css" text="Apply for vacation" textFill="LIGHTSKYBLUE">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/time-8-128.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="53.0" layoutY="59.0" prefHeight="40.0" prefWidth="275.0" text="Start of vacation (yyyy-mm-dd)" textFill="LIGHTSKYBLUE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="53.0" layoutY="99.0" prefHeight="40.0" prefWidth="275.0" text="End of vacation   (yyyy-mm-dd)" textFill="LIGHTSKYBLUE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="53.0" layoutY="156.0" prefHeight="40.0" prefWidth="275.0" text="comment on your application" textFill="LIGHTSKYBLUE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="startLabel" layoutX="377.0" layoutY="66.0" styleClass="txtfield" stylesheets="@application.css" />
+      <TextField fx:id="endLabel" layoutX="377.0" layoutY="106.0" styleClass="txtfield" stylesheets="@application.css" />
+      <TextArea fx:id="CommentArea" layoutX="349.0" layoutY="156.0" prefHeight="200.0" prefWidth="321.0" />
    </children>
 </Pane>

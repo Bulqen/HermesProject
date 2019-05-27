@@ -169,6 +169,7 @@ CREATE TABLE project_cart (
 CREATE TABLE scheduled_activities (
     id INT AUTO_INCREMENT NOT NULL,
     start TIME,
+    description VARCHAR(200),
     stop TIME,
     currentDate DATE,
     projectId INT NOT NULL,
@@ -501,12 +502,13 @@ CREATE PROCEDURE scheduled_activities_add(
    pId INT,
    starts TIME,
    stops TIME,
-   currDate Date
+   currDate Date,
+   descrip VARCHAR(200)
 )
 BEGIN
 
-    INSERT INTO scheduled_activities (projectId, start, stop, currentDate)
-        VALUES (pId, starts, stops, currDate);
+    INSERT INTO scheduled_activities (projectId, start, stop, currentDate, description)
+        VALUES (pId, starts, stops, currDate, descrip);
 
 END ;;
 
@@ -530,7 +532,7 @@ CREATE PROCEDURE get_project_activities_user(
 )
 BEGIN
 
-SELECT DISTINCT userId ,sa.projectId, sa.start, sa.stop, sa.currentDate, sa.id FROM scheduled_activities as sa
+SELECT DISTINCT userId ,sa.projectId, sa.start, sa.stop, sa.currentDate, sa.id, sa.description FROM scheduled_activities as sa
     INNER JOIN project_cart as pc
         ON sa.projectId = pc.projectId WHERE pc.userId = uId;
 END ;;
@@ -960,13 +962,14 @@ CREATE PROCEDURE edit_scheduled_activities(
   starts TIME,
   stops TIME,
   datum DATE,
-  pId INT
+  pId INT,
+  descrip VARCHAR(200)
 
 
 )
 BEGIN
 
-  UPDATE scheduled_activities SET start = starts, stop = stops, currentDate = datum, projectId =pId
+  UPDATE scheduled_activities SET start = starts, stop = stops, currentDate = datum, projectId =pId, description = descrip
       WHERE id = scheduleId;
 
 END ;;

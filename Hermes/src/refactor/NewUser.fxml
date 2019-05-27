@@ -1,15 +1,139 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="newUser" prefHeight="243.0" prefWidth="393.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.NewUserController">
+<Pane fx:id="newUser" prefHeight="769.0" prefWidth="807.0" styleClass="parent" stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="refactor.NewUserController">
    <children>
       <Label text="New user" textFill="LIGHTSKYBLUE">
          <font>
             <Font size="24.0" />
          </font>
       </Label>
+      <VBox alignment="CENTER_LEFT" layoutX="134.0" layoutY="15.0" prefHeight="633.0" prefWidth="187.0" spacing="40.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="5.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" spacing="5.0">
+               <children>
+                  <Label text="Name" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" spacing="5.0">
+               <children>
+                  <Label text="Adress" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" spacing="5.0">
+               <children>
+                  <Label text="Phone" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="62.0" spacing="5.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="144.0" text="Social security number" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
+               <children>
+                  <Label text="Shift type" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
+               <children>
+                  <Label text="Role" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="218.0" spacing="5.0">
+               <children>
+                  <Label text="Manager Id" textFill="LIGHTSKYBLUE" />
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <Label text="Hourly wage" textFill="LIGHTSKYBLUE" />
+            <Label text="Authority" textFill="LIGHTSKYBLUE" />
+            <Label text="username" textFill="LIGHTSKYBLUE" />
+            <Label text="password" textFill="LIGHTSKYBLUE" />
+            <Label text="repeat password" textFill="LIGHTSKYBLUE" />
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="374.0" spacing="5.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="426.0" spacing="5.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="426.0" spacing="5.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="40.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="337.0" layoutY="29.0" prefHeight="681.0" prefWidth="169.0" spacing="31.0">
+         <children>
+            <TextField fx:id="nameLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="adressLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="phoneLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="socialLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="shiftLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="roleLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="managerIdLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="hWageLabel" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="authorityLabel" prefHeight="17.0" prefWidth="167.0" styleClass="txtfield" stylesheets="@application.css" />
+            <TextField fx:id="userNameLabel" prefHeight="17.0" prefWidth="167.0" styleClass="txtfield" stylesheets="@application.css" />
+            <PasswordField fx:id="passwordLabel1" styleClass="txtfield" stylesheets="@application.css" />
+            <PasswordField fx:id="passwordLabel2" styleClass="txtfield" stylesheets="@application.css" />
+         </children>
+      </VBox>
+      <Button fx:id="createUserButton" layoutX="546.0" layoutY="601.0" mnemonicParsing="false" onAction="#createUser" styleClass="signIn-btn" stylesheets="@application.css" text="Create user" textFill="LIGHTSKYBLUE">
+         <graphic>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../Images/save-128.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Calibri Bold" size="18.0" />
+         </font>
+      </Button>
    </children>
 </Pane>

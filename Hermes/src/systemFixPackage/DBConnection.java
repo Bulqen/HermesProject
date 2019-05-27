@@ -220,7 +220,7 @@ public class DBConnection {
 			CallableStatement myCall = myConn.prepareCall("{CALL apply_vacation_dates(?, ?, ?, ?)}");
 			myCall.setInt(4, uId);
 			myCall.setString(1, start);
-			myCall.setString(2, comment);
+			myCall.setString(2, end);
 			myCall.setString(3, comment);
 
 			myCall.executeUpdate();
