@@ -315,6 +315,34 @@ public class MenuGuiController {
 	}
 
 	@FXML
+	private void logOut(MouseEvent event){
+		Alert enterAlert = new Alert(AlertType.INFORMATION);
+		enterAlert.setHeaderText(null);
+		enterAlert.setContentText("Do you want to Log Out");
+		enterAlert.showAndWait();
+
+		//add you loading or delays - ;-
+        stage.close();
+        
+        try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("LogIn.fxml"));
+			Parent root = (Parent) loader.load();
+			
+			Stage stage1 = new Stage();
+			stage1.initStyle(StageStyle.UNDECORATED);
+			stage1.setScene(new Scene(root));
+			stage1.show();
+
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
+
+	@FXML
 	private void setProfilePic(MouseEvent event){
 		/*
 		String path = null;

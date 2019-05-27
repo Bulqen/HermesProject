@@ -155,16 +155,7 @@ public class LogInControler implements Initializable{
                 stage.close();
 
 				try {
-					/*
-					Stage stage1 = new Stage();
-					Parent root = FXMLLoader.load(getClass().getResource("menuGui.fxml"));
-					Scene scene = new Scene(root);
-	    			stage1.initStyle(StageStyle.UNDECORATED);
-	    			stage1.setScene(scene);
-	    			stage1.show();
-	    			*/
-
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("menuGui.fxml"));
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuGui.fxml"));
 					Parent root = (Parent) loader.load();
 
 					MenuGuiController nextStep = loader.getController();
