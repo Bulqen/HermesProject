@@ -64,7 +64,7 @@ public class NewUserController {
 	@FXML
 	void createUser(ActionEvent event) {
 
-		
+
 
 			if(passwordLabel2.getText().equals(passwordLabel1.getText())) {
 				String [] auth = cBoxAuthority.getSelectionModel().getSelectedItem().split(",");
@@ -92,10 +92,10 @@ public class NewUserController {
 			}
 
 
-	 
+
 
 	}
-	private void setup() {
+	public void setup() {
 		cBoxAuthority.getItems().add("1,worker");
 		cBoxAuthority.getItems().add("2,project manager");
 		cBoxAuthority.getItems().add("3,department manager");
