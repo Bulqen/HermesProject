@@ -540,13 +540,14 @@ public class DBConnection {
 	 * adding a pass for a certain employee
 	 */
 
-	public void addScheduledPass(int uId, String start, String stop, String currentDate) {
+	public void addScheduledPass(int uId, String start, String stop, String currentDate, String description) {
 		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL add_scehduled_pass(?, ?, ?, ?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL add_scehduled_pass(?, ?, ?, ?, ?)}");
 			myCall.setInt(1, uId);
 			myCall.setString(2, start);
 			myCall.setString(3, stop);
 			myCall.setString(4, currentDate);
+			myCall.setString(5, description);
 
 			myCall.executeUpdate();
 
@@ -950,15 +951,16 @@ public class DBConnection {
 	 * editar activiteten med scheduleid.
 	 */
 	
-	public void editScheduledActivities(int projectId, String starts, String stops, String currDate, int scheduleId) {
+	public void editScheduledActivities(int projectId, String starts, String stops, String currDate, int scheduleId, String description) {
 
 		try {
-			CallableStatement myCall = myConn.prepareCall("{CALL edit_scheduled_activities(?, ?, ?, ?, ?)}");
+			CallableStatement myCall = myConn.prepareCall("{CALL edit_scheduled_activities(?, ?, ?, ?, ?, ?)}");
 			myCall.setInt(1, scheduleId);
 			myCall.setString(2, starts);
 			myCall.setString(3, stops);
 			myCall.setString(4, currDate);
 			myCall.setInt(5, projectId);
+			myCall.setString(6, description);
 
 
 
@@ -997,7 +999,7 @@ public class DBConnection {
 	 *
 	 * @param projectId
 	 * @return ArrayList <String []>
-	 * [0] id, [1] startDate, [2] endDate, [3] currentDate, [4] projectID
+	 * [0] id, [1] startDate, [2] endDate, [3] currentDate, [4] projectID, [5] description
 	 */
 
 	public ArrayList <String []> getProcjectActivities(int projectId) {
