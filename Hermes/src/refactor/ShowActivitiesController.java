@@ -73,7 +73,7 @@ public class ShowActivitiesController {
 	    		
 	    		cBoxActivities.getItems().add(activities.get(i)[0]);
 	    	}
-
+ 
 
 	    }
 	    
