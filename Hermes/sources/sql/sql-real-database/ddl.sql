@@ -44,6 +44,8 @@ DROP PROCEDURE IF EXISTS project_edit;
 DROP PROCEDURE IF EXISTS get_project;
 DROP PROCEDURE IF EXISTS edit_scheduled_activities;
 DROP PROCEDURE IF EXISTS remove_scheduled_activities;
+DROP PROCEDURE IF EXISTS get_managers;
+
 
 DROP FUNCTION IF EXISTS get_hours;
 
@@ -988,4 +990,15 @@ BEGIN
 
 END ;;
 
+DELIMITER ;
+
+DELIMITER ;;
+CREATE PROCEDURE get_managers(
+
+)
+BEGIN
+
+  Select id, CONCAT(firstName, " ", lastName), classificationId FROM user WHERE classificationId != 1;
+
+END ;;
 DELIMITER ;
