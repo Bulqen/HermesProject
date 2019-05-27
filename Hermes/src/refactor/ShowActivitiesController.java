@@ -91,7 +91,7 @@ public class ShowActivitiesController {
 
 
 	}
-
+ 
 	@FXML
 	void projectSelected(ActionEvent event) {
 
