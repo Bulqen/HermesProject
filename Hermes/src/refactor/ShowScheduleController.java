@@ -43,6 +43,11 @@ public class ShowScheduleController {
 					int check = j+1;
 					if(check >= start && check <= stop){
 						System.out.println(i + "," + j);
+
+						Rectangle rect = new Rectangle(0,0,50,24);
+
+					    rect.setFill(Color.web("#87cefa"));
+						grid.add(rect, i, j);
 					}
 				}
 			}
