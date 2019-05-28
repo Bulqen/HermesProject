@@ -24,7 +24,7 @@ public class ShowScheduleController {
 
 	@FXML
     private GridPane grid;
-	public void test(){
+	public void showSchedule(){
 
 		String[] workSchedule = c.generateSchedule(mainC.getUser().getUserId());
 		int startDay = Integer.parseInt(workSchedule[2]);

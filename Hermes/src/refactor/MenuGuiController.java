@@ -436,7 +436,7 @@ public class MenuGuiController {
 	@FXML
 	private void showSchedule(ActionEvent event){
 		showSchedulePane.toFront();
-		this.showScheduleController.test();
+		this.showScheduleController.showSchedule();
 	}
 
 	@FXML
@@ -552,7 +552,6 @@ public class MenuGuiController {
 	@FXML
 	public void changeInCellEvent(CellEditEvent edittedCell) {
 		timeToObList row = timeReportTableView1.getSelectionModel().getSelectedItem();
-		// if(edittedCell.getNewValue().toString().matches("\\d{2}:\\d{2}:\\d{2}"))
 		if (checkFormatForTime(edittedCell.getNewValue().toString()))
 			row.setIn((edittedCell.getNewValue().toString()));
 	}
@@ -560,16 +559,12 @@ public class MenuGuiController {
 	@FXML
 	public void changeOutCellEvent(CellEditEvent edittedCell) {
 		timeToObList row = timeReportTableView1.getSelectionModel().getSelectedItem();
-		// if(edittedCell.getNewValue().toString().matches("\\d{2}:\\d{2}:\\d{2}"))
 		if (checkFormatForTime(edittedCell.getNewValue().toString()))
 			row.setOut((edittedCell.getNewValue().toString()));
 	}
 
 	@FXML
 	private void SaveEditWorkingHoursAction(ActionEvent event) {
-
-		// fixa s� vi inte kan spara om input �r fel
-		//Man m�ste �ven trycka enter f�r att �ndra fixa detta
 		System.out.println("test");
 		ArrayList <String []> info = new ArrayList<String[]>();
 
@@ -585,17 +580,14 @@ public class MenuGuiController {
 	private void generateSalarySlip(ActionEvent event) {
 		generateSalarySlip.toFront();
 		String[] salarySlip = this.timeReporter.generateSalarySlip(user.getUserId());
-		// System.out.println(salarySlip[0] + " " + salarySlip[1] + " " +
-		// salarySlip[2] + " " + salarySlip[3] + " " + salarySlip[4] + " " +
-		// salarySlip[5] + " " + salarySlip[6]);
+
 
 		this.nameLabelSalary.setText(user.getName());
 		this.adressLabelSalary.setText(user.getAdress());
 		this.socialLabelSalary.setText(user.getSocials());
 		this.periodLabelSalary.setText(salarySlip[2]);
 		this.employeeIdLabelSalary.setText(Integer.toString(user.getUserId()));
-		// B�r l�gga in if statement f�r att avg�ra vad som sa visas med ob och
-		// s�
+
 		this.descriptionSalary.setText("Basic Pay");
 		this.amountSalary.setText(salarySlip[0]);
 		this.hWageSalary.setText(salarySlip[1]);
