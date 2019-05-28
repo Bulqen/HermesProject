@@ -116,4 +116,11 @@ public class ManageEmployees {
 		DBC.changePW(userId,newPassword);
 		System.out.println("The users password was succsesfully changed");
 	}
+
+	public boolean checkClassificationID(){
+		if(this.classificationID == 3)
+			return true;
+			else
+				return false;
+	}
 }

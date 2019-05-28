@@ -75,6 +75,8 @@ public class MenuGuiController {
 	private ShowActivitiesController showActivitiesController;
 	@FXML
 	private ShowScheduleController showScheduleController;
+	@FXML
+	private SalaryBetweenDatesController salaryBetweenDatesController;
 
 	// Node used to get the current scene
 	private Node node;
@@ -217,6 +219,7 @@ public class MenuGuiController {
 		addOrEditActivityToProjectController.injectMainController(this);
 		showActivitiesController.injectMainController(this);
 		showScheduleController.injectMainController(this);
+		salaryBetweenDatesController.injectMainController(this);
 	}
 
 	// Makes the stage dragable when you klick and hold on the stage
@@ -399,6 +402,14 @@ public class MenuGuiController {
 	private void showActivities(ActionEvent event) {
 		showActivitiesPane.toFront();
 		this.showActivitiesController.setup();
+	}
+
+	@FXML
+	private Pane salarayBetweenDatesPane;
+
+	@FXML
+	private void salaryBetweenDates(ActionEvent event){
+		salarayBetweenDatesPane.toFront();
 	}
 
 	@FXML

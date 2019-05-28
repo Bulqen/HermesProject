@@ -211,40 +211,6 @@
                      </children>
                   </VBox>
                </children></Pane>
-            <Pane fx:id="salarySlipPane" layoutX="10.0" layoutY="230.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-               <children>
-                  <VBox alignment="CENTER_LEFT" spacing="40.0">
-                     <padding>
-                        <Insets left="50.0" />
-                     </padding>
-                     <children>
-                        <Button fx:id="generateSalarySlipButton" mnemonicParsing="false" onAction="#generateSalarySlip" styleClass="signIn-btn" stylesheets="@application.css" text="Generate salary slip" textFill="LIGHTSKYBLUE">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Images/coins-128.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Calibri Bold" size="18.0" />
-                           </font>
-                        </Button>
-                        <Button mnemonicParsing="false" onAction="#back" styleClass="signIn-btn" stylesheets="@application.css" text="Back" textFill="LIGHTSKYBLUE">
-                           <graphic>
-                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../Images/arrow-65-128.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                           <font>
-                              <Font name="Calibri Bold" size="18.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </VBox>
-               </children></Pane>
             <Pane fx:id="ManageAccountsPane" layoutX="10.0" layoutY="230.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                <children>
                   <VBox alignment="CENTER_LEFT" spacing="40.0">
@@ -456,6 +422,52 @@
                      <padding>
                         <Insets left="50.0" />
                      </padding>
+                  </VBox>
+               </children></Pane>
+            <Pane fx:id="salarySlipPane" layoutX="10.0" layoutY="230.0" styleClass="parent" stylesheets="@application.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT" spacing="40.0">
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                     <children>
+                        <Button fx:id="generateSalarySlipButton" mnemonicParsing="false" onAction="#generateSalarySlip" styleClass="signIn-btn" stylesheets="@application.css" text="Generate salary slip" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/coins-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="showSalaryBetweenDates" layoutX="60.0" layoutY="10.0" mnemonicParsing="false" onAction="#salaryBetweenDates" styleClass="signIn-btn" stylesheets="@application.css" text="Salray for selected period" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/coins-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#back" styleClass="signIn-btn" stylesheets="@application.css" text="Back" textFill="LIGHTSKYBLUE">
+                           <graphic>
+                              <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../Images/arrow-65-128.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Calibri Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
                   </VBox>
                </children></Pane>
          </children>
@@ -755,6 +767,11 @@
             <Pane fx:id="showSchedulePane" prefHeight="200.0" prefWidth="200.0">
                <children>
                   <fx:include fx:id="showSchedule" source="ShowSchedule.fxml" />
+               </children>
+            </Pane>
+            <Pane fx:id="salarayBetweenDatesPane" prefHeight="781.0" prefWidth="1048.0" styleClass="parent" stylesheets="@application.css">
+               <children>
+                  <fx:include fx:id="salaryBetweenDates" source="SalaryBetweenDates.fxml" />
                </children>
             </Pane>
          </children></AnchorPane>
