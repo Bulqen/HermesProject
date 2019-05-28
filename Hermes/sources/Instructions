@@ -1,0 +1,13 @@
+How to start the Hermes program:
+1.Install a local mysql server on you database (it will work with an external, only we haven´t
+had the budget to make one)
+2.make a path to your mysql server so you can call on it with mysql.
+3. run the command bash reset_local.bash, while standing in the folder it lays(sql-real-database), this will setup the
+database
+4. compile the files and run it, alternatively you can open it in eclipse and run it directly.
+users that work:
+username password
+user      pass
+felix     drangel
+anton     widerberg
+jacob     justad
