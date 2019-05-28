@@ -159,6 +159,7 @@ public class LogInControler implements Initializable{
 					Parent root = (Parent) loader.load();
 
 					MenuGuiController nextStep = loader.getController();
+					
 					nextStep.setUser(enteredUserName);
 
 					Stage stage1 = new Stage();

@@ -186,7 +186,7 @@ public class MenuGuiController {
 	// Sets the user and initiates it as a worker
 	// Initiates the manageEmployee
 	public void setUser(String userName) {
-
+		System.out.println(userName);
 		userFac = UserFactory.initiateUserFactory(userName);
 		user = userFac.getUser("WORKER");
 		this.manageEmployee = new ManageEmployees(user);

@@ -20,9 +20,9 @@ public class UserFactory {
 	}
 
 	public static UserFactory initiateUserFactory(String userName){
-		if(obj==null){
+		//if(obj==null){
 		    obj= new UserFactory(userName);
-		}
+
 	        return obj;
 	   }
 	//Ändra så dom inte skapas om varje gång;
