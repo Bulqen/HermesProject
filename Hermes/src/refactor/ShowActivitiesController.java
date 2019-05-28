@@ -44,22 +44,22 @@ public class ShowActivitiesController {
 
 	@FXML
 	private TextArea descriptionLabel;
-	
-	
+
+
 	public void setup() {
 		ActivityIdLabel.setEditable(false);
 		dateLabel.setEditable(false);
 		startLabel.setEditable(false);
 		endLabel.setEditable(false);
 		descriptionLabel.setEditable(false);
-		
+
 		ActivityIdLabel.clear();
 		startLabel.clear();
 		descriptionLabel.clear();
 		endLabel.clear();
 		dateLabel.clear();
-		
-		
+
+
 		ArrayList<String[]> projects = db.getAllProjects();
 		cBoxProjects.getItems().clear();
 		cBoxActivities.getItems().clear();
@@ -78,34 +78,36 @@ public class ShowActivitiesController {
 
 	@FXML
 	void activitySelected(ActionEvent event) {
+		if(cBoxActivities.getSelectionModel().getSelectedIndex() >= 0){
+			int activity = Integer.parseInt(cBoxActivities.getSelectionModel().getSelectedItem());
 
-		int activity = Integer.parseInt(cBoxActivities.getSelectionModel().getSelectedItem());
+			String [] activityInfo = db.getScheduledActiviry(activity);
 
-		String [] activityInfo = db.getScheduledActiviry(activity);
-
-		ActivityIdLabel.setText(activityInfo[0]);
-		startLabel.setText(activityInfo[1]);
-		descriptionLabel.setText(activityInfo[2]);
-		endLabel.setText(activityInfo[3]);
-		dateLabel.setText(activityInfo[4]);
-
-
+			ActivityIdLabel.setText(activityInfo[0]);
+			startLabel.setText(activityInfo[1]);
+			descriptionLabel.setText(activityInfo[2]);
+			endLabel.setText(activityInfo[3]);
+			dateLabel.setText(activityInfo[4]);
+		}
 	}
- 
+
 	@FXML
 	void projectSelected(ActionEvent event) {
 
 		cBoxActivities.getItems().clear();
-		String [] words = cBoxProjects.getSelectionModel().getSelectedItem().split(",");
-		int pr = Integer.parseInt(words[0]);
-		ArrayList<String[]> activities = db.getProjectActivities(pr);
-		if(!activities.isEmpty()) {
+		if(cBoxProjects.getSelectionModel().getSelectedIndex() >= 0){
+			String [] words = cBoxProjects.getSelectionModel().getSelectedItem().split(",");
+			int pr = Integer.parseInt(words[0]);
+			ArrayList<String[]> activities = db.getProjectActivities(pr);
+			if(!activities.isEmpty()) {
 
-			for(int i = 0; i < activities.size(); i++) {
+				for(int i = 0; i < activities.size(); i++) {
 
-				cBoxActivities.getItems().add(activities.get(i)[0]);
+					cBoxActivities.getItems().add(activities.get(i)[0]);
+				}
 			}
 		}
+
 
 
 	}

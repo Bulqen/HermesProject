@@ -65,25 +65,12 @@ public class Project {
 		this.status = status;
 	}
 
-	public void saveProject(){
-		DBConnection dbc = new DBConnection();
-		dbc.projectCreate(start, stop, goal, budg, status);
-	}
-
 	public void addUser(int userID){
 		DBConnection dbc = new DBConnection();
 		dbc.addUserToProject(projectID, userID);
 	}
 
-	public void addActivity(String startTime, String endTime, String date){
-		DBConnection dbc = new DBConnection();
-		dbc.addScheduledActivities(projectID, startTime, endTime, date);
-	}
 
-	public ArrayList<String[]> getActivities(){
-		DBConnection dbc = new DBConnection();
-		return dbc.getProcjectActivities(projectID);
-	}
 
 
 }

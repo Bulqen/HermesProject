@@ -56,7 +56,6 @@ public class ManageEmployees {
 		return DBC.getAllUsers();
 	}
 
-	//Denna är provisorisk den andra funkar inte
 	public void changeUserInformationProvisorisk(int userId, String name, String adress, String number, String socials, String shiftId,
 			String role, String managerName, String hourlySalary, String classificationID,String managerId) {
 
@@ -66,18 +65,14 @@ public class ManageEmployees {
 			String firstName = temp[0];
 			String lastName = temp[1];
 
-			//shiftId är en int allt jag får i gui är shift typ som är en sträng
-			//Detta fuckar if-satserna med
 			DBC.editUser(userId,Integer.parseInt(classificationID),2,
 					Integer.parseInt(hourlySalary),Integer.parseInt(managerId),
 					firstName, lastName, adress, number, socials);
 			System.out.println("The user information was succsesfully changed");
 
-
-		// classification ID is only allowed to be 1,2,3
-		// shiftID is only allowed to have any of the following the values 1,2,3,4
 	}
 
+	/*
 	public void changeUserInformation(int userId, String name, String adress, String number, String socials, String shiftId,
 			String role, String managerName, String hourlySalary, String classificationID,String managerId) {
 
@@ -105,6 +100,7 @@ public class ManageEmployees {
 		// classification ID is only allowed to be 1,2,3
 		// shiftID is only allowed to have any of the following the values 1,2,3,4
 	}
+	*/
 	public void changePassword(int userId,String newPassword){
 
 		if(this.classificationID == 3) {
@@ -119,31 +115,5 @@ public class ManageEmployees {
 	public void changeYourOwnPassword(int userId,String newPassword){
 		DBC.changePW(userId,newPassword);
 		System.out.println("The users password was succsesfully changed");
-	}
-
-	private boolean checkshiftId(String shiftId) {
-		// TODO Auto-generated method stub
-
-		if(Integer.valueOf(shiftId) == 1 || Integer.valueOf(shiftId) == 2 || Integer.valueOf(shiftId) == 3
-				|| Integer.valueOf(shiftId) == 4 )
-			return true;
-		else
-			return false;
-	}
-
-	private boolean checkClassID(String classificationID) {
-		// TODO Auto-generated method stub
-
-		if(Integer.valueOf(classificationID) == 1 || Integer.valueOf(classificationID) == 2 ||
-				Integer.valueOf(classificationID) == 3)
-			return true;
-		else
-			return false;
-	}
-	public boolean checkClassificationID(){
-		if(this.classificationID == 3)
-			return true;
-			else
-				return false;
 	}
 }

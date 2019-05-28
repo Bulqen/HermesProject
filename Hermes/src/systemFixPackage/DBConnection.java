@@ -12,7 +12,7 @@ public class DBConnection {
 	private String PW;
 	private Connection myConn;
 
-	//Kan �ndra till icke public senare
+
 	public DBConnection() {
 
 		try {
@@ -207,14 +207,14 @@ public class DBConnection {
 
 	}
 	/**
-	 * 
+	 *
 	 * @param uId
 	 * @param start
 	 * @param end
 	 * @param comment
 	 * will report vacation between the dates (including)
 	 */
-	
+
 	public void applyVacationDates(int uId, String start, String end, String comment) {
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL apply_vacation_dates(?, ?, ?, ?)}");
@@ -380,7 +380,7 @@ public class DBConnection {
 		return info.get(0);
 	}
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 * @return
 	 */
@@ -403,7 +403,7 @@ public class DBConnection {
 		return info.get(0);
 	}
 	/**
-	 * 
+	 *
 	 * @param scheduleId
 	 * @return
 	 * id, start, description,stop, date, projectId
@@ -426,8 +426,8 @@ public class DBConnection {
 
 		return info.get(0);
 	}
-	
-	
+
+
 
 	/**
 	 *
@@ -455,7 +455,7 @@ public class DBConnection {
 		return info;
 	}
 	/**
-	 * 
+	 *
 	 * @return
 	 * id, startDate, endDate, Goals, budget,status,name, manager
 	 */
@@ -476,7 +476,7 @@ public class DBConnection {
 
 		return info;
 	}
-	
+
 	/**
 	 *
 	 *
@@ -484,7 +484,7 @@ public class DBConnection {
 	 * start index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName, 9 hourlypay, 10 classificationId, 11 shiftId
 	 *
 	 */
-	
+
 	public ArrayList <String []> getUsersByManager(int managerId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
@@ -502,11 +502,11 @@ public class DBConnection {
 
 		return info;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param projectId
-	 * @return ArrayList <String []> 
+	 * @return ArrayList <String []>
 	 * String [] is a row, in this case,
 	 * index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName, 9 hourlypay, 10 classificationId, 11 shiftId
 	 */
@@ -528,11 +528,11 @@ public class DBConnection {
 		return info;
 	}
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 * @return users not in project id, namn
 	 */
-	
+
 	public ArrayList <String []> getUsersNotInProject(int projectId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
@@ -550,16 +550,16 @@ public class DBConnection {
 
 		return info;
 	}
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * @param managerId
-	 * @return ArrayList <String []> 
+	 * @return ArrayList <String []>
 	 * String [] is a row, in this case,
 	 * index 0 is userid, 1 name, 2 adress, 3 number, 4 socials, 5 shift, 6 role, 7 mangerid, 8 mangerName, 9 hourlypay, 10 classificationId, 11 shiftId
 	 */
-	
+
 	public ArrayList <String []> getUsersByProjectManager(int managerId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
@@ -577,8 +577,8 @@ public class DBConnection {
 
 		return info;
 	}
-	
-	
+
+
 	/**
 	 *
 	 * @param uId
@@ -595,7 +595,7 @@ public class DBConnection {
 			myCall.setString(2, start);
 			myCall.setString(3, stop);
 			myCall.setString(4, currentDate);
-			
+
 
 			myCall.executeUpdate();
 
@@ -712,9 +712,9 @@ public class DBConnection {
 	 * @param uId
 	 * @return ArrayList <String []> of all time reports on that specific user, within intervall (including intervall)
 	 * [0] id, [1] userId, [2] inTime, [3] outTime, [4] abscence, [5] currentDate, [6] comment, [7] hours
-	 * 
+	 *
 	 */
-	
+
 	public ArrayList <String []> getTimeReportIntervall(int uId, String start, String end) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
@@ -816,7 +816,7 @@ public class DBConnection {
 
 	}
 	/**
-	 * 
+	 *
 	 * @param managerId
 	 * @return projectId
 	 */
@@ -826,9 +826,9 @@ public class DBConnection {
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL get_project_by_manager(?)}");
 			myCall.setInt(1, managerId);
-			
 
-			
+
+
 			ResultSet myRs = myCall.executeQuery();
 			info = getAllAsList(myRs);
 			if(!info.isEmpty())
@@ -838,12 +838,12 @@ public class DBConnection {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return projectId;
-		
+
 	}
-	
-	
+
+
 	/**
 	 *
 	 * @param projectId
@@ -870,18 +870,18 @@ public class DBConnection {
 
 	}
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 * @param userId
 	 */
-	
+
 	public void removeUserToProject(int projectId, int userId) {
 
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL remove_from_project(?, ?)}");
 			myCall.setInt(1, projectId);
 			myCall.setInt(2, userId);
-	
+
 
 
 			myCall.executeUpdate();
@@ -894,7 +894,7 @@ public class DBConnection {
 
 	}
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 * @param start
 	 * @param stop
@@ -904,7 +904,7 @@ public class DBConnection {
 	 * @param namn
 	 * @param managerId
 	 */
-	
+
 	public void editProject(int projectId, String start, String stop, String goal, int budg, String status, String namn, int managerId) {
 
 		try {
@@ -919,8 +919,8 @@ public class DBConnection {
 			myCall.setInt(8, projectId);
 
 			myCall.executeUpdate();
-			
-			
+
+
 
 
 
@@ -933,17 +933,17 @@ public class DBConnection {
 		}
 
 	}
-	
+
 	public void finishProject(int projectId) {
 
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL finish_Project(?)}");
-			
+
 			myCall.setInt(1, projectId);
 
 			myCall.executeUpdate();
-			
-			
+
+
 
 
 
@@ -956,9 +956,9 @@ public class DBConnection {
 		}
 
 	}
-	
-	
-	
+
+
+
 
 	/**
 	 *
@@ -991,7 +991,7 @@ public class DBConnection {
 
 	}
 	/**
-	 * 
+	 *
 	 * @param projectId
 	 * @param starts
 	 * @param stops
@@ -999,7 +999,7 @@ public class DBConnection {
 	 * @param scheduleId
 	 * editar activiteten med scheduleid.
 	 */
-	
+
 	public void editScheduledActivities(int projectId, String starts, String stops, String currDate, int scheduleId, String description) {
 
 		try {
@@ -1022,13 +1022,13 @@ public class DBConnection {
 		}
 
 	}
-	
+
 	public void removeScheduledActivities(int scheduleId) {
 
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL remove_scheduled_activities(?)}");
 			myCall.setInt(1, scheduleId);
-			
+
 
 
 
@@ -1041,8 +1041,8 @@ public class DBConnection {
 		}
 
 	}
-	
-	
+
+
 
 	/**
 	 *
@@ -1068,13 +1068,13 @@ public class DBConnection {
 
 		return info;
 	}
-	
+
 	public ArrayList <String []> getManagers() {
 		ArrayList <String []> info = new ArrayList<String []>();
 
 		try {
 			CallableStatement myCall = myConn.prepareCall("{CALL get_managers()}");
-			
+
 
 			ResultSet myRs = myCall.executeQuery();
 			info = getAllAsList(myRs);
@@ -1141,7 +1141,7 @@ public class DBConnection {
 	 *
 	 * @param userId
 	 * @return [] String
-	 * [0] totalHours, [1] hourlyPay, [2] YYYY-MM, [3] pay, [4] namn, 
+	 * [0] totalHours, [1] hourlyPay, [2] YYYY-MM, [3] pay, [4] namn,
 	 */
 
 	public String [] generateSalaryslip(int userId) {
@@ -1162,12 +1162,12 @@ public class DBConnection {
 		return info.get(0);
 	}
 	/**
-	 * 
+	 *
 	 * @param userId
 	 * @return [] String
 	 * [0] startTime, [1] endTime, [2] startDay, [3] endDay, [4] type-shift , ex( [0] "08:00",[1]"17:00", [2] "6",[3] "7", [4] "helg"), 1-7, mån-sön
 	 */
-	
+
 	public String [] generateSchedule(int userId) {
 		ArrayList <String []> info = new ArrayList<String []>();
 
